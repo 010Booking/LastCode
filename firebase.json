@@ -1,12 +1,12 @@
 {
-  "database": {
-    "rules": "database.rules.json"
-  },
   "hosting": {
-    "site": "start010010",
-    "public": "public",
+    "public": "y",
     "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
     "rewrites": [
+      {
+        "source": "/manageBooking.html",
+        "destination": "/manageBooking.html"
+      },
       {
         "source": "**",
         "destination": "/index.html"
