@@ -109,7 +109,9 @@
                     올바른 전화번호 뒤 네 자리를 입력해 주세요.
                   </div>
                 </div>
-                <button type="submit" class="btn btn-dark">확인</button>
+                <div class="d-flex justify-content-center">
+                  <button type="submit" class="btn btn-dark">확인</button>
+                </div>
               </form>
             </div>
           </div>
@@ -140,7 +142,7 @@
             ></button>
           </div>
           <div class="modal-body">
-            <div id="reservationInfo"></div>
+            <div id="reservationInfo" style="white-space: pre-line"></div>
             <!-- 예매 정보 출력 영역 -->
           </div>
           <div class="modal-footer">
@@ -179,6 +181,7 @@
               id="updateName"
               name="updateName"
             /><br />
+            <label for="updateDate">관람 날짜:</label><br />
             <select class="form-select" id="updateDate" multiple>
               <option value="23년 12월 17일">23년 12월 17일</option>
               <option value="23년 12월 18일">23년 12월 18일</option>
@@ -206,9 +209,11 @@
               id="updatePhone"
               name="updatePhone"
             /><br />
-            <div class="modal-footer">
-              <input type="submit" value="변경 신청" />
-            </div>
+          </div>
+          <div class="modal-footer">
+            <button class="btn btn-dark" type="button" id="submitUpdate">
+              변경 신청
+            </button>
           </div>
         </div>
       </div>
@@ -253,7 +258,12 @@
         .getElementById("closeModal")
         .addEventListener("click", function () {
           reservationModal.style.display = "none";
+          var modalBackdrop = document.querySelector(".modal-backdrop");
+          if (modalBackdrop) {
+            modalBackdrop.remove();
+          }
         });
+
       // 정보 수정 버튼 클릭 이벤트 핸들러
       document
         .getElementById("openUpdateForm")
@@ -292,23 +302,26 @@
                   docRef = doc.ref; // 일치하는 문서에 대한 참조를 저장
                   // 일치하는 정보가 있을 경우, 모달 창에 보여주기
                   var result =
-                    "예매 정보: \n" +
                     "이름: " +
                     data.name +
-                    "\n" +
+                    "<br>" +
+                    "<br>" +
                     "날짜: " +
                     data.date.join(", ") +
-                    "\n" +
+                    "<br>" +
+                    "<br>" +
                     "이메일: " +
                     data.email +
-                    "\n" +
+                    "<br>" +
+                    "<br>" +
                     "인원: " +
                     data.people +
-                    "\n" +
+                    "<br>" +
+                    "<br>" +
                     "전화번호: " +
                     data.phone;
-                  document.getElementById("reservationInfo").textContent =
-                    result;
+
+                  document.getElementById("reservationInfo").innerHTML = result;
 
                   // 정보를 수정 폼의 input 값으로 설정
                   document.getElementById("updateName").value = data.name;
@@ -331,8 +344,7 @@
                 reservationModal.style.display = "block";
               } else {
                 // 일치하는 정보를 찾지 못했을 경우
-                document.getElementById("result").textContent =
-                  "일치하는 사용자 정보가 없습니다.";
+                alert("일치하는 사용자 정보가 없습니다."); // 경고창 표시
               }
             })
             .catch(function (error) {
@@ -359,11 +371,11 @@
               .delete()
               .then(function () {
                 console.log("Document successfully deleted!");
-                document.getElementById("result").textContent =
-                  "예매가 취소되었습니다.";
+                alert("예매가 취소되었습니다.");
                 document.getElementById("cancelReservation").disabled = true; // 예매 취소 버튼 비활성화
                 docRef = null; // 참조 초기화
                 $("#reservationModal").modal("hide"); // 모달 창 닫기
+                window.location.href = "index.html";
               })
               .catch(function (error) {
                 console.error("Error removing document: ", error);
@@ -373,8 +385,8 @@
 
       // 정보 수정 폼 제출 이벤트 핸들러
       document
-        .getElementById("updateFormContent")
-        .addEventListener("submit", function (event) {
+        .getElementById("submitUpdate")
+        .addEventListener("click", function (event) {
           event.preventDefault();
 
           // 변경할 정보 가져오기
@@ -396,6 +408,33 @@
             document.getElementById("updateDate").selectedOptions
           ).map((option) => option.value);
 
+          // 이름, 이메일, 전화번호 조건 검사
+          if (!updateName) {
+            alert("이름을 입력해주세요.");
+            return;
+          }
+
+          if (!updateEmail) {
+            alert("이메일을 입력해주세요.");
+            return;
+          }
+
+          if (!updatePhone) {
+            alert("전화번호를 입력해주세요.");
+            return;
+          }
+
+          // 인원과 날짜 조건 검사
+          if (!updatePeople || updatePeople < 1) {
+            alert("인원은 반드시 1명 이상이어야 합니다.");
+            return;
+          }
+
+          if (!updateDate.length) {
+            alert("날짜는 반드시 한 개 이상 선택되어야 합니다.");
+            return;
+          }
+
           // 파이어베이스에 정보 업데이트
           docRef
             .update({
@@ -407,9 +446,11 @@
             })
             .then(function () {
               console.log("Document successfully updated!");
-              document.getElementById("result").textContent =
-                "예매 정보가 성공적으로 업데이트되었습니다.";
+              alert("예매 정보가 성공적으로 업데이트되었습니다.");
               updateForm.style.display = "none"; // 정보 수정 폼 닫기
+              $("#updateForm").modal("hide");
+              $("body").removeClass("modal-open");
+              $(".modal-backdrop").remove();
             })
             .catch(function (error) {
               console.error("Error updating document: ", error);
