@@ -94,12 +94,13 @@ ul, ol, li{
     vertical-align: top;
 }
 
-.info_summary .info .infoItem .infoDesc .infoText{
+.infoDesc .infoText{
     position: relative;
     max-width: 41.5rem;
     color: #000;
     font-size: 17px;
     line-height: 160%;
+    margin-left: 5px;
 }
 
 .dateBox{
@@ -110,8 +111,9 @@ ul, ol, li{
 
 .selectTitle{
     margin: 0px 20px;
-    padding-bottom: 20px;
+    padding: 20px 0px;
     border-bottom: 1px solid #ebebeb;
+    border-top: 1px solid #ebebeb;
 }
 
 .datelistBox{
@@ -130,26 +132,32 @@ ul, ol, li{
     text-align: center;
     list-style: none;
     border-bottom: 1px;
-    
 }
 
 .dateselectBtn{
-    display: inline-block;
+    display: flex;
+    text-align: center;
     width: 100%;
     height: 40px;
     border: none;
     background-color: transparent;
+    
 }
-.dateselectBtn:hover{
-    display: inline-block;
+
+.dateselectBtn:hover, .dateselectBtn:checked{
     background-color: #fff;
     border: 1px solid #aaa;
 }
 
 .dateselectBtn .datetext{
+    margin: auto;
     color: #000;
 }
 
+.inputBox{
+    width: 100%;
+    padding: 30px;
+}
 
 
 /* index.html 에서 쓴 클래스들 */
@@ -224,6 +232,3 @@ ul, ol, li{
     font-size:1.5em;
     font-weight: bold;
     }
-
-/* manageBooking.html  */
-

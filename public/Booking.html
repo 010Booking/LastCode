@@ -74,7 +74,7 @@
     <!-- Page content-->
     <section class="py-5 myungjo">
       <div class="container px-5 center">
-        <div class="infoBox bg-light rounded-3 py-5 px-4">
+        <div class="infoBox py-5 px-4">
           <!--공연정보 요약-->
           <div class="row">
             <div class="posterbox col-lg-4 m-2">
@@ -105,7 +105,7 @@
             </div>
           </div>
         </div>
-        <div class="dateBox bg-light rounded-3 py-5 px-4">
+        <div class="dateBox py-5 px-4">
           <div class="row selectTitle">
             <h5 class="col-lg-4 px-5">날짜선택</h5><h5 class="col-lg-4 px-5">회차선택</h5>
           </div>
@@ -113,13 +113,16 @@
             <div class="datelistBox col-lg-4">
               <ul class="datelist">
                 <li class="mb-3">
-                  <button class="dateselectBtn"><span class="datetext">2024년 2월 15일 (목)</span></button>
+                  <input type="radio" name="date" id="date1" class="btn-check"autocomplete="off">
+                  <label class="dateselectBtn datetext" for="date1"><span class="datetext">2024년 2월 15일 (목)</span></label>
                 </li>
                 <li class="mb-3">
-                  <button class="dateselectBtn"><span class="datetext">2024년 2월 16일 (금)</span></button>
+                  <input type="checkbox" class="btn-check" id="date2" autocomplete="off">
+                  <label class="dateselectBtn datetext" for="date2"><span class="datetext">2024년 2월 16일 (금)</span></label>
                 </li>
                 <li class="mb-3">
-                  <button class="dateselectBtn"><span class="datetext">2024년 2월 17일 (토)</span></button>
+                  <input type="checkbox" class="btn-check" id="date3" autocomplete="off">
+                  <label class="dateselectBtn datetext" for="date3"><span class="datetext">2024년 2월 17일 (토)</span></label>
                 </li>
               </ul>
             </div>
@@ -132,70 +135,85 @@
             </div>
           </div>
         </div>
-
-
-      <div class="container px-5">
-        <!-- Input form-->
-        <div class="bg-light rounded-3 py-5 px-4 px-md-5 mb-5">
-          <div class="text-center mb-5">
-            <div
-              class="feature bg-primary bg-gradient text-white rounded-3 mb-3"
-            >
-              <i class="bi bi-envelope"></i>
+        <div class="bookinginfoBox py-5 px-4 px-md-5 mb-5">
+          <!--
+            <div class="row selectTitle">
+              <h5 class="col-lg-4 px-5">예매 정보 입력</h5>
             </div>
-            <h1 class="fw-bolder">예매 정보 확인</h1>
-            <p class="lead fw-normal text-muted mb-0">
-              예매자 정보를 입력한 후 예매 내역을 조회합니다.
-            </p>
-          </div>
-          <div class="row gx-5 justify-content-center">
-            <div class="col-lg-8 col-xl-6">
-              <form id="userForm" data-sb-form-api-token="API_TOKEN">
-                <!-- Email address input-->
-                <div class="form-floating mb-3">
-                  <input
-                    class="form-control"
-                    id="email"
-                    type="email"
-                    placeholder="name@example.com"
-                    data-sb-validations="required,email"
-                  />
-                  <label for="email">이메일 주소</label>
-                  <div
-                    class="invalid-feedback"
-                    data-sb-feedback="email:required"
-                  >
-                    이메일을 입력해 주세요.
-                  </div>
-                  <div class="invalid-feedback" data-sb-feedback="email:email">
-                    이메일 형식이 올바르지 않습니다.
-                  </div>
+          -->
+          
+          <form id="userForm" data-sb-form-api-token="API_TOKEN">
+            <div class="inputBox bg-light rounded-3 mb-5">
+              <div class="infoDesc"><p class="infoText">예매자명</p></div>
+              <!-- Email address input-->
+              <div class="form-floating mb-3">
+                <input
+                  class="form-control"
+                  id="email"
+                  type="email"
+                  placeholder="name@example.com"
+                  data-sb-validations="required,email"
+                />
+                <label for="email">이름</label>
+                <div
+                  class="invalid-feedback"
+                  data-sb-feedback="email:required"
+                >
+                  이름을 입력해 주세요.
                 </div>
-                <!-- Phone number input-->
-                <div class="form-floating mb-3">
-                  <input
-                    class="form-control"
-                    id="phone"
-                    type="tel"
-                    placeholder="(123) 456-7890"
-                    data-sb-validations="required"
-                  />
-                  <label for="phone">전화번호 뒤 4자리</label>
-                  <div
-                    class="invalid-feedback"
-                    data-sb-feedback="phone:required"
-                  >
-                    올바른 전화번호 뒤 네 자리를 입력해 주세요.
-                  </div>
-                </div>
-                <div class="d-flex justify-content-center">
-                  <button type="submit" class="btn btn-dark">확인</button>
-                </div>
-              </form>
+              </div>
             </div>
-          </div>
+            <div class="inputBox bg-light rounded-3 mb-5">
+              <div class="infoDesc"><p class="infoText">이메일</p></div>
+              <!-- Email address input-->
+              <div class="form-floating mb-3">
+                <input
+                  class="form-control"
+                  id="email"
+                  type="email"
+                  placeholder="name@example.com"
+                  data-sb-validations="required,email"
+                />
+                <label for="email">이메일 주소</label>
+                <div
+                  class="invalid-feedback"
+                  data-sb-feedback="email:required"
+                >
+                  이메일을 입력해 주세요.
+                </div>
+                <div class="invalid-feedback" data-sb-feedback="email:email">
+                  이메일 형식이 올바르지 않습니다.
+                </div>
+              </div>
+            </div>
+            <div class="inputBox bg-light rounded-3 mb-5">
+              <div class="infoDesc"><p class="infoText">연락처</p></div>
+              <div class="form-floating mb-3">
+                <input class="form-control"/>
+              </div>
+            </div>
+            <div class="inputBox bg-light rounded-3 mb-5">
+              <div class="infoDesc"><p class="infoText">예매 매수</p></div>
+              <div class="mb-3">
+                <select class="form-select" id="floatingSelect">
+                  <option value="1" selected>1매</option>
+                  <option value="2">2매</option>
+                  <option value="3">3매</option>
+                  <option value="4">4매</option>
+                  <option value="5">5매</option>
+                  <option value="6">6매</option>
+                  <option value="7">7매</option>
+                  <option value="8">8매</option>
+                  <option value="9">9매</option>
+                </select>
+              </div>
+            </div>
+            <div class="d-flex justify-content-center">
+              <button type="submit" class="btn btn-dark">예매하기</button>
+            </div>
+          </form>
         </div>
-      </div>
+
     </section>
     <!-- 결과 출력 영역 -->
     <div id="result"></div>
@@ -233,66 +251,6 @@
               정보 수정
             </button>
             <!-- 정보 수정 버튼 -->
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- 정보 수정 폼 -->
-    <div id="updateForm" class="modal fade" tabindex="-1" aria-hidden="true">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">예매 내역 수정</h5>
-            <button
-              type="button"
-              class="btn-close"
-              data-bs-dismiss="modal"
-              aria-label="Close"
-              id="closeUpdateForm"
-            ></button>
-          </div>
-          <div class="modal-body">
-            <label for="updateName">이름:</label><br />
-            <input
-              class="form-control"
-              type="text"
-              id="updateName"
-              name="updateName"
-            /><br />
-            <label for="updateDate">관람 날짜:</label><br />
-            <select class="form-select" id="updateDate" multiple>
-              <option value="23년 12월 17일">23년 12월 17일</option>
-              <option value="23년 12월 18일">23년 12월 18일</option>
-              <option value="23년 12월 19일">23년 12월 19일</option>
-            </select>
-            <label for="updateEmail">이메일:</label><br />
-            <input
-              input
-              type="email"
-              class="form-control"
-              id="updateEmail"
-              name="updateEmail"
-            /><br />
-            <label for="updatePeople">인원:</label><br />
-            <input
-              class="form-control"
-              type="number"
-              id="updatePeople"
-              name="updatePeople"
-            /><br />
-            <label for="updatePhone">전화번호:</label><br />
-            <input
-              class="form-control"
-              type="text"
-              id="updatePhone"
-              name="updatePhone"
-            /><br />
-          </div>
-          <div class="modal-footer">
-            <button class="btn btn-dark" type="button" id="submitUpdate">
-              변경 신청
-            </button>
           </div>
         </div>
       </div>
