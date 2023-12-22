@@ -1,10 +1,7 @@
 /*기본태그*/
 
 /*body {
-    font-size: 1.4rem;
-    font-weight: normal;
-    font-family: -apple-system, system-ui, BlinkMacSystemFont, "맑은 고딕", "Malgun Gothic", "돋움", Dotum, Helvetica, "Apple SD Gothic Neo", sans-serif;
-    color: #000;
+
 }*/
 
 ul, ol, li{
@@ -38,9 +35,9 @@ ul, ol, li{
 
 /*새로 만든 클래스 태그*/
 .infoBox{
+    width: 100%;
     position: relative;
     padding-bottom: 6.5rem;
-    font-size: 0;
 }
 
 .posterbox{
@@ -61,28 +58,22 @@ ul, ol, li{
 }
 
 .info_summary .title{
-    display: -webkit-box;
     overflow: hidden;
-    text-overflow: ellipsis;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
-    font-size: 2.4rem;
+    font-size: 22px;
     font-weight: bold;
     line-height: 130%;
+    padding-left: 2rem;
+    margin-bottom: 1rem;
 }
 
 .info_summary .info{
     display: inline-block;
-    width: 50.5rem;
     margin-top: 0.4rem;
-    margin-left: 2.5rem;
     vertical-align: top;
 }
 
 .info_summary .info .infoItem{
-    margin-top: 1.5rem;
-    padding-left: 2.5rem;
-    font-size: 0;
+    margin-top: 1.3rem;
 }
 
 .info_summary .info .infoItem .infoLabel{
@@ -90,7 +81,7 @@ ul, ol, li{
     width: 9rem;
     padding-right: 0.5rem;
     color: #000;
-    font-size: 1.6rem;
+    font-size: 17px;
     font-weight: normal;
     line-height: 160%;
     vertical-align: top;
@@ -107,10 +98,57 @@ ul, ol, li{
     position: relative;
     max-width: 41.5rem;
     color: #000;
-    font-size: 1.6rem;
+    font-size: 17px;
     line-height: 160%;
 }
 
+.dateBox{
+    width: 100%;
+    position: relative;
+    padding-bottom: 6.5rem;
+}
+
+.selectTitle{
+    margin: 0px 20px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #ebebeb;
+}
+
+.datelistBox{
+    overflow: hidden;
+    overflow-y: auto;
+    height: 216px;
+    border-right: 1px solid #ebebeb;
+}
+
+.datelistBox .datelist{
+    padding: 12px 15px 15px 30px;
+    width: 300px;
+}
+
+.datelistBox .datelist li{
+    text-align: center;
+    list-style: none;
+    border-bottom: 1px;
+    
+}
+
+.dateselectBtn{
+    display: inline-block;
+    width: 100%;
+    height: 40px;
+    border: none;
+    background-color: transparent;
+}
+.dateselectBtn:hover{
+    display: inline-block;
+    background-color: #fff;
+    border: 1px solid #aaa;
+}
+
+.dateselectBtn .datetext{
+    color: #000;
+}
 
 
 
@@ -121,7 +159,7 @@ ul, ol, li{
     font-size:5em;
     position: relative;
     top: -1em;
-     }
+    }
     
      
     

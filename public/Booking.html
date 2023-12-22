@@ -19,6 +19,11 @@
       crossorigin="anonymous"
     />
     <link rel="stylesheet" href="style.css">
+    <!--google font-->
+    <link
+      href="https://fonts.googleapis.com/css?family=Song+Myung|Rubik+Scribble|Nanum+Gothic+Coding|DM+Serif+Display|Noto+Serif+KR:wght@500;600&display=swap"
+      rel="stylesheet"
+    />
     <!-- Fire Base-->
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
@@ -31,9 +36,9 @@
 <body class="d-flex flex-column">
   <main class="flex-shrink-0">
     <!-- Navigation-->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <nav class="navbar navbar-expand-lg bg-white">
       <div class="container px-5">
-        <a class="navbar-brand" href="index.html">stART</a>
+        <a class="start" href="index.html">stART</a>
         <button
           class="navbar-toggler"
           type="button"
@@ -48,57 +53,77 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
             <li class="nav-item">
-              <a class="nav-link" href="faq.html">FAQ</a>
+              <a class="nav-link myungjo" href="manageBooking.html"
+                >예매 확인/취소</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link myungjo" href="faq.html">FAQ</a>
             </li>
           </ul>
         </div>
       </div>
     </nav>
     <!-- Page content-->
-    <section class="py-5">
-      <div class="container px-5">
-        <div class="infoBox bg-light rounded-3 py-5 px-4 row">
+    <section class="py-5 myungjo">
+      <div class="container px-5 center">
+        <div class="infoBox bg-light rounded-3 py-5 px-4">
           <!--공연정보 요약-->
-          <div class="posterbox col-lg-4 mb-5">
-            <img class="posterImg" src="https://tumblbug-psi.imgix.net/ecb5f2d41403eeada85f3ca258f97370a82f873a/7ae757732bce4e84faa3c4140ebbe61b6fa0058d/c01a5aaf765544642ef04359d9184a4580372fec/89492b93-1f52-4b74-9e2f-b6a809014123.jpg?ixlib=rb-1.1.0&w=1240&auto=format%2C%20compress&lossless=true&ch=save-data&s=8cdd59ff025c301795bc99c2fe1c751c" alt="연극 <맨끝줄소년>">
-          </div>
-          <div class="info_summary col mb-5">
-            <div class="title">
-              <h2>연극 <맨끝줄소년></h2>
+          <div class="row">
+            <div class="posterbox col-lg-4 m-2">
+              <img class="posterImg" src="https://tumblbug-psi.imgix.net/ecb5f2d41403eeada85f3ca258f97370a82f873a/7ae757732bce4e84faa3c4140ebbe61b6fa0058d/c01a5aaf765544642ef04359d9184a4580372fec/89492b93-1f52-4b74-9e2f-b6a809014123.jpg?ixlib=rb-1.1.0&w=1240&auto=format%2C%20compress&lossless=true&ch=save-data&s=8cdd59ff025c301795bc99c2fe1c751c" alt="연극 <맨끝줄소년>">
             </div>
-            <ul class="info">
-              <li class="infoItem">
-                <strong class="infoLabel">장소</strong>
-                <div class="infoDesc"><p class="infoText">이화여자대학교 생활환경관 소극장</p></div>
-              </li>
-              <li class="infoItem">
-                <strong class="infoLabel">공연기간</strong>
-                <div class="infoDesc"><p class="infoText">2024.02.15~2024.02.17</p></div>
-              </li>
-              <li class="infoItem">
-                <strong class="infoLabel">공연시간</strong>
-                <div class="infoDesc"><p class="infoText">120분</p></div>
-              </li>
-              <li class="infoItem">
-                <strong class="infoLabel">가격</strong>
-                <div class="infoDesc"><p class="infoText">전좌석 00000원</p></div>
-              </li>
-            </ul>
+            <div class="info_summary col-lg-8 m-3">
+              <div class="mb-3">
+                <span class="title">연극&nbsp;&nbsp;&nbsp;<맨 끝줄 소년></span>
+              </div>
+              <ul class="info">
+                <li class="infoItem">
+                  <strong class="infoLabel">장소</strong>
+                  <div class="infoDesc"><p class="infoText">이화여자대학교 생활환경관 소극장</p></div>
+                </li>
+                <li class="infoItem">
+                  <strong class="infoLabel">공연기간</strong>
+                  <div class="infoDesc"><p class="infoText">2024.02.15~2024.02.17</p></div>
+                </li>
+                <li class="infoItem">
+                  <strong class="infoLabel">공연시간</strong>
+                  <div class="infoDesc"><p class="infoText">120분</p></div>
+                </li>
+                <li class="infoItem">
+                  <strong class="infoLabel">가격</strong>
+                  <div class="infoDesc"><p class="infoText">전좌석 00000원</p></div>
+                </li>
+              </ul>
+            </div>
           </div>
         </div>
-        <div class="bg-light rounded-3 py-5 px-4">
-          <div class="row">
-            <h4 class="col-lg-4">날짜선택</h4><h4 class="col-lg-4">회차선택</h4>
+        <div class="dateBox bg-light rounded-3 py-5 px-4">
+          <div class="row selectTitle">
+            <h5 class="col-lg-4 px-5">날짜선택</h5><h5 class="col-lg-4 px-5">회차선택</h5>
           </div>
-          <div class="row">
-            <div clas="col-lg-8">
-              <button><a>2024년 2월 15일 (목)</a></button><br>
-              <button><a>2024년 2월 16일 (금)</a></button><br>
-              <button><a>2024년 2월 17일 (토)</a></button>
+          <div class="row mb-3">
+            <div class="datelistBox col-lg-4">
+              <ul class="datelist">
+                <li class="mb-3">
+                  <button class="dateselectBtn"><span class="datetext">2024년 2월 15일 (목)</span></button>
+                </li>
+                <li class="mb-3">
+                  <button class="dateselectBtn"><span class="datetext">2024년 2월 16일 (금)</span></button>
+                </li>
+                <li class="mb-3">
+                  <button class="dateselectBtn"><span class="datetext">2024년 2월 17일 (토)</span></button>
+                </li>
+              </ul>
             </div>
-            
+            <div class="datelistBox col-lg-4">
+              <ul class="datelist">
+                <li class="mb-3">
+                  <button class="dateselectBtn"><span class="datetext">1회차 20:00</span></button>
+                </li>
+              </ul>
+            </div>
           </div>
-
         </div>
 
 
