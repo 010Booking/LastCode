@@ -55,9 +55,7 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
             <li class="nav-item">
-              <a class="nav-link myungjo" href="Booking.html"
-                >예매하기</a
-              >
+              <a class="nav-link myungjo" href="Booking.html">예매하기</a>
             </li>
             <li class="nav-item">
               <a class="nav-link myungjo" href="manageBooking.html"
@@ -128,7 +126,9 @@
                   </div>
                 </div>
                 <div class="d-flex justify-content-center">
-                  <button type="submit" class="btn btn-dark">확인</button>
+                  <button type="submit" class="btn btn-dark" id="confirmButton">
+                    확인
+                  </button>
                 </div>
               </form>
             </div>
@@ -168,9 +168,9 @@
               예매 취소
             </button>
             <!-- 예매 취소 버튼 -->
-            <button id="openUpdateForm" type="button" class="btn btn-dark">
+            <!-- <button id="openUpdateForm" type="button" class="btn btn-dark">
               정보 수정
-            </button>
+            </button> -->
             <!-- 정보 수정 버튼 -->
           </div>
         </div>
@@ -178,7 +178,7 @@
     </div>
 
     <!-- 정보 수정 폼 -->
-    <div id="updateForm" class="modal fade" tabindex="-1" aria-hidden="true">
+    <!-- <div id="updateForm" class="modal fade" tabindex="-1" aria-hidden="true">
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
@@ -235,7 +235,7 @@
           </div>
         </div>
       </div>
-    </div>
+    </div> -->
 
     <script>
       //  web app's Firebase configuration
@@ -259,17 +259,13 @@
         });
 
       var docRef = null; // 예매 정보에 대한 참조를 저장할 변수
+
       var reservationModal = document.getElementById("reservationModal"); // 모달 창
-      var updateForm = document.getElementById("updateForm"); // 정보 수정 폼
+
+      //var updateForm = document.getElementById("updateForm"); // 정보 수정 폼
       // 사용자 입력 값 가져오기
       var phone = document.getElementById("phone").value;
       var email = document.getElementById("email").value;
-
-      document
-        .querySelector(".btn.btn-dark")
-        .addEventListener("click", function () {
-          $("#reservationModal").modal("show");
-        });
 
       // 모달 창 닫기 버튼 이벤트 핸들러
       document
@@ -282,25 +278,25 @@
           }
         });
 
-      // 정보 수정 버튼 클릭 이벤트 핸들러
-      document
-        .getElementById("openUpdateForm")
-        .addEventListener("click", function () {
-          $("#reservationModal").modal("hide"); // 예매 정보 폼 닫기
-          $("#updateForm").modal("show"); // 정보 수정 폼 보여주기
-        });
+      // // 정보 수정 버튼 클릭 이벤트 핸들러
+      // document
+      //   .getElementById("openUpdateForm")
+      //   .addEventListener("click", function () {
+      //     $("#reservationModal").modal("hide"); // 예매 정보 폼 닫기
+      //     $("#updateForm").modal("show"); // 정보 수정 폼 보여주기
+      //   });
 
-      // 정보 수정 폼 닫기 버튼 클릭 이벤트 핸들러
-      document
-        .getElementById("closeUpdateForm")
-        .addEventListener("click", function () {
-          $("#updateForm").modal("hide"); // 정보 수정 폼 닫기
-        });
+      // // 정보 수정 폼 닫기 버튼 클릭 이벤트 핸들러
+      // document
+      //   .getElementById("closeUpdateForm")
+      //   .addEventListener("click", function () {
+      //     $("#updateForm").modal("hide"); // 정보 수정 폼 닫기
+      //   });
 
       // 폼 제출 이벤트 핸들러
       document
         .getElementById("userForm")
-        .addEventListener("submit", function (event) {
+        .addEventListener("submit", async function (event) {
           event.preventDefault();
 
           // 사용자 입력 값 가져오기
@@ -309,65 +305,53 @@
 
           // 파이어베이스에서 정보 가져오기
           var ref = firebase.firestore().collection("userTest");
-          ref
-            .get()
-            .then(function (querySnapshot) {
-              var found = false; // 일치하는 정보 찾았는지 확인하는 변수
-              querySnapshot.forEach(function (doc) {
-                var data = doc.data();
-                // 전화번호 뒤 4자리 비교
-                if (data.phone.slice(-4) === phone && data.email === email) {
-                  docRef = doc.ref; // 일치하는 문서에 대한 참조를 저장
-                  // 일치하는 정보가 있을 경우, 모달 창에 보여주기
-                  var result =
-                    "이름: " +
-                    data.name +
-                    "<br>" +
-                    "<br>" +
-                    "날짜: " +
-                    data.date.join(", ") +
-                    "<br>" +
-                    "<br>" +
-                    "이메일: " +
-                    data.email +
-                    "<br>" +
-                    "<br>" +
-                    "인원: " +
-                    data.people +
-                    "<br>" +
-                    "<br>" +
-                    "전화번호: " +
-                    data.phone;
+          try {
+            var querySnapshot = await ref.get();
 
-                  document.getElementById("reservationInfo").innerHTML = result;
+            var found = false;
+            querySnapshot.forEach(function (doc) {
+              var data = doc.data();
+              // 전화번호 뒤 4자리 비교
+              if (data.phone.slice(-4) === phone && data.email === email) {
+                docRef = doc.ref;
+                // 일치하는 정보가 있을 경우, 모달 창에 보여주기
+                var result =
+                  "이름: " +
+                  data.name +
+                  "<br>" +
+                  "<br>" +
+                  "날짜: " +
+                  data.date.join(", ") +
+                  "<br>" +
+                  "<br>" +
+                  "이메일: " +
+                  data.email +
+                  "<br>" +
+                  "<br>" +
+                  "인원: " +
+                  data.people +
+                  "<br>" +
+                  "<br>" +
+                  "전화번호: " +
+                  data.phone;
 
-                  // 정보를 수정 폼의 input 값으로 설정
-                  document.getElementById("updateName").value = data.name;
-                  document.getElementById("updateEmail").value = data.email;
-                  document.getElementById("updatePeople").value = data.people;
-                  document.getElementById("updatePhone").value = data.phone;
-                  // 복수 개의 날짜 선택을 위해 date 필드를 배열로 처리
-                  var updateDate = document.getElementById("updateDate");
-                  for (var i = 0; i < updateDate.options.length; i++) {
-                    updateDate.options[i].selected = data.date.includes(
-                      updateDate.options[i].value
-                    );
-                  }
-                  document.getElementById("cancelReservation").disabled = false; // 예매 취소 버튼 활성화
-                  found = true; // 일치하는 정보를 찾았음을 표시
-                }
-              });
-              if (found) {
-                // 일치하는 정보를 찾았을 경우, 모달 창 띄우기
-                reservationModal.style.display = "block";
-              } else {
-                // 일치하는 정보를 찾지 못했을 경우
-                alert("일치하는 사용자 정보가 없습니다."); // 경고창 표시
+                document.getElementById("reservationInfo").innerHTML = result;
+
+                document.getElementById("cancelReservation").disabled = false;
+                found = true;
               }
-            })
-            .catch(function (error) {
-              console.log("Error getting documents: ", error);
             });
+
+            if (found) {
+              // 일치하는 정보를 찾았을 경우, 모달 창 띄우기
+              $("#reservationModal").modal("show");
+            } else {
+              // 일치하는 정보를 찾지 못했을 경우
+              alert("일치하는 사용자 정보가 없습니다.");
+            }
+          } catch (error) {
+            console.log("Error getting documents: ", error);
+          }
         });
 
       // 예매 취소 버튼 클릭 이벤트 핸들러
@@ -402,101 +386,101 @@
         });
 
       // 정보 수정 폼 제출 이벤트 핸들러
-      document
-        .getElementById("submitUpdate")
-        .addEventListener("click", function (event) {
-          event.preventDefault();
+      // document
+      //   .getElementById("submitUpdate")
+      //   .addEventListener("click", function (event) {
+      //     event.preventDefault();
 
-          // 변경할 정보 가져오기
-          var updateName =
-            document.getElementById("updateName").value ||
-            document.getElementById("updateName").placeholder;
-          var updateEmail =
-            document.getElementById("updateEmail").value ||
-            document.getElementById("updateEmail").placeholder;
-          var updatePeople =
-            document.getElementById("updatePeople").value ||
-            document.getElementById("updatePeople").placeholder;
-          var updatePhone =
-            document.getElementById("updatePhone").value ||
-            document.getElementById("updatePhone").placeholder;
+      //     // 변경할 정보 가져오기
+      //     var updateName =
+      //       document.getElementById("updateName").value ||
+      //       document.getElementById("updateName").placeholder;
+      //     var updateEmail =
+      //       document.getElementById("updateEmail").value ||
+      //       document.getElementById("updateEmail").placeholder;
+      //     var updatePeople =
+      //       document.getElementById("updatePeople").value ||
+      //       document.getElementById("updatePeople").placeholder;
+      //     var updatePhone =
+      //       document.getElementById("updatePhone").value ||
+      //       document.getElementById("updatePhone").placeholder;
 
-          // 선택된 날짜 가져오기
-          var updateDate = Array.from(
-            document.getElementById("updateDate").selectedOptions
-          ).map((option) => option.value);
+      //     // 선택된 날짜 가져오기
+      //     var updateDate = Array.from(
+      //       document.getElementById("updateDate").selectedOptions
+      //     ).map((option) => option.value);
 
-          // 이름, 이메일, 전화번호 조건 검사
-          if (!updateName) {
-            alert("이름을 입력해주세요.");
-            return;
-          }
+      //     // 이름, 이메일, 전화번호 조건 검사
+      //     if (!updateName) {
+      //       alert("이름을 입력해주세요.");
+      //       return;
+      //     }
 
-          if (!updateEmail) {
-            alert("이메일을 입력해주세요.");
-            return;
-          }
+      //     if (!updateEmail) {
+      //       alert("이메일을 입력해주세요.");
+      //       return;
+      //     }
 
-          if (!updatePhone) {
-            alert("전화번호를 입력해주세요.");
-            return;
-          }
+      //     if (!updatePhone) {
+      //       alert("전화번호를 입력해주세요.");
+      //       return;
+      //     }
 
-          // 인원과 날짜 조건 검사
-          if (!updatePeople || updatePeople < 1) {
-            alert("인원은 반드시 1명 이상이어야 합니다.");
-            return;
-          }
+      //     // 인원과 날짜 조건 검사
+      //     if (!updatePeople || updatePeople < 1) {
+      //       alert("인원은 반드시 1명 이상이어야 합니다.");
+      //       return;
+      //     }
 
-          if (!updateDate.length) {
-            alert("날짜는 반드시 한 개 이상 선택되어야 합니다.");
-            return;
-          }
+      //     if (!updateDate.length) {
+      //       alert("날짜는 반드시 한 개 이상 선택되어야 합니다.");
+      //       return;
+      //     }
 
-          // 파이어베이스에 정보 업데이트
-          docRef
-            .update({
-              name: updateName,
-              date: updateDate,
-              email: updateEmail,
-              people: updatePeople,
-              phone: updatePhone,
-            })
-            .then(function () {
-              console.log("Document successfully updated!");
-              alert("예매 정보가 성공적으로 업데이트되었습니다.");
-              updateForm.style.display = "none"; // 정보 수정 폼 닫기
-              $("#updateForm").modal("hide");
-              $("body").removeClass("modal-open");
-              $(".modal-backdrop").remove();
-            })
-            .catch(function (error) {
-              console.error("Error updating document: ", error);
-            });
-        });
+      //     // 파이어베이스에 정보 업데이트
+      //     docRef
+      //       .update({
+      //         name: updateName,
+      //         date: updateDate,
+      //         email: updateEmail,
+      //         people: updatePeople,
+      //         phone: updatePhone,
+      //       })
+      //       .then(function () {
+      //         console.log("Document successfully updated!");
+      //         alert("예매 정보가 성공적으로 업데이트되었습니다.");
+      //         updateForm.style.display = "none"; // 정보 수정 폼 닫기
+      //         $("#updateForm").modal("hide");
+      //         $("body").removeClass("modal-open");
+      //         $(".modal-backdrop").remove();
+      //       })
+      //       .catch(function (error) {
+      //         console.error("Error updating document: ", error);
+      //       });
+      //   });
 
-      // 페이지 로드 시 정보 가져오기
-      window.addEventListener("load", function () {
-        // 파이어베이스에서 정보 가져오기
-        docRef
-          .get()
-          .then(function (doc) {
-            if (doc.exists) {
-              var data = doc.data();
+      // // 페이지 로드 시 정보 가져오기
+      // window.addEventListener("load", function () {
+      //   // 파이어베이스에서 정보 가져오기
+      //   docRef
+      //     .get()
+      //     .then(function (doc) {
+      //       if (doc.exists) {
+      //         var data = doc.data();
 
-              // 가져온 정보로 placeholder 설정
-              document.getElementById("updateName").placeholder = data.name;
-              document.getElementById("updateEmail").placeholder = data.email;
-              document.getElementById("updatePeople").placeholder = data.people;
-              document.getElementById("updatePhone").placeholder = data.phone;
-            } else {
-              console.log("No such document!");
-            }
-          })
-          .catch(function (error) {
-            console.log("Error getting document:", error);
-          });
-      });
+      //         // 가져온 정보로 placeholder 설정
+      //         // document.getElementById("updateName").placeholder = data.name;
+      //         // document.getElementById("updateEmail").placeholder = data.email;
+      //         // document.getElementById("updatePeople").placeholder = data.people;
+      //         // document.getElementById("updatePhone").placeholder = data.phone;
+      //       } else {
+      //         console.log("No such document!");
+      //       }
+      //     })
+      //     .catch(function (error) {
+      //       console.log("Error getting document:", error);
+      //     });
+      // });
     </script>
   </main>
 </body>
