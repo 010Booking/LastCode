@@ -168,74 +168,60 @@
               예매 취소
             </button>
             <!-- 예매 취소 버튼 -->
-            <!-- <button id="openUpdateForm" type="button" class="btn btn-dark">
-              정보 수정
-            </button> -->
-            <!-- 정보 수정 버튼 -->
           </div>
         </div>
       </div>
     </div>
-
-    <!-- 정보 수정 폼 -->
-    <!-- <div id="updateForm" class="modal fade" tabindex="-1" aria-hidden="true">
-      <div class="modal-dialog">
+    <div
+      class="modal fade"
+      id="cancelModal"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="cancelModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">예매 내역 수정</h5>
+            <h5 class="modal-title" id="cancelModalLabel">
+              예매 취소 및 환불 규정
+            </h5>
             <button
               type="button"
-              class="btn-close"
-              data-bs-dismiss="modal"
+              class="close"
+              data-dismiss="modal"
               aria-label="Close"
-              id="closeUpdateForm"
-            ></button>
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
           </div>
           <div class="modal-body">
-            <label for="updateName">이름:</label><br />
-            <input
-              class="form-control"
-              type="text"
-              id="updateName"
-              name="updateName"
-            /><br />
-            <label for="updateDate">관람 날짜:</label><br />
-            <select class="form-select" id="updateDate" multiple>
-              <option value="23년 12월 17일">23년 12월 17일</option>
-              <option value="23년 12월 18일">23년 12월 18일</option>
-              <option value="23년 12월 19일">23년 12월 19일</option>
-            </select>
-            <label for="updateEmail">이메일:</label><br />
-            <input
-              input
-              type="email"
-              class="form-control"
-              id="updateEmail"
-              name="updateEmail"
-            /><br />
-            <label for="updatePeople">인원:</label><br />
-            <input
-              class="form-control"
-              type="number"
-              id="updatePeople"
-              name="updatePeople"
-            /><br />
-            <label for="updatePhone">전화번호:</label><br />
-            <input
-              class="form-control"
-              type="text"
-              id="updatePhone"
-              name="updatePhone"
-            /><br />
+            <!-- 환불 규정 내용 -->
+            1. 관람일 당일 취소에 관한 환불은 불가능합니다.
+            <br />
+            2. 예매 정보 변경 시 예매 취소 후 재예매 부탁드립니다.
+            <br />
+            3.
+            <br />
+            <br />
+            <input type="checkbox" id="agreeCheckbox" /> 위 환불 규정에
+            동의합니다.
           </div>
           <div class="modal-footer">
-            <button class="btn btn-dark" type="button" id="submitUpdate">
-              변경 신청
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-dismiss="modal"
+            >
+              닫기
+            </button>
+            <button type="button" class="btn btn-primary" id="agreeCancel">
+              동의하고 예매 취소
             </button>
           </div>
         </div>
       </div>
-    </div> -->
+    </div>
 
     <script>
       //  web app's Firebase configuration
@@ -278,21 +264,6 @@
           }
         });
 
-      // // 정보 수정 버튼 클릭 이벤트 핸들러
-      // document
-      //   .getElementById("openUpdateForm")
-      //   .addEventListener("click", function () {
-      //     $("#reservationModal").modal("hide"); // 예매 정보 폼 닫기
-      //     $("#updateForm").modal("show"); // 정보 수정 폼 보여주기
-      //   });
-
-      // // 정보 수정 폼 닫기 버튼 클릭 이벤트 핸들러
-      // document
-      //   .getElementById("closeUpdateForm")
-      //   .addEventListener("click", function () {
-      //     $("#updateForm").modal("hide"); // 정보 수정 폼 닫기
-      //   });
-
       // 폼 제출 이벤트 핸들러
       document
         .getElementById("userForm")
@@ -304,15 +275,13 @@
           var email = document.getElementById("email").value;
 
           // 파이어베이스에서 정보 가져오기
-          var ref = firebase.firestore().collection("userTest");
+          var ref = firebase.firestore().collection("userTest").doc(email);
           try {
-            var querySnapshot = await ref.get();
-
-            var found = false;
-            querySnapshot.forEach(function (doc) {
+            var doc = await ref.get();
+            if (doc.exists) {
               var data = doc.data();
               // 전화번호 뒤 4자리 비교
-              if (data.phone.slice(-4) === phone && data.email === email) {
+              if (data.phone.slice(-4) === phone) {
                 docRef = doc.ref;
                 // 일치하는 정보가 있을 경우, 모달 창에 보여주기
                 var result =
@@ -325,7 +294,7 @@
                   "<br>" +
                   "<br>" +
                   "이메일: " +
-                  data.email +
+                  data +
                   "<br>" +
                   "<br>" +
                   "인원: " +
@@ -338,15 +307,14 @@
                 document.getElementById("reservationInfo").innerHTML = result;
 
                 document.getElementById("cancelReservation").disabled = false;
-                found = true;
+                // 일치하는 정보를 찾았을 경우, 모달 창 띄우기
+                $("#reservationModal").modal("show");
+              } else {
+                // 전화번호 뒷자리가 일치하지 않을 경우
+                alert("일치하는 사용자 정보가 없습니다.");
               }
-            });
-
-            if (found) {
-              // 일치하는 정보를 찾았을 경우, 모달 창 띄우기
-              $("#reservationModal").modal("show");
             } else {
-              // 일치하는 정보를 찾지 못했을 경우
+              // 이메일에 해당하는 도큐먼트가 없을 경우
               alert("일치하는 사용자 정보가 없습니다.");
             }
           } catch (error) {
@@ -354,133 +322,49 @@
           }
         });
 
-      // 예매 취소 버튼 클릭 이벤트 핸들러
       document
         .getElementById("cancelReservation")
         .addEventListener("click", function () {
           if (!docRef) {
-            // 예매 정보를 먼저 찾아야 함
             document.getElementById("result").textContent =
               "예매 정보를 먼저 찾으세요.";
             return;
           }
 
-          // 사용자에게 예매 취소 확인 메시지 표시
-          var confirmCancel = confirm("정말로 예매를 취소하시겠습니까?");
-          if (confirmCancel) {
-            // 파이어베이스에서 문서 삭제
-            docRef
-              .delete()
-              .then(function () {
-                console.log("Document successfully deleted!");
-                alert("예매가 취소되었습니다.");
-                document.getElementById("cancelReservation").disabled = true; // 예매 취소 버튼 비활성화
-                docRef = null; // 참조 초기화
-                $("#reservationModal").modal("hide"); // 모달 창 닫기
-                window.location.href = "index.html";
-              })
-              .catch(function (error) {
-                console.error("Error removing document: ", error);
-              });
-          }
+          // 환불 규정 모달 띄우기
+          $("#cancelModal").modal("show");
+        });
+      document
+        .getElementById("cancelModal")
+        .addEventListener("shown.bs.modal", function () {
+          // 모달이 보여질 때 '동의하고 예매 취소' 버튼 비활성화
+          document.getElementById("agreeCancel").disabled = true;
         });
 
-      // 정보 수정 폼 제출 이벤트 핸들러
-      // document
-      //   .getElementById("submitUpdate")
-      //   .addEventListener("click", function (event) {
-      //     event.preventDefault();
-
-      //     // 변경할 정보 가져오기
-      //     var updateName =
-      //       document.getElementById("updateName").value ||
-      //       document.getElementById("updateName").placeholder;
-      //     var updateEmail =
-      //       document.getElementById("updateEmail").value ||
-      //       document.getElementById("updateEmail").placeholder;
-      //     var updatePeople =
-      //       document.getElementById("updatePeople").value ||
-      //       document.getElementById("updatePeople").placeholder;
-      //     var updatePhone =
-      //       document.getElementById("updatePhone").value ||
-      //       document.getElementById("updatePhone").placeholder;
-
-      //     // 선택된 날짜 가져오기
-      //     var updateDate = Array.from(
-      //       document.getElementById("updateDate").selectedOptions
-      //     ).map((option) => option.value);
-
-      //     // 이름, 이메일, 전화번호 조건 검사
-      //     if (!updateName) {
-      //       alert("이름을 입력해주세요.");
-      //       return;
-      //     }
-
-      //     if (!updateEmail) {
-      //       alert("이메일을 입력해주세요.");
-      //       return;
-      //     }
-
-      //     if (!updatePhone) {
-      //       alert("전화번호를 입력해주세요.");
-      //       return;
-      //     }
-
-      //     // 인원과 날짜 조건 검사
-      //     if (!updatePeople || updatePeople < 1) {
-      //       alert("인원은 반드시 1명 이상이어야 합니다.");
-      //       return;
-      //     }
-
-      //     if (!updateDate.length) {
-      //       alert("날짜는 반드시 한 개 이상 선택되어야 합니다.");
-      //       return;
-      //     }
-
-      //     // 파이어베이스에 정보 업데이트
-      //     docRef
-      //       .update({
-      //         name: updateName,
-      //         date: updateDate,
-      //         email: updateEmail,
-      //         people: updatePeople,
-      //         phone: updatePhone,
-      //       })
-      //       .then(function () {
-      //         console.log("Document successfully updated!");
-      //         alert("예매 정보가 성공적으로 업데이트되었습니다.");
-      //         updateForm.style.display = "none"; // 정보 수정 폼 닫기
-      //         $("#updateForm").modal("hide");
-      //         $("body").removeClass("modal-open");
-      //         $(".modal-backdrop").remove();
-      //       })
-      //       .catch(function (error) {
-      //         console.error("Error updating document: ", error);
-      //       });
-      //   });
-
-      // // 페이지 로드 시 정보 가져오기
-      // window.addEventListener("load", function () {
-      //   // 파이어베이스에서 정보 가져오기
-      //   docRef
-      //     .get()
-      //     .then(function (doc) {
-      //       if (doc.exists) {
-      //         var data = doc.data();
-
-      //         // 가져온 정보로 placeholder 설정
-      //         // document.getElementById("updateName").placeholder = data.name;
-      //         // document.getElementById("updateEmail").placeholder = data.email;
-      //         // document.getElementById("updatePeople").placeholder = data.people;
-      //         // document.getElementById("updatePhone").placeholder = data.phone;
-      //       } else {
-      //         console.log("No such document!");
-      //       }
-      //     })
-      //     .catch(function (error) {
-      //       console.log("Error getting document:", error);
-      //     });
-      // });
+      document
+        .getElementById("agreeCheckbox")
+        .addEventListener("change", function () {
+          // 체크박스 상태에 따라 '동의하고 예매 취소' 버튼 활성화/비활성화
+          document.getElementById("agreeCancel").disabled = !this.checked;
+        });
+      document
+        .getElementById("agreeCancel")
+        .addEventListener("click", function () {
+          // 파이어베이스에서 문서 삭제
+          docRef
+            .delete()
+            .then(function () {
+              console.log("Document successfully deleted!");
+              alert("예매가 취소되었습니다.");
+              document.getElementById("cancelReservation").disabled = true;
+              docRef = null;
+              $("#cancelModal").modal("hide");
+              window.location.href = "index.html";
+            })
+            .catch(function (error) {
+              console.error("Error removing document: ", error);
+            });
+        });
     </script>
   </main>
 </body>
