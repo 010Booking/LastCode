@@ -160,6 +160,10 @@ li {
   padding: 30px;
 }
 
+.inputBox label{
+  color: #aaa;
+}
+
 /* index.html 에서 쓴 클래스들 */
 
 .last-row {

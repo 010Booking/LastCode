@@ -29,6 +29,22 @@
     <!-- Fire Base-->
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
+    <!-- Firebase 데이터 삽입을 위한 JavaScript 코드 -->
+    <script>
+      //  web app's Firebase configuration
+      const firebaseConfig = {
+        apiKey: "AIzaSyA4rOYodV29z8d4_O4ewTMV1qQDDWhfeho",
+        authDomain: "start-ba2c0.firebaseapp.com",
+        projectId: "start-ba2c0",
+        storageBucket: "start-ba2c0.appspot.com",
+        messagingSenderId: "38449035061",
+        appId: "1:38449035061:web:fec9627e6bf3eab1b53e7c",
+      };
+      // Initialize Firebase
+      firebase.initializeApp(firebaseConfig);
+      // Get a reference to the database service
+      var database = firebase.database();
+    </script>
     <!-- Firestore Library 추가 -->
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -105,399 +121,173 @@
             </div>
           </div>
         </div>
-        <div class="dateBox py-5 px-4">
-          <div class="row selectTitle">
-            <h5 class="col-lg-4 px-5">날짜선택</h5><h5 class="col-lg-4 px-5">회차선택</h5>
-          </div>
-          <div class="row mb-3">
-            <div class="datelistBox col-lg-4">
-              <ul class="datelist">
-                <li class="mb-3">
-                  <input type="radio" name="date" id="date1" class="btn-check"autocomplete="off">
-                  <label class="dateselectBtn datetext" for="date1"><span class="datetext">2024년 2월 15일 (목)</span></label>
-                </li>
-                <li class="mb-3">
-                  <input type="checkbox" class="btn-check" id="date2" autocomplete="off">
-                  <label class="dateselectBtn datetext" for="date2"><span class="datetext">2024년 2월 16일 (금)</span></label>
-                </li>
-                <li class="mb-3">
-                  <input type="checkbox" class="btn-check" id="date3" autocomplete="off">
-                  <label class="dateselectBtn datetext" for="date3"><span class="datetext">2024년 2월 17일 (토)</span></label>
-                </li>
-              </ul>
-            </div>
-            <div class="datelistBox col-lg-4">
-              <ul class="datelist">
-                <li class="mb-3">
-                  <button class="dateselectBtn"><span class="datetext">1회차 20:00</span></button>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-        <div class="bookinginfoBox py-5 px-4 px-md-5 mb-5">
-          <!--
-            <div class="row selectTitle">
-              <h5 class="col-lg-4 px-5">예매 정보 입력</h5>
-            </div>
-          -->
+
+        <form id="userForm" data-sb-form-api-token="API_TOKEN">
           
-          <form id="userForm" data-sb-form-api-token="API_TOKEN">
-            <div class="inputBox bg-light rounded-3 mb-5">
-              <div class="infoDesc"><p class="infoText">예매자명</p></div>
-              <!-- Email address input-->
-              <div class="form-floating mb-3">
-                <input
-                  class="form-control"
-                  id="email"
-                  type="email"
-                  placeholder="name@example.com"
-                  data-sb-validations="required,email"
-                />
-                <label for="email">이름</label>
-                <div
-                  class="invalid-feedback"
-                  data-sb-feedback="email:required"
-                >
-                  이름을 입력해 주세요.
-                </div>
+          <div class="dateBox py-5 px-4">
+            <div class="row selectTitle">
+              <h5 class="col-lg-4 px-5">날짜선택</h5><h5 class="col-lg-4 px-5">회차선택</h5>
+            </div>
+            <div class="row mb-3">
+              <div class="datelistBox col-lg-4">
+                <ul class="datelist">
+                  <li class="mb-3">
+                    <input type="radio" class="btn-check" name="date" id="option1" value="240215" autocomplete="off" checked>
+                    <label class="btn" for="option1"><span class="datetext">2024년 2월 15일 (목)</span></label>
+                  </li>
+                  <li class="mb-3">
+                    <input type="radio" class="btn-check" name="date" id="option2" value="240216" autocomplete="off">
+                    <label class="btn" for="option2"><span class="datetext">2024년 2월 16일 (금)</span></label>
+                  </li>
+                  <li class="mb-3">
+                    <input type="radio" class="btn-check" name="date" id="option3" value="240217" autocomplete="off">
+                    <label class="btn" for="option3"><span class="datetext">2024년 2월 17일 (토)</span></label>
+                  </li>
+                </ul>
+              </div>
+              <div class="datelistBox col-lg-4">
+                <ul class="datelist">
+                  <li class="mb-3">
+                    <input type="radio" class="btn-check" name="time" id="option" autocomplete="off" checked>
+                    <label class="btn" for="option" value="1회차"><span class="datetext">1회차 20:00</span></label>
+                  </li>
+                </ul>
               </div>
             </div>
-            <div class="inputBox bg-light rounded-3 mb-5">
-              <div class="infoDesc"><p class="infoText">이메일</p></div>
-              <!-- Email address input-->
-              <div class="form-floating mb-3">
-                <input
-                  class="form-control"
-                  id="email"
-                  type="email"
-                  placeholder="name@example.com"
-                  data-sb-validations="required,email"
-                />
-                <label for="email">이메일 주소</label>
-                <div
-                  class="invalid-feedback"
-                  data-sb-feedback="email:required"
-                >
-                  이메일을 입력해 주세요.
-                </div>
-                <div class="invalid-feedback" data-sb-feedback="email:email">
-                  이메일 형식이 올바르지 않습니다.
-                </div>
-              </div>
-            </div>
-            <div class="inputBox bg-light rounded-3 mb-5">
-              <div class="infoDesc"><p class="infoText">연락처</p></div>
-              <div class="form-floating mb-3">
-                <input class="form-control"/>
-              </div>
-            </div>
-            <div class="inputBox bg-light rounded-3 mb-5">
-              <div class="infoDesc"><p class="infoText">예매 매수</p></div>
-              <div class="mb-3">
-                <select class="form-select" id="floatingSelect">
-                  <option value="1" selected>1매</option>
-                  <option value="2">2매</option>
-                  <option value="3">3매</option>
-                  <option value="4">4매</option>
-                  <option value="5">5매</option>
-                  <option value="6">6매</option>
-                  <option value="7">7매</option>
-                  <option value="8">8매</option>
-                  <option value="9">9매</option>
-                </select>
-              </div>
-            </div>
-            <div class="d-flex justify-content-center">
-              <button type="submit" class="btn btn-dark">예매하기</button>
-            </div>
-          </form>
-        </div>
+          </div>
 
-    </section>
-    <!-- 결과 출력 영역 -->
-    <div id="result"></div>
+          <div class="inputBox bg-light rounded-3 mb-5">
+            <div class="infoDesc"><p class="infoText">예매 매수</p></div>
+            <div class="mb-3">
+              <select class="form-select" id="floatingSelect">
+                <option value="1" selected>1매</option>
+                <option value="2">2매</option>
+                <option value="3">3매</option>
+                <option value="4">4매</option>
+                <option value="5">5매</option>
+                <option value="6">6매</option>
+                <option value="7">7매</option>
+                <option value="8">8매</option>
+                <option value="9">9매</option>
+              </select>
+            </div>
+          </div>
 
-    <!-- 모달 창 -->
-    <div
-      class="modal fade"
-      id="reservationModal"
-      tabindex="-1"
-      aria-labelledby="exampleModalLabel"
-      aria-hidden="true"
-    >
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">예매 정보</h5>
-            <button
-              type="button"
-              class="btn-close"
-              data-bs-dismiss="modal"
-              aria-label="Close"
-              id="closeModal"
-            ></button>
+          <div class="inputBox bg-light rounded-3 mb-5">
+            <div class="infoDesc"><p class="infoText">예매자명</p></div>
+            <!-- 예매자명 입력란 -->
+            <div class="form-floating mb-3">
+              <input
+                class="form-control"
+                id="reservationName"
+                type="text"
+                placeholder="예매자명"
+                data-sb-validations="required" />
+              <label for="reservationName">홍길동</label>
+              <div class="invalid-feedback" data-sb-feedback="reservationName:required">
+                예매자명을 입력해 주세요.
+              </div>
+            </div>  
           </div>
-          <div class="modal-body">
-            <div id="reservationInfo" style="white-space: pre-line"></div>
-            <!-- 예매 정보 출력 영역 -->
+
+          <div class="inputBox bg-light rounded-3 mb-5">
+            <div class="infoDesc"><p class="infoText">이메일</p></div>
+            <!-- Email address input-->
+            <div class="form-floating mb-3">
+              <input
+                class="form-control"
+                id="email"
+                type="email"
+                placeholder="name@example.com"
+                data-sb-validations="required,email"
+              />
+              <label for="email">lastcode@gmail.com</label>
+              <div
+                class="invalid-feedback"
+                data-sb-feedback="email:required"
+              >
+                이메일을 입력해 주세요.
+              </div>
+              <div class="invalid-feedback" data-sb-feedback="email:email">
+                이메일 형식이 올바르지 않습니다.
+              </div>
+            </div>
           </div>
-          <div class="modal-footer">
-            <button id="cancelReservation" type="button" class="btn btn-dark">
-              예매 취소
-            </button>
-            <!-- 예매 취소 버튼 -->
-            <button id="openUpdateForm" type="button" class="btn btn-dark">
-              정보 수정
-            </button>
-            <!-- 정보 수정 버튼 -->
+
+          <div class="inputBox bg-light rounded-3 mb-5">
+            <div class="infoDesc"><p class="infoText">연락처</p></div>
+            <div class="form-floating mb-3">
+              <input
+                class="form-control"
+                id="phoneNumber"
+                type="tel"
+                placeholder="전화번호"
+                data-sb-validations="required" />
+              <label for="phoneNumber">01012341234</label>
+              <div class="invalid-feedback" data-sb-feedback="phoneNumber:required">
+                연락처를 입력해 주세요.
+              </div>
+              <div class="invalid-feedback" data-sb-feedback="phoneNumber:format">
+                숫자만 입력해 주세요.
+              </div>
+            </div>
           </div>
-        </div>
+
+          <div class="d-flex justify-content-center">
+            <button type="submit" class="btn btn-dark">예매하기</button>
+          </div>
+        </form>
       </div>
-    </div>
+    </section>
 
     <script>
-      //  web app's Firebase configuration
-      const firebaseConfig = {
-        apiKey: "AIzaSyA4rOYodV29z8d4_O4ewTMV1qQDDWhfeho",
-        authDomain: "start-ba2c0.firebaseapp.com",
-        projectId: "start-ba2c0",
-        storageBucket: "start-ba2c0.appspot.com",
-        messagingSenderId: "38449035061",
-        appId: "1:38449035061:web:fec9627e6bf3eab1b53e7c",
-      };
-      const app = firebase.initializeApp(firebaseConfig);
+      document.getElementById("userForm").addEventListener("submit", function (event) {
+        event.preventDefault();
 
-      const db = firebase.firestore();
-      db.collection("userTest")
-        .get()
-        .then((snapshot) => {
-          snapshot.forEach((doc) => {
-            console.log(doc.data());
-          });
-        });
+        date=document.querySelector('input[name="date"]:checked').value
 
-      var docRef = null; // 예매 정보에 대한 참조를 저장할 변수
-      var reservationModal = document.getElementById("reservationModal"); // 모달 창
-      // 사용자 입력 값 가져오기
-      var phone = document.getElementById("phone").value;
-      var email = document.getElementById("email").value;
+        if(date=="240215"){
+          var formData = {
+          email: document.getElementById("email").value,  
+          reservationName: document.getElementById("reservationName").value,
+          phoneNumber: document.getElementById("phoneNumber").value,
+          240215: document.getElementById("floatingSelect").value,
+          240216: 0,
+          240217: 0
+          };
+        }else if(date=="240216"){
+          var formData = {
+          email: document.getElementById("email").value,  
+          reservationName: document.getElementById("reservationName").value,
+          phoneNumber: document.getElementById("phoneNumber").value,
+          240215: 0,
+          240216: document.getElementById("floatingSelect").value,
+          240217: 0
+          };
+        }else if(date=="240217"){
+          var formData = {
+          email: document.getElementById("email").value,  
+          reservationName: document.getElementById("reservationName").value,
+          phoneNumber: document.getElementById("phoneNumber").value,
+          240215: 0,
+          240216: 0,
+          240217: document.getElementById("floatingSelect").value,
+          };
+        }
 
-
-      // 모달 창 닫기 버튼 이벤트 핸들러
-      document
-        .getElementById("closeModal")
-        .addEventListener("click", function () {
-          reservationModal.style.display = "none";
-          var modalBackdrop = document.querySelector(".modal-backdrop");
-          if (modalBackdrop) {
-            modalBackdrop.remove();
-          }
-        });
-
-      // 정보 수정 버튼 클릭 이벤트 핸들러
-      document
-        .getElementById("openUpdateForm")
-        .addEventListener("click", function () {
-          $("#reservationModal").modal("hide"); // 예매 정보 폼 닫기
-          $("#updateForm").modal("show"); // 정보 수정 폼 보여주기
-        });
-
-      // 정보 수정 폼 닫기 버튼 클릭 이벤트 핸들러
-      document
-        .getElementById("closeUpdateForm")
-        .addEventListener("click", function () {
-          $("#updateForm").modal("hide"); // 정보 수정 폼 닫기
-        });
-
-     // 폼 제출 이벤트 핸들러
-     document
-        .getElementById("userForm")
-        .addEventListener("submit", async function (event) {
-          event.preventDefault();
-
-          // 사용자 입력 값 가져오기
-          var phone = document.getElementById("phone").value;
-          var email = document.getElementById("email").value;
-
-          // 파이어베이스에서 정보 가져오기
-          var ref = firebase.firestore().collection("userTest");
-          try {
-            var querySnapshot = await ref.get();
-
-            var found = false;
-            querySnapshot.forEach(function (doc) {
-              var data = doc.data();
-              // 전화번호 뒤 4자리 비교
-              if (data.phone.slice(-4) === phone && data.email === email) {
-                docRef = doc.ref;
-                // 일치하는 정보가 있을 경우, 모달 창에 보여주기
-                var result =
-                  "이름: " +
-                  data.name +
-                  "<br>" +
-                  "<br>" +
-                  "날짜: " +
-                  data.date.join(", ") +
-                  "<br>" +
-                  "<br>" +
-                  "이메일: " +
-                  data.email +
-                  "<br>" +
-                  "<br>" +
-                  "인원: " +
-                  data.people +
-                  "<br>" +
-                  "<br>" +
-                  "전화번호: " +
-                  data.phone;
-
-                document.getElementById("reservationInfo").innerHTML = result;
-
-                document.getElementById("cancelReservation").disabled = false;
-                found = true;
-              }
-            });
-
-            if (found) {
-              // 일치하는 정보를 찾았을 경우, 모달 창 띄우기
-              $("#reservationModal").modal("show");
-            } else {
-              // 일치하는 정보를 찾지 못했을 경우
-              alert("일치하는 사용자 정보가 없습니다.");
-            }
-          } catch (error) {
-            console.log("Error getting documents: ", error);
-          }
-        });
-        
-      // 예매 취소 버튼 클릭 이벤트 핸들러
-      document
-        .getElementById("cancelReservation")
-        .addEventListener("click", function () {
-          if (!docRef) {
-            // 예매 정보를 먼저 찾아야 함
-            document.getElementById("result").textContent =
-              "예매 정보를 먼저 찾으세요.";
-            return;
-          }
-
-          // 사용자에게 예매 취소 확인 메시지 표시
-          var confirmCancel = confirm("정말로 예매를 취소하시겠습니까?");
-          if (confirmCancel) {
-            // 파이어베이스에서 문서 삭제
-            docRef
-              .delete()
-              .then(function () {
-                console.log("Document successfully deleted!");
-                alert("예매가 취소되었습니다.");
-                document.getElementById("cancelReservation").disabled = true; // 예매 취소 버튼 비활성화
-                docRef = null; // 참조 초기화
-                $("#reservationModal").modal("hide"); // 모달 창 닫기
-                window.location.href = "index.html";
-              })
-              .catch(function (error) {
-                console.error("Error removing document: ", error);
-              });
-          }
-        });
-
-      // 정보 수정 폼 제출 이벤트 핸들러
-      document
-        .getElementById("submitUpdate")
-        .addEventListener("click", function (event) {
-          event.preventDefault();
-
-          // 변경할 정보 가져오기
-          var updateName =
-            document.getElementById("updateName").value ||
-            document.getElementById("updateName").placeholder;
-          var updateEmail =
-            document.getElementById("updateEmail").value ||
-            document.getElementById("updateEmail").placeholder;
-          var updatePeople =
-            document.getElementById("updatePeople").value ||
-            document.getElementById("updatePeople").placeholder;
-          var updatePhone =
-            document.getElementById("updatePhone").value ||
-            document.getElementById("updatePhone").placeholder;
-
-          // 선택된 날짜 가져오기
-          var updateDate = Array.from(
-            document.getElementById("updateDate").selectedOptions
-          ).map((option) => option.value);
-
-          // 이름, 이메일, 전화번호 조건 검사
-          if (!updateName) {
-            alert("이름을 입력해주세요.");
-            return;
-          }
-
-          if (!updateEmail) {
-            alert("이메일을 입력해주세요.");
-            return;
-          }
-
-          if (!updatePhone) {
-            alert("전화번호를 입력해주세요.");
-            return;
-          }
-
-          // 인원과 날짜 조건 검사
-          if (!updatePeople || updatePeople < 1) {
-            alert("인원은 반드시 1명 이상이어야 합니다.");
-            return;
-          }
-
-          if (!updateDate.length) {
-            alert("날짜는 반드시 한 개 이상 선택되어야 합니다.");
-            return;
-          }
-
-          // 파이어베이스에 정보 업데이트
-          docRef
-            .update({
-              name: updateName,
-              date: updateDate,
-              email: updateEmail,
-              people: updatePeople,
-              phone: updatePhone,
-            })
-            .then(function () {
-              console.log("Document successfully updated!");
-              alert("예매 정보가 성공적으로 업데이트되었습니다.");
-              updateForm.style.display = "none"; // 정보 수정 폼 닫기
-              $("#updateForm").modal("hide");
-              $("body").removeClass("modal-open");
-              $(".modal-backdrop").remove();
-            })
-            .catch(function (error) {
-              console.error("Error updating document: ", error);
-            });
-        });
-
-      // 페이지 로드 시 정보 가져오기
-      window.addEventListener("load", function () {
-        // 파이어베이스에서 정보 가져오기
-        docRef
-          .get()
-          .then(function (doc) {
-            if (doc.exists) {
-              var data = doc.data();
-
-              // 가져온 정보로 placeholder 설정
-              document.getElementById("updateName").placeholder = data.name;
-              document.getElementById("updateEmail").placeholder = data.email;
-              document.getElementById("updatePeople").placeholder = data.people;
-              document.getElementById("updatePhone").placeholder = data.phone;
-            } else {
-              console.log("No such document!");
-            }
+        // Store data in Firebase
+        var reservationsRef = database.ref("BookingList");
+        reservationsRef.push(formData)
+          .then(function () {
+            console.log("Data successfully stored in Firebase!");
+            // You can add further actions or redirects here
           })
           .catch(function (error) {
-            console.log("Error getting document:", error);
+            console.error("Error storing data in Firebase: ", error);
           });
       });
     </script>
+
+
   </main>
 </body>
