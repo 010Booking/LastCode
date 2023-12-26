@@ -283,7 +283,6 @@
       var phone = document.getElementById("phone").value;
       var email = document.getElementById("email").value;
 
-
       // 모달 창 닫기 버튼 이벤트 핸들러
       document
         .getElementById("closeModal")
@@ -370,7 +369,7 @@
             console.log("Error getting documents: ", error);
           }
         });
-        
+
       // 예매 취소 버튼 클릭 이벤트 핸들러
       document
         .getElementById("cancelReservation")
@@ -475,29 +474,6 @@
               console.error("Error updating document: ", error);
             });
         });
-
-      // 페이지 로드 시 정보 가져오기
-      window.addEventListener("load", function () {
-        // 파이어베이스에서 정보 가져오기
-        docRef
-          .get()
-          .then(function (doc) {
-            if (doc.exists) {
-              var data = doc.data();
-
-              // 가져온 정보로 placeholder 설정
-              document.getElementById("updateName").placeholder = data.name;
-              document.getElementById("updateEmail").placeholder = data.email;
-              document.getElementById("updatePeople").placeholder = data.people;
-              document.getElementById("updatePhone").placeholder = data.phone;
-            } else {
-              console.log("No such document!");
-            }
-          })
-          .catch(function (error) {
-            console.log("Error getting document:", error);
-          });
-      });
     </script>
   </main>
 </body>
