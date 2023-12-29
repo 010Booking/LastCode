@@ -1,7 +1,6 @@
 /*기본태그*/
 
 /*body {
-
 }*/
 
 ul,
@@ -160,10 +159,6 @@ li {
   padding: 30px;
 }
 
-.inputBox label{
-  color: #aaa;
-}
-
 /* index.html 에서 쓴 클래스들 */
 
 .last-row {
@@ -175,7 +170,7 @@ li {
 }
 
 .start {
-  font-family: "Rubik Scribble";
+  font-family: "Libre Barcode 39";
   font-size: 2em;
   text-decoration: none;
   color: inherit;
