@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>stART::맨끝줄소년</title>
+    <!-- Favicon-->
+    <link rel="icon" href="image/x-icon.png" />
+    <link rel="apple-touch-icon" href="image/x-icon.png" />
+    <!-- Bootstrap icons-->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9"
+      crossorigin="anonymous"
+    />
+    <link href="style.css" rel="stylesheet" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Song+Myung|Rubik+Scribble|Nanum+Gothic+Coding|DM+Serif+Display|Noto+Serif+KR:wght@500;600&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Font Awesome 라이브러리 추가 -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+    />
+  </head>
+</html>
+<body class="d-flex flex-column h-100 bg-white">
+  <main class="flex-shrink-0">
+    <!-- Navigation-->
+    <nav class="navbar navbar-expand-lg bg-white">
+      <div class="container px-5">
+        <a class="start" href="index.html">stART</a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link myungjo" href="Booking.html">예매하기</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link myungjo" href="manageBooking.html"
+                >예매 확인/취소</a
+              >
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <div class="container">
+      <div class="row">
+        <div class="col-lx-12">
+          <div class="infoBox bg-light rounded-3 py-5 px-4">
+            <div class="card-body">
+              <div class="row justify-content-center mt-5 myungjo">
+                <div class="col-xl-5 col-lg-8">
+                  <div class="text-center myungjo">
+                    <h3 class="fw-bolder">자주 묻는 질문</h3>
+                    <p class="text-muted">
+                      연극 <맨 끝줄 소년>을 관람 해 주셔서 감사합니다.
+                    </p>
+                    <div>
+                      <button
+                        type="button"
+                        class="btn btn-dark small-title"
+                        id="emailButton"
+                        style="margin-right: 60px"
+                      >
+                        <i class="fas fa-envelope"></i> Email
+                      </button>
+                      <button
+                        type="button"
+                        class="btn btn-dark small-title"
+                        id="instagramButton"
+                      >
+                        <i class="fab fa-instagram"></i> Instagram
+                      </button>
+                    </div>
+                  </div>
+                </div>
+                <!-- end col -->
+              </div>
+              <!-- end row -->
+              <div class="tab-content pt-3 myungjo" id="pills-tabContent">
+                <div class="row g-4 mt-2">
+                  <div class="col-lg-6">
+                    <h5>티켓 예매는 언제까지 할 수 있나요 ?</h5>
+                    <p class="text-muted">
+                      공연 시작 1 시간 전까지 예매 가능합니다.
+                    </p>
+                  </div>
+                  <div class="col-lg-6">
+                    <h5>티켓 예매 이후 확인 이메일을 수신하지 못했습니다.</h5>
+                    <p class="text-muted">
+                      공연 시작 1 시간 전까지 예매 가능합니다.
+                    </p>
+                  </div>
+                  <div class="col-lg-6">
+                    <h5>공연 관람 시 필요한 게 있을까요?</h5>
+                    <p class="text-muted">
+                      (추후에 정합니다. ) 신분증? 이름? 맨 끝에 앉을 각오?
+                    </p>
+                  </div>
+                  <div class="col-lg-6">
+                    <h5>공연예매 후 언제까지 입금해야 하나요?</h5>
+                    <p class="text-muted">
+                      공연 시작 1시간 전 입금 창구 마감합니다.
+                    </p>
+                  </div>
+                  <div class="col-lg-6">
+                    <h5>예매자와 입금자가 달라요.</h5>
+                    <p class="text-muted">
+                      관람 당일 예매 정보 캡처 본과... 사정을 말씀해 주시죠.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- end row -->
+        </div>
+      </div>
+    </div>
+  </main>
+  <script>
+    document
+      .getElementById("emailButton")
+      .addEventListener("click", function () {
+        window.location.href = "mailto:eunseong06070@gmail.com";
+      });
+
+    document
+      .getElementById("instagramButton")
+      .addEventListener("click", function () {
+        window.open("https://www.instagram.com/", "_blank");
+      });
+  </script>
+</body>
