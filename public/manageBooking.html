@@ -233,6 +233,10 @@
               <br />
               <br />
               4. 환불폼 미작성에 관한 환불 지연은 예매자의 책임으로 간주됩니다.
+              <br />
+              <br />
+              5. 아래의 예매 취소 버튼을 누르면 환불 폼 작성 가능합니다. 환불은
+              제출 이후 48 시간 이내 이뤄집니다.
             </b>
             <br />
             <br />
@@ -447,7 +451,7 @@
               alert("예매가 취소되었습니다.");
               document.getElementById("cancelReservation").disabled = true;
               $("#cancelModal").modal("hide");
-              window.location.href = "index.html";
+              window.location.href = "refundBooking.html";
             })
             .catch(function (error) {
               console.error("Error removing booking: ", error);
