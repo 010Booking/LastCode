@@ -23,16 +23,37 @@
     <link href="style.css" rel="stylesheet" />
     <!--Google Font-->
     <link
-      href="https://fonts.googleapis.com/css?family=Song+Myung|Rubik+Scribble|Nanum+Gothic+Coding|DM+Serif+Display|Noto+Serif+KR:wght@500;600&display=swap"
+      href="https://fonts.googleapis.com/css?family=Song+Myung|Libre+Barcode+39|Nanum+Gothic+Coding|DM+Serif+Display|Noto+Serif+KR:wght@500;600&display=swap"
       rel="stylesheet"
     />
-    <!-- Fire Base-->
+
+    <!-- Firestore Library 추가 -->
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
     <!-- Firestore Library 추가 -->
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <!-- Fire Base-->
+    <script>
+      //  web app's Firebase configuration
+      const firebaseConfig = {
+        apiKey: "AIzaSyA4rOYodV29z8d4_O4ewTMV1qQDDWhfeho",
+        authDomain: "start-ba2c0.firebaseapp.com",
+        projectId: "start-ba2c0",
+        storageBucket: "start-ba2c0.appspot.com",
+        messagingSenderId: "38449035061",
+        appId: "1:38449035061:web:fec9627e6bf3eab1b53e7c",
+      };
+      // Initialize Firebase
+      firebase.initializeApp(firebaseConfig);
+      // Get a reference to the database service
+      var database = firebase.database();
+    </script>
   </head>
 </html>
 <body class="d-flex flex-column">
@@ -80,8 +101,8 @@
             >
               <i class="bi bi-envelope"></i>
             </div>
-            <h1 class="fw-bolder">예매 정보 확인</h1>
-            <p class="lead fw-normal text-muted mb-0">
+            <h1 class="fw-bolder myungjo">예매 정보 확인</h1>
+            <p class="lead fw-normal text-muted mb-0 myungjo">
               예매자 정보를 입력한 후 예매 내역을 조회합니다.
             </p>
           </div>
@@ -126,7 +147,11 @@
                   </div>
                 </div>
                 <div class="d-flex justify-content-center">
-                  <button type="submit" class="btn btn-dark" id="confirmButton">
+                  <button
+                    type="submit"
+                    class="btn btn-dark myungjo"
+                    id="confirmButton"
+                  >
                     확인
                   </button>
                 </div>
@@ -148,7 +173,7 @@
       aria-hidden="true"
     >
       <div class="modal-dialog">
-        <div class="modal-content">
+        <div class="modal-content myungjo">
           <div class="modal-header">
             <h5 class="modal-title" id="exampleModalLabel">예매 정보</h5>
             <button
@@ -164,14 +189,15 @@
             <!-- 예매 정보 출력 영역 -->
           </div>
           <div class="modal-footer">
+            <!-- 예매 취소 버튼 -->
             <button id="cancelReservation" type="button" class="btn btn-dark">
               예매 취소
             </button>
-            <!-- 예매 취소 버튼 -->
           </div>
         </div>
       </div>
     </div>
+
     <div
       class="modal fade"
       id="cancelModal"
@@ -181,31 +207,49 @@
       aria-hidden="true"
     >
       <div class="modal-dialog" role="document">
-        <div class="modal-content">
+        <div class="modal-content myungjo">
           <div class="modal-header">
             <h5 class="modal-title" id="cancelModalLabel">
               예매 취소 및 환불 규정
             </h5>
             <button
               type="button"
-              class="close"
-              data-dismiss="modal"
+              class="btn-close"
+              data-bs-dismiss="modal"
               aria-label="Close"
-            >
-              <span aria-hidden="true">&times;</span>
-            </button>
+              id="closeCancelModal"
+            ></button>
           </div>
           <div class="modal-body">
             <!-- 환불 규정 내용 -->
-            1. 관람일 당일 취소에 관한 환불은 불가능합니다.
+            <b>
+              1. 관람일 당일 취소에 관한 환불은 불가능합니다.
+              <br />
+              <br />
+              2. 예매 정보 변경 시 예매 취소 후 재예매 부탁드립니다.
+              <br />
+              <br />
+              3. 입금이 완료된 상태인 경우 환불폼 작성을 부탁드립니다.
+              <br />
+              <br />
+              4. 환불폼 미작성에 관한 환불 지연은 예매자의 책임으로 간주됩니다.
+              <br />
+              <br />
+              5. 아래의 예매 취소 버튼을 누르면 환불 폼 작성 가능합니다. 환불은
+              제출 이후 48 시간 이내 이뤄집니다.
+            </b>
             <br />
-            2. 예매 정보 변경 시 예매 취소 후 재예매 부탁드립니다.
             <br />
-            3.
-            <br />
-            <br />
-            <input type="checkbox" id="agreeCheckbox" /> 위 환불 규정에
-            동의합니다.
+            <div class="form-check form-switch">
+              <input
+                type="checkbox"
+                id="agreeCheckbox"
+                class="form-check-input"
+              />
+              <label class="form-check-label" for="agreeCheckbox"
+                >위 규정에 동의합니다.</label
+              >
+            </div>
           </div>
           <div class="modal-footer">
             <button
@@ -224,108 +268,132 @@
     </div>
 
     <script>
-      //  web app's Firebase configuration
-      const firebaseConfig = {
-        apiKey: "AIzaSyA4rOYodV29z8d4_O4ewTMV1qQDDWhfeho",
-        authDomain: "start-ba2c0.firebaseapp.com",
-        projectId: "start-ba2c0",
-        storageBucket: "start-ba2c0.appspot.com",
-        messagingSenderId: "38449035061",
-        appId: "1:38449035061:web:fec9627e6bf3eab1b53e7c",
-      };
-      const app = firebase.initializeApp(firebaseConfig);
-
-      const db = firebase.firestore();
-      db.collection("userTest")
-        .get()
-        .then((snapshot) => {
-          snapshot.forEach((doc) => {
-            console.log(doc.data());
-          });
-        });
-
-      var docRef = null; // 예매 정보에 대한 참조를 저장할 변수
-
+      var reservationsRef = database.ref("BookingList");
       var reservationModal = document.getElementById("reservationModal"); // 모달 창
 
       //var updateForm = document.getElementById("updateForm"); // 정보 수정 폼
-      // 사용자 입력 값 가져오기
-      var phone = document.getElementById("phone").value;
-      var email = document.getElementById("email").value;
 
       // 모달 창 닫기 버튼 이벤트 핸들러
       document
         .getElementById("closeModal")
         .addEventListener("click", function () {
+          // 모달 창 닫기
           reservationModal.style.display = "none";
           var modalBackdrop = document.querySelector(".modal-backdrop");
           if (modalBackdrop) {
             modalBackdrop.remove();
           }
+
+          // 페이지 새로 고침
+          location.reload();
+        });
+
+      document
+        .getElementById("closeCancelModal")
+        .addEventListener("click", function () {
+          $("#cancelModal").modal("hide");
         });
 
       // 폼 제출 이벤트 핸들러
       document
         .getElementById("userForm")
-        .addEventListener("submit", async function (event) {
+        .addEventListener("submit", function (event) {
           event.preventDefault();
 
-          // 사용자 입력 값 가져오기
           var phone = document.getElementById("phone").value;
           var email = document.getElementById("email").value;
 
-          // 파이어베이스에서 정보 가져오기
-          var ref = firebase.firestore().collection("userTest").doc(email);
-          try {
-            var doc = await ref.get();
-            if (doc.exists) {
-              var data = doc.data();
-              // 전화번호 뒤 4자리 비교
-              if (data.phone.slice(-4) === phone) {
-                docRef = doc.ref;
-                // 일치하는 정보가 있을 경우, 모달 창에 보여주기
-                var result =
-                  "이름: " +
-                  data.name +
+          var ref = firebase.database().ref("BookingList");
+          ref
+            .orderByChild("email")
+            .equalTo(email)
+            .once("value")
+            .then(function (snapshot) {
+              if (snapshot.exists()) {
+                let result = "";
+                let reservationDates = "";
+
+                snapshot.forEach(function (childSnapshot) {
+                  var reservation = childSnapshot.val();
+
+                  if (reservation.phoneNumber.slice(-4) === phone.slice(-4)) {
+                    if (result === "") {
+                      result +=
+                        "<b>" +
+                        "예약자 이름: " +
+                        "</b>" +
+                        reservation.reservationName +
+                        "<br>" +
+                        "<br>" +
+                        "<b>" +
+                        "이메일: " +
+                        "</b>" +
+                        reservation.email +
+                        "<br>" +
+                        "<br>" +
+                        "<b>" +
+                        "전화번호: " +
+                        "</b>" +
+                        reservation.phoneNumber +
+                        "<br>" +
+                        "<br>";
+                    }
+
+                    if (reservation["240215"] != 0) {
+                      reservationDates +=
+                        " 24년 02월 15일 " +
+                        "(" +
+                        reservation["240215"] +
+                        "장)" +
+                        "<br>";
+                    }
+                    if (reservation["240216"] != 0) {
+                      reservationDates +=
+                        " 24년 02월 16일 " +
+                        "(" +
+                        reservation["240216"] +
+                        "장)" +
+                        "<br>";
+                    }
+                    if (reservation["240217"] != 0) {
+                      reservationDates +=
+                        " 24년 02월 17일 " +
+                        "(" +
+                        reservation["240217"] +
+                        "장)" +
+                        "<br>";
+                    }
+                  }
+                });
+
+                result +=
+                  "<b>" +
+                  "예매 내역: " +
+                  "</b> " +
                   "<br>" +
-                  "<br>" +
-                  "날짜: " +
-                  data.date.join(", ") +
-                  "<br>" +
-                  "<br>" +
-                  "이메일: " +
-                  data +
-                  "<br>" +
-                  "<br>" +
-                  "인원: " +
-                  data.people +
-                  "<br>" +
-                  "<br>" +
-                  "전화번호: " +
-                  data.phone;
+                  reservationDates +
+                  "<br>";
 
                 document.getElementById("reservationInfo").innerHTML = result;
 
-                document.getElementById("cancelReservation").disabled = false;
-                // 일치하는 정보를 찾았을 경우, 모달 창 띄우기
                 $("#reservationModal").modal("show");
               } else {
-                // 전화번호 뒷자리가 일치하지 않을 경우
                 alert("일치하는 사용자 정보가 없습니다.");
               }
-            } else {
-              // 이메일에 해당하는 도큐먼트가 없을 경우
-              alert("일치하는 사용자 정보가 없습니다.");
-            }
-          } catch (error) {
-            console.log("Error getting documents: ", error);
-          }
+            })
+            .catch(function (error) {
+              console.error("Error fetching booking: ", error);
+            });
         });
 
+      //환불
       document
         .getElementById("cancelReservation")
         .addEventListener("click", function () {
-          if (!docRef) {
+          var reservationInfo =
+            document.getElementById("reservationInfo").textContent;
+
+          if (!reservationInfo) {
             document.getElementById("result").textContent =
               "예매 정보를 먼저 찾으세요.";
             return;
@@ -333,7 +401,9 @@
 
           // 환불 규정 모달 띄우기
           $("#cancelModal").modal("show");
+          document.getElementById("agreeCancel").disabled = true;
         });
+
       document
         .getElementById("cancelModal")
         .addEventListener("shown.bs.modal", function () {
@@ -347,22 +417,44 @@
           // 체크박스 상태에 따라 '동의하고 예매 취소' 버튼 활성화/비활성화
           document.getElementById("agreeCancel").disabled = !this.checked;
         });
+
+      //예매 취소 이벤트 핸들러
       document
         .getElementById("agreeCancel")
         .addEventListener("click", function () {
-          // 파이어베이스에서 문서 삭제
-          docRef
-            .delete()
+          // 사용자 입력 값 가져오기
+          var phone = document.getElementById("phone").value;
+          var email = document.getElementById("email").value;
+          // 파이어베이스에서 정보 가져오기
+          var ref = firebase.database().ref("BookingList");
+
+          console.log("Email for deletion: ", email);
+
+          ref
+            .orderByChild("email")
+            .equalTo(email)
+            .once("value")
+            .then(function (snapshot) {
+              if (snapshot.exists()) {
+                snapshot.forEach(function (childSnapshot) {
+                  // childSnapshot.key is the key of the child under BookingList, and will be removed.
+                  console.log("Deleting booking with key: ", childSnapshot.key);
+                  console.log("Booking data: ", childSnapshot.val());
+                  ref.child(childSnapshot.key).remove();
+                });
+              } else {
+                console.log("No booking found with the email: ", email);
+              }
+            })
             .then(function () {
-              console.log("Document successfully deleted!");
+              console.log("Booking successfully deleted!");
               alert("예매가 취소되었습니다.");
               document.getElementById("cancelReservation").disabled = true;
-              docRef = null;
               $("#cancelModal").modal("hide");
-              window.location.href = "index.html";
+              window.location.href = "refundBooking.html";
             })
             .catch(function (error) {
-              console.error("Error removing document: ", error);
+              console.error("Error removing booking: ", error);
             });
         });
     </script>
