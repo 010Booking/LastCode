@@ -113,20 +113,20 @@ li {
 .selectTitle {
   margin: 0px 20px;
   padding: 20px 0px;
-  border-bottom: 1px solid #ebebeb;
-  border-top: 1px solid #ebebeb;
 }
 
 .datelistBox {
   overflow: hidden;
   overflow-y: auto;
-  height: 216px;
+  border-top: 1px solid #ebebeb;
+  border-bottom: 1px solid #ebebeb;
   border-right: 1px solid #ebebeb;
 }
 
-.datelistBox .datelist {
+.datelist {
   padding: 12px 15px 15px 30px;
-  width: 300px;
+  width: 80%;
+  margin-bottom: 0px;
 }
 
 .datelistBox .datelist li {
@@ -144,15 +144,17 @@ li {
   background-color: transparent;
 }
 
-.dateselectBtn:hover,
-.dateselectBtn:checked {
-  background-color: #fff;
-  border: 1px solid #aaa;
-}
 
 .dateselectBtn .datetext {
   margin: auto;
   color: #000;
+}
+
+.numticketBox{
+  overflow: hidden;
+  overflow-y: auto;
+  border-top: 1px solid #ebebeb;
+  border-bottom: 1px solid #ebebeb;
 }
 
 .inputBox {

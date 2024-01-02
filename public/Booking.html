@@ -122,11 +122,11 @@
           </div>
         </div>
 
-        <form id="userForm" data-sb-form-api-token="API_TOKEN">
+        <form id="selectdateForm" data-sb-form-api-token="API_TOKEN">
           
           <div class="dateBox py-5 px-4">
             <div class="row selectTitle">
-              <h5 class="col-lg-4 px-5">날짜선택</h5><h5 class="col-lg-4 px-5">회차선택</h5>
+              <h5 class="col-lg-4 px-5">날짜선택</h5><h5 class="col-lg-4 px-5">회차선택</h5><h5 class="col-lg-4 px-5">예매 매수 선택</h5>
             </div>
             <div class="row mb-3">
               <div class="datelistBox col-lg-4">
@@ -153,92 +153,189 @@
                   </li>
                 </ul>
               </div>
-            </div>
-          </div>
-
-          <div class="inputBox bg-light rounded-3 mb-5">
-            <div class="infoDesc"><p class="infoText">예매 매수</p></div>
-            <div class="mb-3">
-              <select class="form-select" id="floatingSelect">
-                <option value="1" selected>1매</option>
-                <option value="2">2매</option>
-                <option value="3">3매</option>
-                <option value="4">4매</option>
-                <option value="5">5매</option>
-                <option value="6">6매</option>
-                <option value="7">7매</option>
-                <option value="8">8매</option>
-                <option value="9">9매</option>
-              </select>
-            </div>
-          </div>
-
-          <div class="inputBox bg-light rounded-3 mb-5">
-            <div class="infoDesc"><p class="infoText">예매자명</p></div>
-            <!-- 예매자명 입력란 -->
-            <div class="form-floating mb-3">
-              <input
-                class="form-control"
-                id="reservationName"
-                type="text"
-                placeholder="예매자명"
-                data-sb-validations="required" />
-              <label for="reservationName">홍길동</label>
-              <div class="invalid-feedback" data-sb-feedback="reservationName:required">
-                예매자명을 입력해 주세요.
-              </div>
-            </div>  
-          </div>
-
-          <div class="inputBox bg-light rounded-3 mb-5">
-            <div class="infoDesc"><p class="infoText">이메일</p></div>
-            <!-- Email address input-->
-            <div class="form-floating mb-3">
-              <input
-                class="form-control"
-                id="email"
-                type="email"
-                placeholder="name@example.com"
-                data-sb-validations="required,email"
-              />
-              <label for="email">lastcode@gmail.com</label>
-              <div
-                class="invalid-feedback"
-                data-sb-feedback="email:required"
-              >
-                이메일을 입력해 주세요.
-              </div>
-              <div class="invalid-feedback" data-sb-feedback="email:email">
-                이메일 형식이 올바르지 않습니다.
+              <div class="numticketBox col-lg-4">
+                <div class="datelist mb-3">
+                  <select class="form-select" name="ticketnum" id="floatingSelect">
+                    <option value="1" selected>1매</option>
+                    <option value="2">2매</option>
+                    <option value="3">3매</option>
+                    <option value="4">4매</option>
+                    <option value="5">5매</option>
+                    <option value="6">6매</option>
+                    <option value="7">7매</option>
+                    <option value="8">8매</option>
+                    <option value="9">9매</option>
+                  </select>
+                </div>
               </div>
             </div>
           </div>
-
-          <div class="inputBox bg-light rounded-3 mb-5">
-            <div class="infoDesc"><p class="infoText">연락처</p></div>
-            <div class="form-floating mb-3">
-              <input
-                class="form-control"
-                id="phoneNumber"
-                type="tel"
-                placeholder="전화번호"
-                data-sb-validations="required" />
-              <label for="phoneNumber">01012341234</label>
-              <div class="invalid-feedback" data-sb-feedback="phoneNumber:required">
-                연락처를 입력해 주세요.
-              </div>
-              <div class="invalid-feedback" data-sb-feedback="phoneNumber:format">
-                숫자만 입력해 주세요.
-              </div>
-            </div>
-          </div>
-
           <div class="d-flex justify-content-center">
-            <button type="submit" class="btn btn-dark">예매하기</button>
+            <button type="submit" class="btn btn-dark" id="openModalBtn">예매하기</button>
           </div>
         </form>
       </div>
     </section>
+    <!-- 모달 창 -->
+    <div
+      class="modal fade"
+      id="reservationModal"
+      tabindex="-1"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">예매자 정보 입력</h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+              id="closeModal"
+            ></button>
+          </div>
+          <form id="userForm" data-sb-form-api-token="API_TOKEN">
+            <div class="modal-body">
+              <div id="bookinginput" style="white-space: pre-line"></div>
+                <div class="inputBox bg-light rounded-3 mb-5">
+                  <div class="infoDesc"><p class="infoText">예매정보</p></div>
+                  <!--선택한 날짜 보여주는 영역-->
+                  <div id="selectedDate"></div>
+                  <div id="selectedTicket"></div>
+                </div>
+                <!-- 예매자 정보 입력 영역 -->
+                  <div class="inputBox bg-light rounded-3 mb-5">
+                    <div class="infoDesc"><p class="infoText">할인권종 선택</p></div>
+                    <div class="mb-3">
+                      <select class="form-select" id="floatingSelect">
+                        <option value="1" selected>1매</option>
+                        <option value="2">2매</option>
+                        <option value="3">3매</option>
+                        <option value="4">4매</option>
+                        <option value="5">5매</option>
+                        <option value="6">6매</option>
+                        <option value="7">7매</option>
+                        <option value="8">8매</option>
+                        <option value="9">9매</option>
+                      </select>
+                    </div>
+                  </div>
+        
+                  <div class="inputBox bg-light rounded-3 mb-5">
+                    <div class="infoDesc"><p class="infoText">예매자명</p></div>
+                    <!-- 예매자명 입력란 -->
+                    <div class="form-floating mb-3">
+                      <input
+                        class="form-control"
+                        id="reservationName"
+                        type="text"
+                        placeholder="예매자명"
+                        data-sb-validations="required" />
+                      <label for="reservationName">홍길동</label>
+                      <div class="invalid-feedback" data-sb-feedback="reservationName:required">
+                        예매자명을 입력해 주세요.
+                      </div>
+                    </div>  
+                  </div>
+        
+                  <div class="inputBox bg-light rounded-3 mb-5">
+                    <div class="infoDesc"><p class="infoText">이메일</p></div>
+                    <!-- Email address input-->
+                    <div class="form-floating mb-3">
+                      <input
+                        class="form-control"
+                        id="email"
+                        type="email"
+                        placeholder="name@example.com"
+                        data-sb-validations="required,email"
+                      />
+                      <label for="email">lastcode@gmail.com</label>
+                      <div
+                        class="invalid-feedback"
+                        data-sb-feedback="email:required"
+                      >
+                        이메일을 입력해 주세요.
+                      </div>
+                      <div class="invalid-feedback" data-sb-feedback="email:email">
+                        이메일 형식이 올바르지 않습니다.
+                      </div>
+                    </div>
+                  </div>
+        
+                  <div class="inputBox bg-light rounded-3 mb-5">
+                    <div class="infoDesc"><p class="infoText">연락처</p></div>
+                    <div class="form-floating mb-3">
+                      <input
+                        class="form-control"
+                        id="phoneNumber"
+                        type="tel"
+                        placeholder="전화번호"
+                        data-sb-validations="required" />
+                      <label for="phoneNumber">01012341234</label>
+                      <div class="invalid-feedback" data-sb-feedback="phoneNumber:required">
+                        연락처를 입력해 주세요.
+                      </div>
+                      <div class="invalid-feedback" data-sb-feedback="phoneNumber:format">
+                        숫자만 입력해 주세요.
+                      </div>
+                    </div>
+                  </div>
+            </div>
+            <div class="modal-footer">
+              <!-- 결제하기 버튼 -->
+              <button id="paying" type="submit" class="btn btn-dark">
+                결제하기
+              </button>
+            </div>
+          </form> 
+        </div>
+      </div>
+    </div>
+
+    <script>
+      document .getElementById("selectdateForm") .addEventListener("submit", async function (event) {
+        event.preventDefault();
+
+        var selectedDate = getSelectedRadioValue("date");
+        // 라디오 버튼의 값을 가져오는 함수
+        function getSelectedRadioValue(name) {
+          var radioButtons = document.getElementsByName(name);
+          for (var i = 0; i < radioButtons.length; i++) {
+            if (radioButtons[i].checked) {
+              return radioButtons[i].value;
+            }
+          }
+        }
+        document.getElementById("selectedDate").innerHTML = selectedDate;
+
+
+        var ticketnum = getSelectedDropdownValue("ticketnum");
+        // 드롭다운의 값을 가져오는 함수
+        function getSelectedDropdownValue(name) {
+          var dropdown = document.getElementsByName(name)[0];
+          var selectedValue = dropdown.options[dropdown.selectedIndex].value;
+          return selectedValue;
+        }
+        document.getElementById("selectedTicket").innerHTML = ticketnum;
+
+        $("#reservationModal").modal("show");
+      });
+        
+
+        // 모달 창 닫기 버튼 이벤트 핸들러
+        document
+          .getElementById("closeModal")
+          .addEventListener("click", function () {
+            reservationModal.style.display = "none";
+            var modalBackdrop = document.querySelector(".modal-backdrop");
+            if (modalBackdrop) {
+              modalBackdrop.remove();
+            }
+          });
+
+    </script>
 
     <script>
       document.getElementById("userForm").addEventListener("submit", function (event) {
@@ -280,14 +377,15 @@
         reservationsRef.push(formData)
           .then(function () {
             console.log("Data successfully stored in Firebase!");
-            // You can add further actions or redirects here
+            
+            // Display a popup with the saved data
+            displayPopup(formData);
+
           })
           .catch(function (error) {
             console.error("Error storing data in Firebase: ", error);
           });
       });
     </script>
-
-
   </main>
 </body>
