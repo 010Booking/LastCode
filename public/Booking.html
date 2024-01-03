@@ -176,9 +176,9 @@
         </form>
       </div>
     </section>
-    <!-- 모달 창 -->
+    <!-- 모달 창 1 -->
     <div
-      class="modal fade"
+      class="modal fade myungjo"
       id="reservationModal"
       tabindex="-1"
       aria-labelledby="exampleModalLabel"
@@ -200,31 +200,57 @@
             <div class="modal-body">
               <div id="bookinginput" style="white-space: pre-line"></div>
                 <div class="inputBox bg-light rounded-3 mb-5">
-                  <div class="infoDesc"><p class="infoText">예매정보</p></div>
+                  <div class="infoDesc"><p class="infoText fw-bolder">예매정보</p></div>
                   <!--선택한 날짜 보여주는 영역-->
-                  <div id="selectedDate"></div>
-                  <div id="selectedTicket"></div>
+                  <div class="inputTable px-3 row">
+                    <div class="col-lg-4 mb-3">관람일</div><div class="col-xl-6 mb-3" id="selectedDate"></div>
+                  </div>
+                  <div class="inputTable px-3 row">
+                    <div class="col-lg-4">예매매수</div><div class="col-xl-6" id="selectedTicket"></div>
+                  </div>
+
                 </div>
                 <!-- 예매자 정보 입력 영역 -->
                   <div class="inputBox bg-light rounded-3 mb-5">
-                    <div class="infoDesc"><p class="infoText">할인권종 선택</p></div>
-                    <div class="mb-3">
-                      <select class="form-select" id="floatingSelect">
-                        <option value="1" selected>1매</option>
-                        <option value="2">2매</option>
-                        <option value="3">3매</option>
-                        <option value="4">4매</option>
-                        <option value="5">5매</option>
-                        <option value="6">6매</option>
-                        <option value="7">7매</option>
-                        <option value="8">8매</option>
-                        <option value="9">9매</option>
-                      </select>
+                    <div class="infoDesc"><p class="infoText fw-bolder">할인 선택</p></div>
+                    <div class="inputTable px-3">
+                      <div class="row">
+                        <div class="discount col-lg-4 mb-3"><p class="type">일반</p></div><div class="discount col-lg-4 mb-3"><p class="price">12,000원</p></div>
+                        <div class="col-lg-4 mb-3">
+                          <select class="form-select" id="generalDiscountSelect">
+                            <option value="0" selected>0매</option>
+                          </select>
+                        </div>
+                      </div>  
+                      <div class="row">
+                        <div class="discount col-lg-4 mb-3"><p class="type">재학생 할인</p></div><div class="discount col-lg-4 mb-3"><p class="price">10,000원</p></div>
+                        <div class="col-lg-4 mb-3">
+                          <select class="form-select" id="studentDiscountSelect">
+                            <option value="0" selected>0매</option>
+                          </select>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="discount col-lg-4 mb-3"><p class="type">SNS 팔로우 할인</p></div><div class="discount col-lg-4 mb-3"><p class="price">10,000원</p></div>
+                        <div class="col-lg-4 mb-3">
+                          <select class="form-select" id="followDiscountSelect">
+                            <option value="0" selected>0매</option>
+                          </select>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="discount col-lg-4 mb-3"><p class="type">재관람 할인</p></div><div class="discount col-lg-4 mb-3"><p class="price">9,000원</p></div>
+                        <div class="col-lg-4">
+                          <select class="form-select" id="reviewDiscountSelect">
+                            <option value="0" selected>0매</option>
+                          </select>
+                        </div>
+                      </div>
                     </div>
                   </div>
         
                   <div class="inputBox bg-light rounded-3 mb-5">
-                    <div class="infoDesc"><p class="infoText">예매자명</p></div>
+                    <div class="infoDesc"><p class="infoText fw-bolder">예매자명</p></div>
                     <!-- 예매자명 입력란 -->
                     <div class="form-floating mb-3">
                       <input
@@ -233,7 +259,6 @@
                         type="text"
                         placeholder="예매자명"
                         data-sb-validations="required" />
-                      <label for="reservationName">홍길동</label>
                       <div class="invalid-feedback" data-sb-feedback="reservationName:required">
                         예매자명을 입력해 주세요.
                       </div>
@@ -241,7 +266,7 @@
                   </div>
         
                   <div class="inputBox bg-light rounded-3 mb-5">
-                    <div class="infoDesc"><p class="infoText">이메일</p></div>
+                    <div class="infoDesc"><p class="infoText fw-bolder">이메일</p></div>
                     <!-- Email address input-->
                     <div class="form-floating mb-3">
                       <input
@@ -265,7 +290,7 @@
                   </div>
         
                   <div class="inputBox bg-light rounded-3 mb-5">
-                    <div class="infoDesc"><p class="infoText">연락처</p></div>
+                    <div class="infoDesc"><p class="infoText fw-bolder">연락처</p></div>
                     <div class="form-floating mb-3">
                       <input
                         class="form-control"
@@ -282,6 +307,17 @@
                       </div>
                     </div>
                   </div>
+
+                  <div class="inputBox bg-light rounded-3 mb-5">
+                    <div class="infoDesc"><p class="infoText fw-bolder">예매자 동의</p></div>
+                    <!--선택한 날짜 보여주는 영역-->
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" id="agreementCheckbox" required>
+                      <label class="form-check-label" for="agreementCheckbox">
+                        <p class="infoDesc">예매 및 취소 수수료/취소 기한을 확인하였으며 동의합니다.</p>
+                      </label>
+                    </div>
+                  </div>
             </div>
             <div class="modal-footer">
               <!-- 결제하기 버튼 -->
@@ -293,11 +329,53 @@
         </div>
       </div>
     </div>
+    <!-- 모달 창 2 -->
+    <div
+      class="modal fade myungjo"
+      id="payModal"
+      tabindex="-1"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">결제</h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+              id="closeModal"
+            ></button>
+          </div>
+          <form id="userForm" data-sb-form-api-token="API_TOKEN">
+            <div class="modal-body">
+              <div id="bookinginput" style="white-space: pre-line"></div>
+                <!-- 계좌 안내 영역 -->
+                <div class="inputBox bg-light rounded-3 mb-3">
+                  <div class="accInfo fw-bolder">입금 안내<br>계좌번호 7979-89-15908<br></div>
+                </div>
+                <div class="inputBox bg-light rounded-3 mb-3">
+                  <div class="accInfo fw-bolder">입금 안내<br>계좌번호 7979-89-15908<br></div>
+                </div>
+            </div>
+            <div class="modal-footer">
+              <!-- 확인 버튼 -->
+              <button id="paying" type="submit" class="btn btn-dark">
+                예매확인
+              </button>
+            </div>
+          </form> 
+        </div>
+      </div>
+    </div>
 
     <script>
       document .getElementById("selectdateForm") .addEventListener("submit", async function (event) {
         event.preventDefault();
 
+        //공연일 가져오기
         var selectedDate = getSelectedRadioValue("date");
         // 라디오 버튼의 값을 가져오는 함수
         function getSelectedRadioValue(name) {
@@ -308,9 +386,15 @@
             }
           }
         }
-        document.getElementById("selectedDate").innerHTML = selectedDate;
+        if(selectedDate=="240215"){
+          document.getElementById("selectedDate").innerHTML = "2024.02.15(목) 20:00";
+        }else if(selectedDate=="240216"){
+          document.getElementById("selectedDate").innerHTML = "2024.02.16(금) 20:00";
+        }else if(selectedDate=="240217"){
+          document.getElementById("selectedDate").innerHTML = "2024.02.17(토) 15:00";
+        };
 
-
+        //예매매수 가져오기
         var ticketnum = getSelectedDropdownValue("ticketnum");
         // 드롭다운의 값을 가져오는 함수
         function getSelectedDropdownValue(name) {
@@ -318,22 +402,49 @@
           var selectedValue = dropdown.options[dropdown.selectedIndex].value;
           return selectedValue;
         }
-        document.getElementById("selectedTicket").innerHTML = ticketnum;
+        document.getElementById("selectedTicket").innerHTML = ticketnum+"매";
+
+
+        //예매매수만큼만 드롭다운 출력하기
+        function updateSelectOptions(selectId) {
+          var floatingSelect = document.getElementById("floatingSelect").value;
+          var discountSelect = document.getElementById(selectId);
+        
+          // Add new options based on the selected value
+          for (var i = 1; i <= floatingSelect; i++) {
+            var option = document.createElement("option");
+            option.value = i;
+            option.text = i + "매";
+            discountSelect.add(option);
+          }
+        }
+
+        updateSelectOptions("generalDiscountSelect");
+        updateSelectOptions("studentDiscountSelect");
+        updateSelectOptions("followDiscountSelect");
+        updateSelectOptions("reviewDiscountSelect");
 
         $("#reservationModal").modal("show");
       });
         
+      // 모달 창 닫기 버튼 이벤트 핸들러
+      document
+        .getElementById("closeModal")
+        .addEventListener("click", function () {
+          reservationModal.style.display = "none";
+          var modalBackdrop = document.querySelector(".modal-backdrop");
+          if (modalBackdrop) {
+            modalBackdrop.remove();
+          }
+        });
 
-        // 모달 창 닫기 버튼 이벤트 핸들러
-        document
-          .getElementById("closeModal")
-          .addEventListener("click", function () {
-            reservationModal.style.display = "none";
-            var modalBackdrop = document.querySelector(".modal-backdrop");
-            if (modalBackdrop) {
-              modalBackdrop.remove();
-            }
-          });
+        document .getElementById("userForm") .addEventListener("submit", async function (event) {
+          event.preventDefault();
+
+          $("#payModal").modal("show");
+
+
+        });
 
     </script>
 
@@ -370,6 +481,9 @@
           240216: 0,
           240217: document.getElementById("floatingSelect").value,
           };
+
+          
+
         }
 
         // Store data in Firebase

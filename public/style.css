@@ -161,6 +161,39 @@ li {
   padding: 30px;
 }
 
+.inputBox label{
+  color: #ebebeb;
+}
+
+.inputBox label p{
+  font-size: 14px;
+  color: #000;
+}
+
+.inputTable{
+  font-size: 15px;
+}
+.inputTable .row .discount{
+  position: relative;
+}
+.inputTable .row .discount .type, .inputTable .row .discount .price{
+  position: absolute;
+  top: 50%;
+  transform: translate(0, -50%);
+}
+.inputTable .row .discount p .type{
+  font-weight: bold;
+}
+.inputTable .row .discount p .price{
+  text-align: center;
+}
+
+.accInfo{
+  text-align: center;
+  font-size: 18px;
+}
+
+
 /* index.html 에서 쓴 클래스들 */
 
 .last-row {
