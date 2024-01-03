@@ -310,12 +310,13 @@
 
                   <div class="inputBox bg-light rounded-3 mb-5">
                     <div class="infoDesc"><p class="infoText fw-bolder">예매자 동의</p></div>
-                    <!--선택한 날짜 보여주는 영역-->
+                    <!--취소 수수료 동의-->
                     <div class="form-check">
                       <input class="form-check-input" type="checkbox" id="agreementCheckbox" required>
                       <label class="form-check-label" for="agreementCheckbox">
                         <p class="infoDesc">예매 및 취소 수수료/취소 기한을 확인하였으며 동의합니다.</p>
                       </label>
+                      <!--취소 수수료 안내-->
                     </div>
                   </div>
             </div>
@@ -454,37 +455,17 @@
 
         date=document.querySelector('input[name="date"]:checked').value
 
-        if(date=="240215"){
-          var formData = {
+        var formData = {
           email: document.getElementById("email").value,  
           reservationName: document.getElementById("reservationName").value,
           phoneNumber: document.getElementById("phoneNumber").value,
-          240215: document.getElementById("floatingSelect").value,
-          240216: 0,
-          240217: 0
-          };
-        }else if(date=="240216"){
-          var formData = {
-          email: document.getElementById("email").value,  
-          reservationName: document.getElementById("reservationName").value,
-          phoneNumber: document.getElementById("phoneNumber").value,
-          240215: 0,
-          240216: document.getElementById("floatingSelect").value,
-          240217: 0
-          };
-        }else if(date=="240217"){
-          var formData = {
-          email: document.getElementById("email").value,  
-          reservationName: document.getElementById("reservationName").value,
-          phoneNumber: document.getElementById("phoneNumber").value,
-          240215: 0,
-          240216: 0,
-          240217: document.getElementById("floatingSelect").value,
-          };
-
-          
-
-        }
+          date: document.querySelector('input[name="date"]:checked').value,
+          progress: "입금대기",
+          DiscountGeneral: document.getElementById("generalDiscountSelect").value,
+          DiscountStudent: document.getElementById("studentDiscountSelect").value,
+          DiscountFollow: document.getElementById("followDiscountSelect").value,
+          DiscountReview: document.getElementById("reviewDiscountSelect").value
+        };
 
         // Store data in Firebase
         var reservationsRef = database.ref("BookingList");
