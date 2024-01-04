@@ -269,13 +269,9 @@ li {
   font-weight: bold;
 }
 /* info */
-.section {
-  background: #fff;
-  border: none;
-  border-radius: 1.25rem 1.25rem 0 0;
-  box-shadow: 0 0 0.625rem rgba(0, 0, 0, 0.15);
-}
-
-.modal-content {
-  border: none;
+/*  */
+#reservationInfo {
+  height: 10vh; /* 뷰포트 높이의 10% */
+  font-family: "Noto Serif KR";
+  text-align: center; /* 텍스트를 센터 정렬 */
 }
