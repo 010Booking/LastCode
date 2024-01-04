@@ -315,7 +315,7 @@
 
                 snapshot.forEach(function (childSnapshot) {
                   var reservation = childSnapshot.val();
-
+                  var reservationDates = "";
                   if (reservation.phoneNumber.slice(-4) === phone.slice(-4)) {
                     if (result === "") {
                       result +=
@@ -337,42 +337,44 @@
                         reservation.phoneNumber +
                         "<br>" +
                         "<br>";
-                    }
+                      let date = "";
 
-                    if (reservation["240215"] != 0) {
-                      reservationDates +=
-                        " 24년 02월 15일 " +
-                        "(" +
-                        reservation["240215"] +
-                        "장)" +
-                        "<br>";
-                    }
-                    if (reservation["240216"] != 0) {
-                      reservationDates +=
-                        " 24년 02월 16일 " +
-                        "(" +
-                        reservation["240216"] +
-                        "장)" +
-                        "<br>";
-                    }
-                    if (reservation["240217"] != 0) {
-                      reservationDates +=
-                        " 24년 02월 17일 " +
-                        "(" +
-                        reservation["240217"] +
-                        "장)" +
-                        "<br>";
+                      if (reservation.date === "240215") {
+                        date = "24년 02월 15일";
+                      } else if (reservation.date === "240216") {
+                        date = "24년 02월 16일";
+                      } else if (reservation.date === "240217") {
+                        date = "24년 02월 17일";
+                      }
+                      if (date !== "") {
+                        result += date + " : <br>";
+
+                        if (reservation.DiscountFollow > 0) {
+                          result +=
+                            "SNS 팔로우 할인 " +
+                            reservation.DiscountFollow +
+                            "장<br>";
+                        }
+                        if (reservation.DiscountGeneral > 0) {
+                          result +=
+                            "일반 " + reservation.DiscountGeneral + "장<br>";
+                        }
+                        if (reservation.DiscountReview > 0) {
+                          result +=
+                            "재관람 할인 " +
+                            reservation.DiscountReview +
+                            "장<br>";
+                        }
+                        if (reservation.DiscountStudent > 0) {
+                          result +=
+                            "재학생 할인 " + reservation.DiscountStudent + "장";
+                        }
+                        result += "<br>";
+                      }
+                      result += "예매 상태 " + reservation.progress;
                     }
                   }
                 });
-
-                result +=
-                  "<b>" +
-                  "예매 내역: " +
-                  "</b> " +
-                  "<br>" +
-                  reservationDates +
-                  "<br>";
 
                 document.getElementById("reservationInfo").innerHTML = result;
 
