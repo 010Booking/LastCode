@@ -311,14 +311,21 @@
             .then(function (snapshot) {
               if (snapshot.exists()) {
                 let result = "";
-                let reservationDates = "";
+                let userInfo = "";
 
                 snapshot.forEach(function (childSnapshot) {
                   var reservation = childSnapshot.val();
-                  var reservationDates = "";
+
                   if (reservation.phoneNumber.slice(-4) === phone.slice(-4)) {
-                    if (result === "") {
-                      result +=
+                    if (userInfo === "") {
+                      let formattedPhoneNumber =
+                        reservation.phoneNumber.slice(0, 3) +
+                        "-" +
+                        reservation.phoneNumber.slice(3, 7) +
+                        "-" +
+                        reservation.phoneNumber.slice(7, 11);
+
+                      userInfo =
                         "<b>" +
                         "예약자 이름: " +
                         "</b>" +
@@ -334,49 +341,56 @@
                         "<b>" +
                         "전화번호: " +
                         "</b>" +
-                        reservation.phoneNumber +
+                        formattedPhoneNumber +
+                        "<br>" +
+                        "<br>" +
+                        "예매 상태 :" +
+                        reservation.progress +
                         "<br>" +
                         "<br>";
-                      let date = "";
-
-                      if (reservation.date === "240215") {
-                        date = "24년 02월 15일";
-                      } else if (reservation.date === "240216") {
-                        date = "24년 02월 16일";
-                      } else if (reservation.date === "240217") {
-                        date = "24년 02월 17일";
-                      }
-                      if (date !== "") {
-                        result += date + " : <br>";
-
-                        if (reservation.DiscountFollow > 0) {
-                          result +=
-                            "SNS 팔로우 할인 " +
-                            reservation.DiscountFollow +
-                            "장<br>";
-                        }
-                        if (reservation.DiscountGeneral > 0) {
-                          result +=
-                            "일반 " + reservation.DiscountGeneral + "장<br>";
-                        }
-                        if (reservation.DiscountReview > 0) {
-                          result +=
-                            "재관람 할인 " +
-                            reservation.DiscountReview +
-                            "장<br>";
-                        }
-                        if (reservation.DiscountStudent > 0) {
-                          result +=
-                            "재학생 할인 " + reservation.DiscountStudent + "장";
-                        }
-                        result += "<br>";
-                      }
-                      result += "예매 상태 " + reservation.progress;
                     }
+                    let individualResult = "";
+                    let date = "";
+
+                    if (reservation.date === "240215") {
+                      date = "24년 02월 15일";
+                    } else if (reservation.date === "240216") {
+                      date = "24년 02월 16일";
+                    } else if (reservation.date === "240217") {
+                      date = "24년 02월 17일";
+                    }
+                    if (date !== "") {
+                      individualResult += date + " : <br>";
+
+                      if (reservation.DiscountFollow > 0) {
+                        individualResult +=
+                          "SNS 팔로우 할인 " +
+                          reservation.DiscountFollow +
+                          "장<br>";
+                      }
+                      if (reservation.DiscountGeneral > 0) {
+                        individualResult +=
+                          "일반 " + reservation.DiscountGeneral + "장<br>";
+                      }
+                      if (reservation.DiscountReview > 0) {
+                        individualResult +=
+                          "재관람 할인 " +
+                          reservation.DiscountReview +
+                          "장<br>";
+                      }
+                      if (reservation.DiscountStudent > 0) {
+                        individualResult +=
+                          "재학생 할인 " +
+                          reservation.DiscountStudent +
+                          "장<br>";
+                      }
+                    }
+                    individualResult += result += individualResult + "<br>";
                   }
                 });
 
-                document.getElementById("reservationInfo").innerHTML = result;
+                document.getElementById("reservationInfo").innerHTML =
+                  userInfo + result;
 
                 $("#reservationModal").modal("show");
               } else {
@@ -405,7 +419,12 @@
           $("#cancelModal").modal("show");
           document.getElementById("agreeCancel").disabled = true;
         });
-
+      document
+        .getElementById("agreeCheckbox")
+        .addEventListener("change", function () {
+          // 체크박스 상태에 따라 '동의하고 예매 취소' 버튼 활성화/비활성화
+          document.getElementById("agreeCancel").disabled = !this.checked;
+        });
       document
         .getElementById("cancelModal")
         .addEventListener("shown.bs.modal", function () {
@@ -413,14 +432,7 @@
           document.getElementById("agreeCancel").disabled = true;
         });
 
-      document
-        .getElementById("agreeCheckbox")
-        .addEventListener("change", function () {
-          // 체크박스 상태에 따라 '동의하고 예매 취소' 버튼 활성화/비활성화
-          document.getElementById("agreeCancel").disabled = !this.checked;
-        });
-
-      //예매 취소 이벤트 핸들러
+      // 예매 취소 이벤트 핸들러
       document
         .getElementById("agreeCancel")
         .addEventListener("click", function () {
@@ -439,7 +451,7 @@
             .then(function (snapshot) {
               if (snapshot.exists()) {
                 snapshot.forEach(function (childSnapshot) {
-                  // childSnapshot.key is the key of the child under BookingList, and will be removed.
+                  // childSnapshot.key는 BookingList 아래의 자식 키이며, 삭제될 예매 정보입니다.
                   console.log("Deleting booking with key: ", childSnapshot.key);
                   console.log("Booking data: ", childSnapshot.val());
                   ref.child(childSnapshot.key).remove();
@@ -453,7 +465,29 @@
               alert("예매가 취소되었습니다.");
               document.getElementById("cancelReservation").disabled = true;
               $("#cancelModal").modal("hide");
-              window.location.href = "refundBooking.html";
+
+              // progress 값에 따라 다른 페이지로 이동하기
+              if (ref.progress === "예매확정") {
+                window.location.href = "refundBooking.html";
+              } else if (ref.progress === "입금대기") {
+                ref
+                  .orderByChild("email")
+                  .equalTo(email)
+                  .once("value")
+                  .then(function (snapshot) {
+                    if (snapshot.exists()) {
+                      snapshot.forEach(function (childSnapshot) {
+                        ref.child(childSnapshot.key).remove();
+                      });
+                    }
+                  })
+                  .then(function () {
+                    window.location.href = "index.html";
+                  })
+                  .catch(function (error) {
+                    console.error("Error removing booking: ", error);
+                  });
+              }
             })
             .catch(function (error) {
               console.error("Error removing booking: ", error);
