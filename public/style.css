@@ -143,13 +143,12 @@ li {
   background-color: transparent;
 }
 
-
 .dateselectBtn .datetext {
   margin: auto;
   color: #000;
 }
 
-.numticketBox{
+.numticketBox {
   overflow: hidden;
   overflow-y: auto;
   border-top: 1px solid #ebebeb;
@@ -161,38 +160,38 @@ li {
   padding: 30px;
 }
 
-.inputBox label{
+.inputBox label {
   color: #ebebeb;
 }
 
-.inputBox label p{
+.inputBox label p {
   font-size: 14px;
   color: #000;
 }
 
-.inputTable{
+.inputTable {
   font-size: 15px;
 }
-.inputTable .row .discount{
+.inputTable .row .discount {
   position: relative;
 }
-.inputTable .row .discount .type, .inputTable .row .discount .price{
+.inputTable .row .discount .type,
+.inputTable .row .discount .price {
   position: absolute;
   top: 50%;
   transform: translate(0, -50%);
 }
-.inputTable .row .discount p .type{
+.inputTable .row .discount p .type {
   font-weight: bold;
 }
-.inputTable .row .discount p .price{
+.inputTable .row .discount p .price {
   text-align: center;
 }
 
-.accInfo{
+.accInfo {
   text-align: center;
   font-size: 18px;
 }
-
 
 /* index.html 에서 쓴 클래스들 */
 
@@ -268,4 +267,15 @@ li {
 .small-title-kr {
   font-size: 1.5em;
   font-weight: bold;
+}
+/* info */
+.section {
+  background: #fff;
+  border: none;
+  border-radius: 1.25rem 1.25rem 0 0;
+  box-shadow: 0 0 0.625rem rgba(0, 0, 0, 0.15);
+}
+
+.modal-content {
+  border: none;
 }
