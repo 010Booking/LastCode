@@ -268,10 +268,4 @@ li {
   font-size: 1.5em;
   font-weight: bold;
 }
-/* info */
-/*  */
-#reservationInfo {
-  height: 10vh; /* 뷰포트 높이의 10% */
-  font-family: "Noto Serif KR";
-  text-align: center; /* 텍스트를 센터 정렬 */
-}
+

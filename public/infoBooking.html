@@ -38,6 +38,12 @@
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <!-- jQuery -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+
+<!-- Bootstrap JavaScript -->
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+
     <!-- Fire Base-->
     <script>
       //  web app's Firebase configuration
@@ -91,34 +97,36 @@
       </div>
     </nav>
 
-    <section class="py-5">
-        <div class="container px-5">
+    <section class="py-9">
+      <div class="container px-5">
           <div class="bg-light rounded-3 py-5 px-4 px-md-5 mb-5">
-            <div class="text-center mb-5">
-              <h1 class="fw-bolder myungjo">예매 정보</h5>
-              <p class="lead fw-normal text-muted mb-0 myungjo">
-                예매 정보를 불러 옵니다.
-              </p>
-            </div>
-            <div class="row gx-5 justify-content-center">
-                <div id="reservationInfo" ></div>
-                <!-- 예매 정보 출력 영역 -->
-                <!-- 예매 취소 버튼 -->
-                <button id="cancelReservation" type="button" class="btn btn-dark">
-                  전체 예매 취소
-                </button>
-                <button id="cancelPartReservation" type="button" class="btn btn-dark">
-                  부분 예매 취소
-                </button>
-            </div>
+              <div class="text-center mb-5">
+                  <h1 class="fw-bolder myungjo">예매 정보</h1>
+                  <p class="lead fw-normal text-muted mb-0 myungjo">
+                      티켓 예매 정보를 불러 옵니다.
+                  </p>
+              </div>
+              <div class="row gx-9 justify-content-center">
+                  <!-- 예매 정보 출력 영역 -->
+                  <div class="col-12 myungjo d-flex justify-content-center align-items-center">
+                      <div id="reservationInfo"></div>
+                  </div>
+                  <!-- 예매 취소 버튼 -->
+                  <div class="col-12 text-center mt-3">
+                      <button id="cancelReservation" type="button" class="btn btn-dark">
+                          전체 예매 취소
+                      </button>
+                      <button id="cancelPartReservation" type="button" class="btn btn-dark">
+                          부분 예매 취소
+                      </button>
+                 </div>
+              </div>
           </div>
+      </div>
+    </section>
+  
 
-        </section>
-
-             
-   
-
-
+    
     <!-- 부분 예매 취소 모달 -->
     <div
       class="modal fade"
@@ -139,7 +147,7 @@
             <div id="ticketSelection" style="white-space: pre-line"></div>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-dark" id="closeModal"ㄴ>
+            <button type="button" class="btn btn-dark" id="closeModalButton">
               닫기
             </button>
             <button type="button" id="submitCancelButton" class="btn btn-dark">부분 예매 취소</button>
@@ -167,7 +175,7 @@
               class="btn-close"
               data-bs-dismiss="modal"
               aria-label="Close"
-              id="closeCancelModal"
+              id="closeCancelModalCross"
             ></button>
           </div>
           <div class="modal-body">
@@ -207,6 +215,7 @@
             <button
               type="button"
               class="btn btn-secondary"
+              id = "closeCancelModalButton"
             >
               닫기
             </button>
@@ -280,7 +289,7 @@
                   }
                   individualResult +=
                     "예매 상태 :" + reservation.progress + "<br>";
-                  individualResult += result += individualResult + "<br>";
+                  individualResult += result += individualResult  +"<br>-----------------------<br>";
                 }
               });
 
@@ -288,6 +297,7 @@
                 userInfo + result;
             }
           });
+
         //환불
         document
           .getElementById("cancelReservation")
@@ -305,6 +315,7 @@
             $("#cancelModal").modal("show");
             document.getElementById("agreeCancel").disabled = true;
         });
+       
 
         document
           .getElementById("submitCancelButton")
@@ -361,12 +372,6 @@
               .catch(function (error) {
                 console.error("Error removing booking: ", error);
               });
-          });
-
-        document
-          .getElementById("closeCancelModal")
-          .addEventListener("click", function () {
-            $("#cancelModal").modal("hide");
           });
 
           document
@@ -458,6 +463,16 @@
     });
 
       };
+      document.getElementById("closeCancelModalButton").addEventListener("click", function(){
+        $('#cancelModal').modal('hide');
+    });
+    document.getElementById("closeModalButton").addEventListener("click", function(){
+        $('#cancelPartModal').modal('hide');
+    });
+    
+    document.getElementById("closeCancelModalCross").addEventListener("click", function(){
+        $('#cancelModal').modal('hide');
+    });
     </script>
   </main>
 </body>
