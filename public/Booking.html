@@ -90,6 +90,7 @@
         </div>
       </div>
     </nav>
+    
     <!-- Page content-->
     <section class="py-5 myungjo">
       <div class="container px-3 center">
@@ -152,10 +153,39 @@
                 <ul class="datelist">
                   <li class="mb-3">
                     <input type="radio" class="btn-check" name="time" id="option" autocomplete="off" checked>
-                    <label class="btn" for="option" value="1회차"><span class="datetext">1회차 20:00</span></label>
+                    <label class="btn" for="option" value="1회차"><span class="datetext" id="timeArea"></span></label>
                   </li>
                 </ul>
               </div>
+              <script>
+                $(document).ready(function() {
+                  // Initial state
+                  showSelectedDateTime();
+            
+                  // Event handler for date selection
+                  $('input[name="date"]').on('change', function() {
+                    showSelectedDateTime();
+                  });
+                });
+            
+                function showSelectedDateTime() {
+                  // Get the selected date value
+                  var selectedDate = $('input[name="date"]:checked').val();
+            
+                  // Create a mapping of date values to corresponding time values
+                  var timeMapping = {
+                    '240215': '1회차 20:00',
+                    '240216': '2회차 20:00',
+                    '240217': '3회차 15:00'  // Add more mappings as needed
+                  };
+            
+                  // Get the corresponding time for the selected date
+                  var selectedTime = timeMapping[selectedDate];
+
+                  document.getElementById("timeArea").innerHTML=selectedTime;
+            
+                }
+              </script>
               <div class="numticketBox col-lg-4">
                 <div class="datelist mb-3">
                   <select class="form-select" name="ticketnum" id="floatingSelect">
@@ -204,7 +234,7 @@
           <form id="userForm" data-sb-form-api-token="API_TOKEN">
             <div class="modal-body">
               <div id="bookinginput" style="white-space: pre-line"></div>
-                <div class="inputBox bg-light rounded-3 mb-5">
+                <div class="inputBox bg-light rounded-3 mb-3">
                   <div class="infoDesc"><p class="infoText fw-bolder">예매정보</p></div>
                   <!--선택한 날짜 보여주는 영역-->
                   <div class="inputTable px-3 row">
@@ -215,14 +245,14 @@
                   </div>
                 </div>
                 <!-- 예매자 정보 입력 영역 -->
-                <div class="inputBox bg-light rounded-3 mb-5">
+                <div class="inputBox bg-light rounded-3 mb-3">
                   <div class="infoDesc"><p class="infoText fw-bolder">할인 선택</p></div>
                   <div class="inputTable px-3">
                     <div class="row">
                       <div class="discount col-lg-4 mb-3"><p class="type">일반</p></div><div class="discount col-lg-4 mb-3"><p class="price">12,000원</p></div>
                       <div class="col-lg-4 mb-3">
                         <select class="form-select" id="generalDiscountSelect">
-                          <option value="0">0매</option>
+                          <option value="0" selected>0매</option>
                         </select>
                       </div>
                     </div>  
@@ -231,7 +261,6 @@
                       <div class="col-lg-4 mb-3">
                         <select class="form-select" id="studentDiscountSelect">
                           <option value="0" selected>0매</option>
-                          <option value="1">1매</option>
                         </select>
                       </div>
                     </div>
@@ -240,7 +269,6 @@
                       <div class="col-lg-4 mb-3">
                         <select class="form-select" id="followDiscountSelect">
                           <option value="0" selected>0매</option>
-                          <option value="1">1매</option>
                         </select>
                       </div>
                     </div>
@@ -249,13 +277,12 @@
                       <div class="col-lg-4">
                         <select class="form-select" id="reviewDiscountSelect">
                           <option value="0" selected>0매</option>
-                          <option value="1">1매</option>
                         </select>
                       </div>
                     </div>
                   </div>
                 </div>
-                <div class="inputBox bg-light rounded-3 mb-5">
+                <div class="inputBox bg-light rounded-3 mb-3">
                   <div class="infoDesc"><p class="infoText fw-bolder">예매자명</p></div>
                   <!-- 예매자명 입력란 -->
                   <div class="form-floating mb-3">
@@ -273,7 +300,7 @@
                   </div>  
                 </div>
         
-                <div class="inputBox bg-light rounded-3 mb-5">
+                <div class="inputBox bg-light rounded-3 mb-3">
                   <div class="infoDesc"><p class="infoText fw-bolder">이메일</p></div>
                   <!-- Email address input-->
                   <div class="form-floating mb-3">
@@ -298,7 +325,7 @@
                   </div>
                 </div>
         
-                <div class="inputBox bg-light rounded-3 mb-5">
+                <div class="inputBox bg-light rounded-3 mb-3">
                   <div class="infoDesc"><p class="infoText fw-bolder">연락처</p></div>
                   <div class="form-floating mb-3">
                     <input
@@ -319,7 +346,7 @@
                   </div>
                 </div>
 
-                <div class="inputBox bg-light rounded-3 mb-5">
+                <div class="inputBox bg-light rounded-3 mb-3">
                   <div class="infoDesc"><p class="infoText fw-bolder">예매자 동의</p></div>
                   <!--취소 수수료 동의-->
                   <div class="form-check">
@@ -437,6 +464,9 @@
         }
       }
       updateSelectOptions("generalDiscountSelect");
+      updateSelectOptions("studentDiscountSelect");
+      updateSelectOptions("followDiscountSelect");
+      updateSelectOptions("reviewDiscountSelect");
 
       $("#reservationModal").modal("show");
 
