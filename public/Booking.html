@@ -55,7 +55,7 @@
   <main class="flex-shrink-0">
     <!-- Navigation-->
     <nav class="navbar navbar-expand-lg bg-white">
-      <div class="container px-5">
+      <div class="container px-3">
         <a class="start" href="index.html">stART</a>
         <button
           class="navbar-toggler"
@@ -89,14 +89,14 @@
     </nav>
     <!-- Page content-->
     <section class="py-5 myungjo">
-      <div class="container px-5 center">
-        <div class="infoBox py-5 px-4">
+      <div class="container px-3 center">
+        <div class="infoBox py-3">
           <!--공연정보 요약-->
           <div class="row">
-            <div class="posterbox col-lg-4 m-2">
+            <div class="posterbox col-xl-6 m-2">
               <img class="posterImg" src="https://tumblbug-psi.imgix.net/ecb5f2d41403eeada85f3ca258f97370a82f873a/7ae757732bce4e84faa3c4140ebbe61b6fa0058d/c01a5aaf765544642ef04359d9184a4580372fec/89492b93-1f52-4b74-9e2f-b6a809014123.jpg?ixlib=rb-1.1.0&w=1240&auto=format%2C%20compress&lossless=true&ch=save-data&s=8cdd59ff025c301795bc99c2fe1c751c" alt="연극 <맨끝줄소년>">
             </div>
-            <div class="info_summary col-lg-8 m-3">
+            <div class="info_summary col-xl-6 m-2">
               <div class="mb-3">
                 <span class="title">연극&nbsp;&nbsp;&nbsp;<맨 끝줄 소년></span>
               </div>
@@ -176,6 +176,8 @@
         </form>
       </div>
     </section>
+    
+
     <!-- 모달 창 1 -->
     <div
       class="modal fade myungjo"
@@ -208,136 +210,133 @@
                   <div class="inputTable px-3 row">
                     <div class="col-lg-4">예매매수</div><div class="col-xl-6" id="selectedTicket"></div>
                   </div>
-
                 </div>
                 <!-- 예매자 정보 입력 영역 -->
-                  <div class="inputBox bg-light rounded-3 mb-5">
-                    <div class="infoDesc"><p class="infoText fw-bolder">할인 선택</p></div>
-                    <div class="inputTable px-3">
-                      <div class="row">
-                        <div class="discount col-lg-4 mb-3"><p class="type">일반</p></div><div class="discount col-lg-4 mb-3"><p class="price">12,000원</p></div>
-                        <div class="col-lg-4 mb-3">
-                          <select class="form-select" id="generalDiscountSelect">
-                            <option value="0">0매</option>
-                          </select>
-                        </div>
-                      </div>  
-                      <div class="row">
-                        <div class="discount col-lg-4 mb-3"><p class="type">재학생 할인</p></div><div class="discount col-lg-4 mb-3"><p class="price">10,000원</p></div>
-                        <div class="col-lg-4 mb-3">
-                          <select class="form-select" id="studentDiscountSelect">
-                            <option value="0" selected>0매</option>
-                            <option value="1">1매</option>
-                          </select>
-                        </div>
-                      </div>
-                      <div class="row">
-                        <div class="discount col-lg-4 mb-3"><p class="type">SNS 팔로우 할인</p></div><div class="discount col-lg-4 mb-3"><p class="price">10,000원</p></div>
-                        <div class="col-lg-4 mb-3">
-                          <select class="form-select" id="followDiscountSelect">
-                            <option value="0" selected>0매</option>
-                            <option value="1">1매</option>
-                          </select>
-                        </div>
-                      </div>
-                      <div class="row">
-                        <div class="discount col-lg-4 mb-3"><p class="type">재관람 할인</p></div><div class="discount col-lg-4 mb-3"><p class="price">9,000원</p></div>
-                        <div class="col-lg-4">
-                          <select class="form-select" id="reviewDiscountSelect">
-                            <option value="0" selected>0매</option>
-                            <option value="1">1매</option>
-                          </select>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-        
-                  <div class="inputBox bg-light rounded-3 mb-5">
-                    <div class="infoDesc"><p class="infoText fw-bolder">예매자명</p></div>
-                    <!-- 예매자명 입력란 -->
-                    <div class="form-floating mb-3">
-                      <input
-                        class="form-control"
-                        id="reservationName"
-                        type="text"
-                        placeholder="예매자명"
-                        data-sb-validations="required"
-                        required
-                      />
-                      <div class="invalid-feedback" data-sb-feedback="reservationName:required">
-                        예매자명을 입력해 주세요.
+                <div class="inputBox bg-light rounded-3 mb-5">
+                  <div class="infoDesc"><p class="infoText fw-bolder">할인 선택</p></div>
+                  <div class="inputTable px-3">
+                    <div class="row">
+                      <div class="discount col-lg-4 mb-3"><p class="type">일반</p></div><div class="discount col-lg-4 mb-3"><p class="price">12,000원</p></div>
+                      <div class="col-lg-4 mb-3">
+                        <select class="form-select" id="generalDiscountSelect">
+                          <option value="0">0매</option>
+                        </select>
                       </div>
                     </div>  
-                  </div>
-        
-                  <div class="inputBox bg-light rounded-3 mb-5">
-                    <div class="infoDesc"><p class="infoText fw-bolder">이메일</p></div>
-                    <!-- Email address input-->
-                    <div class="form-floating mb-3">
-                      <input
-                        class="form-control"
-                        id="email"
-                        type="email"
-                        placeholder="name@example.com"
-                        data-sb-validations="required,email"
-                        required
-                      />
-                      <label for="email">lastcode@gmail.com</label>
-                      <div
-                        class="invalid-feedback"
-                        data-sb-feedback="email:required"
-                      >
-                        이메일을 입력해 주세요.
+                    <div class="row">
+                      <div class="discount col-lg-4 mb-3"><p class="type">재학생 할인</p></div><div class="discount col-lg-4 mb-3"><p class="price">10,000원</p></div>
+                      <div class="col-lg-4 mb-3">
+                        <select class="form-select" id="studentDiscountSelect">
+                          <option value="0" selected>0매</option>
+                          <option value="1">1매</option>
+                        </select>
                       </div>
-                      <div class="invalid-feedback" data-sb-feedback="email:email">
-                        이메일 형식이 올바르지 않습니다.
+                    </div>
+                    <div class="row">
+                      <div class="discount col-lg-4 mb-3"><p class="type">SNS 팔로우 할인</p></div><div class="discount col-lg-4 mb-3"><p class="price">10,000원</p></div>
+                      <div class="col-lg-4 mb-3">
+                        <select class="form-select" id="followDiscountSelect">
+                          <option value="0" selected>0매</option>
+                          <option value="1">1매</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="discount col-lg-4 mb-3"><p class="type">재관람 할인</p></div><div class="discount col-lg-4 mb-3"><p class="price">9,000원</p></div>
+                      <div class="col-lg-4">
+                        <select class="form-select" id="reviewDiscountSelect">
+                          <option value="0" selected>0매</option>
+                          <option value="1">1매</option>
+                        </select>
                       </div>
                     </div>
                   </div>
+                </div>
+                <div class="inputBox bg-light rounded-3 mb-5">
+                  <div class="infoDesc"><p class="infoText fw-bolder">예매자명</p></div>
+                  <!-- 예매자명 입력란 -->
+                  <div class="form-floating mb-3">
+                    <input
+                      class="form-control"
+                      id="reservationName"
+                      type="text"
+                      placeholder="예매자명"
+                      data-sb-validations="required"
+                      required
+                    />
+                    <div class="invalid-feedback" data-sb-feedback="reservationName:required">
+                      예매자명을 입력해 주세요.
+                    </div>
+                  </div>  
+                </div>
         
-                  <div class="inputBox bg-light rounded-3 mb-5">
-                    <div class="infoDesc"><p class="infoText fw-bolder">연락처</p></div>
-                    <div class="form-floating mb-3">
-                      <input
-                        class="form-control"
-                        id="phoneNumber"
-                        type="tel"
-                        placeholder="전화번호"
-                        data-sb-validations="required"
-                        required 
-                      />
-                      <label for="phoneNumber">01012341234</label>
-                      <div class="invalid-feedback" data-sb-feedback="phoneNumber:required">
-                        연락처를 입력해 주세요.
-                      </div>
-                      <div class="invalid-feedback" data-sb-feedback="phoneNumber:format">
-                        숫자만 입력해 주세요.
-                      </div>
+                <div class="inputBox bg-light rounded-3 mb-5">
+                  <div class="infoDesc"><p class="infoText fw-bolder">이메일</p></div>
+                  <!-- Email address input-->
+                  <div class="form-floating mb-3">
+                    <input
+                      class="form-control"
+                      id="email"
+                      type="email"
+                      placeholder="name@example.com"
+                      data-sb-validations="required,email"
+                      required
+                    />
+                    <label for="email">lastcode@gmail.com</label>
+                    <div
+                      class="invalid-feedback"
+                      data-sb-feedback="email:required"
+                    >
+                      이메일을 입력해 주세요.
+                    </div>
+                    <div class="invalid-feedback" data-sb-feedback="email:email">
+                      이메일 형식이 올바르지 않습니다.
                     </div>
                   </div>
+                </div>
+        
+                <div class="inputBox bg-light rounded-3 mb-5">
+                  <div class="infoDesc"><p class="infoText fw-bolder">연락처</p></div>
+                  <div class="form-floating mb-3">
+                    <input
+                      class="form-control"
+                      id="phoneNumber"
+                      type="tel"
+                      placeholder="전화번호"
+                      data-sb-validations="required"
+                      required 
+                    />
+                    <label for="phoneNumber">01012341234</label>
+                    <div class="invalid-feedback" data-sb-feedback="phoneNumber:required">
+                      연락처를 입력해 주세요.
+                    </div>
+                    <div class="invalid-feedback" data-sb-feedback="phoneNumber:format">
+                      숫자만 입력해 주세요.
+                    </div>
+                  </div>
+                </div>
 
-                  <div class="inputBox bg-light rounded-3 mb-5">
-                    <div class="infoDesc"><p class="infoText fw-bolder">예매자 동의</p></div>
-                    <!--취소 수수료 동의-->
-                    <div class="form-check">
-                      <input class="form-check-input" type="checkbox" id="agreementCheckbox" required>
-                      <label class="form-check-label" for="agreementCheckbox">
-                        <p class="infoDesc">예매 및 취소 수수료/취소 기한을 확인하였으며 동의합니다.</p>
-                      </label>
-                      <!--취소 수수료 안내-->
-                    </div>
+                <div class="inputBox bg-light rounded-3 mb-5">
+                  <div class="infoDesc"><p class="infoText fw-bolder">예매자 동의</p></div>
+                  <!--취소 수수료 동의-->
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="agreementCheckbox" required>
+                    <label class="form-check-label" for="agreementCheckbox">
+                      <p class="infoDesc">예매 및 취소 수수료/취소 기한을 확인하였으며 동의합니다.</p>
+                    </label>
+                    <!--취소 수수료 안내-->
                   </div>
+                </div>
             </div>
             <div class="modal-footer">
               <!-- 결제하기 버튼 -->
-              <button id="paying" type="submit" class="btn btn-dark">
-                결제하기
-              </button>
+              <button type="submit" class="btn btn-dark" id="paying">결제하기</button>
             </div>
           </form> 
         </div>
       </div>
     </div>
+
     <!-- 모달 창 2 -->
     <div
       class="modal fade myungjo"
@@ -373,139 +372,149 @@
                 <p class="inputTable">- 입금 시 <span class="fw-bolder">예매자명과 입금자명이 동일</span>한 지, <span class="fw-bolder">금액이 정확</span>한 지 한 번 더 확인해주세요.<br>- 본 예매처의 입금 확인은 <span class="fw-bolder">수동 입금 확인 시스템</span>으로 입금 시 24시간 이내에 고객님의 예매 내역이 '입금대기' 상태에서 '예매확정' 상태로 변환될 예정입니다.<br></p>
               </div>
           </div>
-            <div class="modal-footer">
-              <!-- 확인 버튼 -->
-              <button id="checkBooking" type="button" class="btn btn-dark" onclick="moveToManageBooking()">
-                예매 내역 확인
-              </button>
-            </div>
+          <div class="modal-footer">
+            <!-- 확인 버튼 -->
+            <button id="checkBooking" type="button" class="btn btn-dark" onclick="redirectToManageBooking()">
+              예매 내역 확인
+            </button>
+          </div>
         </div>
       </div>
     </div>
 
-    <script>
-      document .getElementById("selectdateForm") .addEventListener("submit", function (event) {
-        event.preventDefault();
-
-        //공연일 가져오기
-        var selectedDate = getSelectedRadioValue("date");
-        // 라디오 버튼의 값을 가져오는 함수
-        function getSelectedRadioValue(name) {
-          var radioButtons = document.getElementsByName(name);
-          for (var i = 0; i < radioButtons.length; i++) {
-            if (radioButtons[i].checked) {
-              return radioButtons[i].value;
-            }
-          }
-        }
-        if(selectedDate=="240215"){
-          document.getElementById("selectedDate").innerHTML = "2024.02.15(목) 20:00";
-        }else if(selectedDate=="240216"){
-          document.getElementById("selectedDate").innerHTML = "2024.02.16(금) 20:00";
-        }else if(selectedDate=="240217"){
-          document.getElementById("selectedDate").innerHTML = "2024.02.17(토) 15:00";
-        };
-
-        //예매매수 가져오기
-        var ticketnum = getSelectedDropdownValue("ticketnum");
-        // 드롭다운의 값을 가져오는 함수
-        function getSelectedDropdownValue(name) {
-          var dropdown = document.getElementsByName(name)[0];
-          var selectedValue = dropdown.options[dropdown.selectedIndex].value;
-          return selectedValue;
-        }
-        document.getElementById("selectedTicket").innerHTML = ticketnum+"매";
-
-
-        //예매매수만큼만 드롭다운 출력하기
-        function updateSelectOptions(selectId) {
-          var floatingSelect = document.getElementById("floatingSelect").value;
-          var discountSelect = document.getElementById(selectId);
-        
-          // Add new options based on the selected value
-          for (var i = 1; i <= floatingSelect; i++) {
-            var option = document.createElement("option");
-            option.value = i;
-            option.text = i + "매";
-            discountSelect.add(option);
-          }
-        }
-
-        updateSelectOptions("generalDiscountSelect");
-
-        $("#reservationModal").modal("show");
-      });
-        
-      // 모달 창 닫기 버튼 이벤트 핸들러
-      document
-        .getElementById("closeModal1")
-        .addEventListener("click", function () {
-          reservationModal.style.display = "none";
-          var modalBackdrop = document.querySelector(".modal-backdrop");
-          if (modalBackdrop) {
-            modalBackdrop.remove();
-          }
-        });
-      document
-        .getElementById("closeModal2")
-        .addEventListener("click", function () {
-          payModal.style.display = "none";
-          var modalBackdrop = document.querySelector(".modal-backdrop");
-          if (modalBackdrop) {
-            modalBackdrop.remove();
-          }
-        });
-
-      document.getElementById("userForm").addEventListener("submit", function (event) {
-        event.preventDefault();
-
-        var floatingSelect = document.getElementById("floatingSelect").value;
-
-        DiscountGeneral=document.getElementById("generalDiscountSelect").value;
-        DiscountStudent=document.getElementById("studentDiscountSelect").value;
-        DiscountFollow=document.getElementById("followDiscountSelect").value;
-        DiscountReview=document.getElementById("reviewDiscountSelect").value;
-
-        var totalDiscount = Number(DiscountGeneral) + Number(DiscountStudent) + Number(DiscountFollow) + Number(DiscountReview);
-
-        if (totalDiscount != Number(floatingSelect)) {
-          alert("선택한 할인 권종 수와 예매 매수가 일치하지 않습니다.");
-        } else {
-          var formData = {
-            email: document.getElementById("email").value,  
-            reservationName: document.getElementById("reservationName").value,
-            phoneNumber: document.getElementById("phoneNumber").value,
-            date: document.querySelector('input[name="date"]:checked').value,
-            progress: "입금대기",
-            DiscountGeneral: DiscountGeneral,
-            DiscountStudent: DiscountStudent,
-            DiscountFollow: DiscountFollow,
-            DiscountReview: DiscountReview
-          };
-
-          // Firebase에 추가
-          var reservationsRef = database.ref("BookingList");
-          reservationsRef.push(formData)
-            .then(function () {
-              console.log("Data successfully stored in Firebase!");
-              $("#reservationModal").modal("hide");
-
-              //payModal에 예매자명과 금액 띄우기
-              var reservationName = document.getElementById("reservationName").value;
-              document.getElementById("bookingName").innerHTML = "예매자명: "+reservationName;
-
-              var totalPrice = Number(DiscountGeneral)*12000+Number(DiscountStudent)*10000+Number(DiscountFollow)*10000+Number(DiscountReview)*9000;
-              document.getElementById("totalPrice").innerHTML = "입금 대기 금액: "+ totalPrice +"원";
-
-              $("#payModal").modal("show");
-              // Display a popup with the saved data
-              displayPopup(formData);
-            })
-            .catch(function (error) {
-              console.error("Error storing data in Firebase: ", error);
-            });
-        }
-      });
-    </script>
   </main>
+
+  <script>
+    document .getElementById("selectdateForm") .addEventListener("submit", function (event) {
+      event.preventDefault();
+
+      //공연일 가져오기
+      var selectedDate = getSelectedRadioValue("date");
+      // 라디오 버튼의 값을 가져오는 함수
+      function getSelectedRadioValue(name) {
+        var radioButtons = document.getElementsByName(name);
+        for (var i = 0; i < radioButtons.length; i++) {
+          if (radioButtons[i].checked) {
+            return radioButtons[i].value;
+          }
+        }
+      }
+
+      if(selectedDate=="240215"){
+        document.getElementById("selectedDate").innerHTML = "2024.02.15(목) 20:00";
+      }else if(selectedDate=="240216"){
+        document.getElementById("selectedDate").innerHTML = "2024.02.16(금) 20:00";
+      }else if(selectedDate=="240217"){
+        document.getElementById("selectedDate").innerHTML = "2024.02.17(토) 15:00";
+      };
+
+      //예매매수 가져오기
+      var ticketnum = getSelectedDropdownValue("ticketnum");
+      // 드롭다운의 값을 가져오는 함수
+      function getSelectedDropdownValue(name) {
+        var dropdown = document.getElementsByName(name)[0];
+        var selectedValue = dropdown.options[dropdown.selectedIndex].value;
+        return selectedValue;
+      }
+
+      document.getElementById("selectedTicket").innerHTML = ticketnum+"매";
+
+
+      //예매매수만큼만 드롭다운 출력하기
+      function updateSelectOptions(selectId) {
+        var floatingSelect = document.getElementById("floatingSelect").value;
+        var discountSelect = document.getElementById(selectId);
+      
+        // Add new options based on the selected value
+        for (var i = 1; i <= floatingSelect; i++) {
+          var option = document.createElement("option");
+          option.value = i;
+          option.text = i + "매";
+          discountSelect.add(option);
+        }
+      }
+      updateSelectOptions("generalDiscountSelect");
+
+      $("#reservationModal").modal("show");
+
+    });
+      
+    // 모달 창 닫기 버튼 이벤트 핸들러
+    document.getElementById("closeModal1").addEventListener("click", function () {
+        reservationModal.style.display = "none";
+        var modalBackdrop = document.querySelector(".modal-backdrop");
+        if (modalBackdrop) {
+          modalBackdrop.remove();
+        }
+    });
+
+    document .getElementById("userForm") .addEventListener("submit", function (event) {
+      // 이벤트 기본 동작 막기
+      event.preventDefault();
+
+      // 할인 정보 가져오기
+      var discountGeneral = parseFloat(document.getElementById("generalDiscountSelect").value);
+      var discountStudent = parseFloat(document.getElementById("studentDiscountSelect").value);
+      var discountFollow = parseFloat(document.getElementById("followDiscountSelect").value);
+      var discountReview = parseFloat(document.getElementById("reviewDiscountSelect").value);
+
+      // 선택 매수 가져오기
+      var selectedQuantity = parseFloat(document.getElementById("floatingSelect").value);
+      // 할인 정보 합산
+      var totalDiscount = discountGeneral + discountStudent + discountFollow + discountReview;
+      // 조건 확인
+      if (totalDiscount !=  selectedQuantity) {
+        // 조건이 일치하지 않을 경우 알림창 띄우기
+        alert("선택 매수와 할인 권종 선택 수가 일치하지 않습니다.");
+      }
+      var formData = {
+        email: document.getElementById("email").value,  
+        reservationName: document.getElementById("reservationName").value,
+        phoneNumber: document.getElementById("phoneNumber").value,
+        date: document.querySelector('input[name="date"]:checked').value,
+        progress: "입금대기",
+        DiscountGeneral: discountGeneral,
+        DiscountStudent: discountStudent,
+        DiscountFollow: discountFollow,
+        DiscountReview: discountReview
+      };
+
+      $("#reservationModal").modal("hide");
+      $("#payModal").modal("show");
+
+      //payModal에 예매자명과 금액 띄우기
+      var reservationName = document.getElementById("reservationName").value;
+      document.getElementById("bookingName").innerHTML = "예매자명: "+reservationName;
+
+      var totalPrice = Number(discountGeneral)*12000+Number(discountStudent)*10000+Number(discountFollow)*10000+Number(discountReview)*9000;
+      document.getElementById("totalPrice").innerHTML = "입금 대기 금액: "+ totalPrice +"원";
+    
+      // Firebase에 추가
+      var reservationsRef = database.ref("BookingList");
+      reservationsRef.push(formData)
+        .then(function () {
+          console.log("Data successfully stored in Firebase!");
+        })
+        .catch(function (error) {
+          console.error("Error storing data in Firebase: ", error);
+        });
+      
+    });
+    
+    document.getElementById("closeModal2").addEventListener("click", function () {
+      payModal.style.display = "none";
+      var modalBackdrop = document.querySelector(".modal-backdrop");
+      if (modalBackdrop) {
+        modalBackdrop.remove();
+      }
+    });
+
+    function redirectToManageBooking() {
+      // 모달 창 닫기
+      $('#payModal').modal('hide');
+      
+      // 예매 내역 관리 페이지로 이동
+      window.location.href = 'manageBooking.html';
+    }
+  </script>
 </body>
