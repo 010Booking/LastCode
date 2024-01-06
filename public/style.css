@@ -34,6 +34,7 @@ li {
 }
 
 /*새로 만든 클래스 태그*/
+
 .infoBox {
   width: 100%;
   position: relative;
@@ -59,10 +60,10 @@ li {
 
 .info_summary .title {
   overflow: hidden;
-  font-size: 22px;
+  font-size: 1.3rem;
   font-weight: bold;
   line-height: 130%;
-  padding-left: 2rem;
+  padding-left: 1rem;
   margin-bottom: 1rem;
 }
 
@@ -81,7 +82,7 @@ li {
   width: 9rem;
   padding-right: 0.5rem;
   color: #000;
-  font-size: 17px;
+  font-size: 1rem;
   font-weight: normal;
   line-height: 160%;
   vertical-align: top;
@@ -96,12 +97,31 @@ li {
 
 .infoDesc .infoText {
   position: relative;
-  max-width: 41.5rem;
   color: #000;
-  font-size: 17px;
+  font-size: 1rem;
   line-height: 160%;
   margin-left: 5px;
 }
+/* 미디어 쿼리: 화면 너비가 768px 미만인 경우 */
+@media (max-width: 767px) {
+  .infoBo .row {
+    flex-direction: column; /* 수직 배치로 변경 */
+    justify-items: center;
+  }
+
+  .posterbox,
+  .info_summary {
+    max-width: none; /* 모바일에서 최대 너비 제거 */
+  }
+  .info_summary .info .infoItem .infoLabel {
+    width: auto;
+  }
+  .info ul{
+    padding-left: 1rem;
+  }
+
+}
+
 
 .dateBox {
   width: 100%;
