@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>stART::맨끝줄소년</title>
+    <link rel="icon" href="image/x-icon.png" />
+    <link rel="apple-touch-icon" href="image/x-icon.png" />
+
+    <!-- Bootstrap icons-->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9"
+      crossorigin="anonymous"
+    />
+    <!--덮어쓰는 css-->
+    <link href="style.css" rel="stylesheet" />
+    <!--Google Font-->
+    <link
+      href="https://fonts.googleapis.com/css?family=Song+Myung|Libre+Barcode+39|Nanum+Gothic+Coding|DM+Serif+Display|Noto+Serif+KR:wght@500;600&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Firestore Library 추가 -->
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <!-- Firestore Library 추가 -->
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <!-- jQuery -->
+    <script
+      src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+      integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+      crossorigin="anonymous"
+    ></script>
+
+    <!-- Bootstrap JavaScript -->
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+      integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+      crossorigin="anonymous"
+    ></script>
+
+    <!-- Fire Base-->
+    <script>
+      //  web app's Firebase configuration
+      const firebaseConfig = {
+        apiKey: "AIzaSyA4rOYodV29z8d4_O4ewTMV1qQDDWhfeho",
+        authDomain: "start-ba2c0.firebaseapp.com",
+        projectId: "start-ba2c0",
+        storageBucket: "start-ba2c0.appspot.com",
+        messagingSenderId: "38449035061",
+        appId: "1:38449035061:web:fec9627e6bf3eab1b53e7c",
+      };
+      // Initialize Firebase
+      firebase.initializeApp(firebaseConfig);
+      // Get a reference to the database service
+      var database = firebase.database();
+    </script>
+  </head>
+</html>
+<body class="d-flex flex-column">
+  <main class="flex-shrink-0">
+    <!-- Navigation-->
+    <nav class="navbar navbar-expand-lg bg-white">
+      <div class="container px-5">
+        <a class="start" href="index.html">stART</a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link myungjo" href="Booking.html">예매하기</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link myungjo" href="manageBooking.html"
+                >예매 확인/취소</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link myungjo" href="faq.html">FAQ</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <section class="py-9">
+      <div class="container px-5">
+        <div class="bg-light rounded-3 py-5 px-4 px-md-5 mb-5">
+          <div class="text-center mb-5">
+            <h1 class="fw-bolder myungjo">예매 정보</h1>
+            <p class="lead fw-normal text-muted mb-0 myungjo">
+              티켓 예매 정보를 불러 옵니다.
+            </p>
+          </div>
+          <div class="row gx-9 justify-content-center">
+            <!-- 예매 정보 출력 영역 -->
+            <div
+              class="col-12 myungjo d-flex justify-content-center align-items-center"
+            >
+              <div id="reservationInfo"></div>
+            </div>
+            <!-- 예매 취소 버튼 -->
+            <div class="col-12 text-center mt-3 myungjo">
+              <button id="cancelReservation" type="button" class="btn btn-dark">
+                전체 예매 취소
+              </button>
+              <button
+                id="cancelPartReservation"
+                type="button"
+                class="btn btn-dark"
+              >
+                부분 예매 취소
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 부분 예매 취소 모달 -->
+    <div
+      class="modal fade"
+      id="cancelPartModal"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="cancelModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content myungjo">
+          <div class="modal-header">
+            <h5 class="modal-title" id="cancelPartModalLabel">
+              부분 예매 취소
+            </h5>
+          </div>
+          <div class="modal-body">
+            <!-- 티켓 선택 영역 -->
+            <div id="ticketSelection" style="white-space: pre-line"></div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" id="submitCancelButton" class="btn btn-dark">
+              부분 예매 취소
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div
+      class="modal fade"
+      id="cancelModal"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="cancelModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog" role="document">
+        <div class="modal-content myungjo">
+          <div class="modal-header">
+            <h5 class="modal-title" id="cancelModalLabel">
+              예매 취소 및 환불 규정
+            </h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+              id="closeCancelModalCross"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <!-- 환불 규정 내용 -->
+            <b>
+              1. 관람일 당일 취소에 관한 환불은 불가능합니다.
+              <br />
+              <br />
+              2. 예매 정보 변경 시 예매 취소 후 재예매 부탁드립니다.
+              <br />
+              <br />
+              3. 입금이 완료된 상태인 경우 환불폼 작성을 부탁드립니다.
+              <br />
+              <br />
+              4. 환불폼 미작성에 관한 환불 지연은 예매자의 책임으로 간주됩니다.
+              <br />
+              <br />
+              5. 아래의 예매 취소 버튼을 누르면 환불 폼 작성 가능합니다.
+              <br />
+              <br />
+              6. 환불은 환불폼 제출 이후 48 시간 이내 이뤄집니다.
+            </b>
+            <br />
+            <br />
+            <div class="form-check form-switch">
+              <input
+                type="checkbox"
+                id="agreeCheckbox"
+                class="form-check-input"
+              />
+              <label class="form-check-label" for="agreeCheckbox"
+                >위 규정에 동의합니다.</label
+              >
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              id="closeCancelModalButton"
+            >
+              닫기
+            </button>
+            <button type="button" class="btn btn-primary" id="agreeCancel">
+              동의하고 예매 취소
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script>
+      window.onload = function () {
+        var urlParams = new URLSearchParams(window.location.search);
+        var phone = urlParams.get("phone");
+        var email = urlParams.get("email");
+        var ref = firebase.database().ref("BookingList");
+        ref
+          .orderByChild("email")
+          .equalTo(email)
+          .once("value")
+          .then(function (snapshot) {
+            if (snapshot.exists()) {
+              let result = "";
+              let userInfo = "";
+
+              snapshot.forEach(function (childSnapshot) {
+                var reservation = childSnapshot.val();
+
+                if (reservation.phoneNumber.slice(-4) === phone.slice(-4)) {
+                  let individualResult = "";
+                  let date = "";
+
+                  if (reservation.date === "240215") {
+                    date = "24년 02월 15일";
+                  } else if (reservation.date === "240216") {
+                    date = "24년 02월 16일";
+                  } else if (reservation.date === "240217") {
+                    date = "24년 02월 17일";
+                  }
+                  if (date !== "") {
+                    individualResult += date + " : <br>";
+                    if (reservation.DiscountFollow > 0) {
+                      individualResult +=
+                        "⸰ SNS 팔로우 할인 " +
+                        reservation.DiscountFollow +
+                        "장<br>";
+                    }
+                    if (reservation.DiscountGeneral > 0) {
+                      individualResult +=
+                        "⸰ 일반 " + reservation.DiscountGeneral + "장<br>";
+                    }
+                    if (reservation.DiscountReview > 0) {
+                      individualResult +=
+                        "⸰ 재관람 할인 " +
+                        reservation.DiscountReview +
+                        "장<br>";
+                    }
+                    if (reservation.DiscountStudent > 0) {
+                      individualResult +=
+                        "⸰ 재학생 할인 " +
+                        reservation.DiscountStudent +
+                        "장<br>";
+                    }
+                  }
+                  individualResult +=
+                    "예매 상태 :" + reservation.progress + "<br>";
+                  individualResult +=
+                    result +=
+                    individualResult +=
+                      '<hr class="my-4">';
+                }
+              });
+
+              document.getElementById("reservationInfo").innerHTML =
+                userInfo + result;
+            }
+          });
+
+        //환불
+        document
+          .getElementById("cancelReservation")
+          .addEventListener("click", function () {
+            var reservationInfo =
+              document.getElementById("reservationInfo").textContent;
+
+            if (!reservationInfo) {
+              document.getElementById("result").textContent =
+                "예매 정보를 먼저 찾으세요.";
+              return;
+            }
+
+            // 환불 규정 모달 띄우기
+            $("#cancelModal").modal("show");
+            document.getElementById("agreeCancel").disabled = true;
+          });
+
+        document
+          .getElementById("submitCancelButton")
+          .addEventListener("click", function () {
+            // 환불 규정 모달 띄우기
+            $("#cancelModal").modal("show");
+            document.getElementById("agreeCancel").disabled = true;
+          });
+
+        document
+          .getElementById("agreeCheckbox")
+          .addEventListener("change", function () {
+            // 체크박스 상태에 따라 '동의하고 예매 취소' 버튼 활성화/비활성화
+            document.getElementById("agreeCancel").disabled = !this.checked;
+          });
+
+        document
+          .getElementById("cancelModal")
+          .addEventListener("shown.bs.modal", function () {
+            // 모달이 보여질 때 '동의하고 예매 취소' 버튼 비활성화
+            document.getElementById("agreeCancel").disabled = true;
+          });
+
+        // 예매 취소 이벤트 핸들러
+        document
+          .getElementById("agreeCancel")
+          .addEventListener("click", function () {
+            // 사용자 입력 값 가져오기
+            var phone = document.getElementById("phone").value;
+            var email = document.getElementById("email").value;
+            // 파이어베이스에서 정보 가져오기
+            var ref = firebase.database().ref("BookingList");
+
+            console.log("Email for deletion: ", email);
+
+            ref
+              .orderByChild("email")
+              .equalTo(email)
+              .once("value")
+              .then(function () {
+                alert("예매가 취소되었습니다.");
+                document.getElementById("cancelReservation").disabled = true;
+                $("#cancelModal").modal("hide");
+
+                // progress 값에 따라 다른 페이지로 이동하기
+                if (ref.progress === "예매확정") {
+                  window.location.href = "refundBooking.html";
+                } else if (ref.progress === "입금대기") {
+                  window.location.href = "index.html";
+                  ref.child(childSnapshot.key).update({ progress: "예매취소" });
+                }
+              })
+              .catch(function (error) {
+                console.error("Error removing booking: ", error);
+              });
+          });
+
+        document
+          .getElementById("cancelPartReservation")
+          .addEventListener("click", function () {
+            // Firebase에서 예매 정보 읽어오기
+            var ref = firebase.database().ref("BookingList");
+            ref
+              .orderByChild("email")
+              .equalTo(email)
+              .once("value")
+              .then(function (snapshot) {
+                if (snapshot.exists()) {
+                  var ticketSelection =
+                    document.getElementById("ticketSelection");
+                  ticketSelection.innerHTML = ""; // 이전에 표시된 티켓 정보를 지웁니다.
+                  ticketSelection.innerHTML =
+                    "취소할 예매 건을 선택해 주세요." + "<br>" + "<br>";
+                  snapshot.forEach(function (childSnapshot) {
+                    var reservation = childSnapshot.val();
+                    if (reservation.phoneNumber.slice(-4) === phone.slice(-4)) {
+                      let date = "";
+                      if (reservation.date === "240215") {
+                        date = " 24년 02월 15일";
+                      } else if (reservation.date === "240216") {
+                        date = "  24년 02월 16일";
+                      } else if (reservation.date === "240217") {
+                        date = "  24년 02월 17일";
+                      }
+
+                      if (date !== "") {
+                        var ticket = date;
+
+                        var ticketInfo = "";
+                        if (reservation.DiscountFollow > 0) {
+                          ticketInfo +=
+                            "⸰ SNS 팔로우 할인 " +
+                            reservation.DiscountFollow +
+                            "장, ";
+                        }
+                        if (reservation.DiscountGeneral > 0) {
+                          ticketInfo +=
+                            "⸰ 일반 " + reservation.DiscountGeneral + "장, ";
+                        }
+                        if (reservation.DiscountReview > 0) {
+                          ticketInfo +=
+                            "⸰ 재관람 할인 " +
+                            reservation.DiscountReview +
+                            "장, ";
+                        }
+                        if (reservation.DiscountStudent > 0) {
+                          ticketInfo +=
+                            "⸰ 재학생 할인 " +
+                            reservation.DiscountStudent +
+                            "장, ";
+                        }
+                        ticketInfo = ticketInfo.slice(0, -2); // 마지막 쉼표(,) 제거
+
+                        ticket += " (" + ticketInfo + ")";
+
+                        var checkbox = document.createElement("input");
+                        checkbox.type = "checkbox";
+
+                        checkbox.name = "tickets";
+                        checkbox.value = ticket;
+                        checkbox.id = "id_" + ticket;
+                        checkbox.style.transform = "scale(1.5)"; // 체크박스 크기 조절
+                        checkbox.addEventListener("change", function () {
+                          if (
+                            Array.from(
+                              document.querySelectorAll(
+                                'input[name="tickets"]:checked'
+                              )
+                            ).length > 0
+                          ) {
+                            submitCancelButton.disabled = false;
+                          } else {
+                            submitCancelButton.disabled = true;
+                          }
+                        });
+
+                        var label = document.createElement("label");
+
+                        label.htmlFor = "id_" + ticket;
+                        label.style.marginLeft = "1em"; // 체크박스와 라벨 사이에 10px 간격을 추가
+                        label.appendChild(document.createTextNode(ticket));
+
+                        ticketSelection.appendChild(checkbox);
+                        ticketSelection.appendChild(label);
+
+                        var breakLine = document.createElement("br"); // 줄바꿈
+                        breakLine.style.marginTop = "7px"; // 리스트 항목 간격 조정
+                        ticketSelection.appendChild(breakLine);
+                      }
+                    }
+                  });
+
+                  // 부분 예매 취소 모달 띄우기
+                  var myModal = new bootstrap.Modal(
+                    document.getElementById("cancelPartModal"),
+                    {}
+                  );
+                  myModal.show();
+                }
+              });
+          });
+      };
+
+      document
+        .getElementById("closeCancelModalButton")
+        .addEventListener("click", function () {
+          $("#cancelModal").modal("hide");
+        });
+
+      document
+        .getElementById("closeCancelModalCross")
+        .addEventListener("click", function () {
+          $("#cancelModal").modal("hide");
+        });
+    </script>
+  </main>
+</body>
