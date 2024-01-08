@@ -94,66 +94,64 @@
     <!-- Page content-->
     <section class="py-5 myungjo">
       <div class="container px-3 center">
-        <div class="infoBox py-3">
+        <div class="row infoBox px-3 mb-3">
           <!--공연정보 요약-->
-          <div class="row">
-            <div class="posterbox col-xl-6 m-2">
-              <img class="posterImg" src="https://tumblbug-psi.imgix.net/ecb5f2d41403eeada85f3ca258f97370a82f873a/7ae757732bce4e84faa3c4140ebbe61b6fa0058d/c01a5aaf765544642ef04359d9184a4580372fec/89492b93-1f52-4b74-9e2f-b6a809014123.jpg?ixlib=rb-1.1.0&w=1240&auto=format%2C%20compress&lossless=true&ch=save-data&s=8cdd59ff025c301795bc99c2fe1c751c" alt="연극 <맨끝줄소년>">
+          <div class="posterbox m-2 col-lg-4">
+            <img class="posterImg" src="https://tumblbug-psi.imgix.net/ecb5f2d41403eeada85f3ca258f97370a82f873a/7ae757732bce4e84faa3c4140ebbe61b6fa0058d/c01a5aaf765544642ef04359d9184a4580372fec/89492b93-1f52-4b74-9e2f-b6a809014123.jpg?ixlib=rb-1.1.0&w=1240&auto=format%2C%20compress&lossless=true&ch=save-data&s=8cdd59ff025c301795bc99c2fe1c751c" alt="연극 <맨끝줄소년>">
+          </div>
+          <div class="info_summary m-2 col-lg-8">
+            <div class="mb-3">
+              <span class="title">연극&nbsp;&nbsp;&nbsp;<맨 끝줄 소년></span>
             </div>
-            <div class="info_summary col-xl-6 m-2">
-              <div class="mb-3">
-                <span class="title">연극&nbsp;&nbsp;&nbsp;<맨 끝줄 소년></span>
-              </div>
-              <ul class="info">
-                <li class="infoItem">
-                  <strong class="infoLabel">장소</strong>
-                  <div class="infoDesc"><p class="infoText">이화여자대학교 생활환경관 소극장</p></div>
-                </li>
-                <li class="infoItem">
-                  <strong class="infoLabel">공연기간</strong>
-                  <div class="infoDesc"><p class="infoText">2024.02.15~2024.02.17</p></div>
-                </li>
-                <li class="infoItem">
-                  <strong class="infoLabel">공연시간</strong>
-                  <div class="infoDesc"><p class="infoText">120분</p></div>
-                </li>
-                <li class="infoItem">
-                  <strong class="infoLabel">가격</strong>
-                  <div class="infoDesc"><p class="infoText">전좌석 12,000원</p></div>
-                </li>
-              </ul>
-            </div>
+            <ul class="info">
+              <li class="infoItem">
+                <strong class="infoLabel">장소</strong>
+                <div class="infoDesc"><p class="infoText">이화여자대학교 생활환경관 소극장</p></div>
+              </li>
+              <li class="infoItem">
+                <strong class="infoLabel">공연기간</strong>
+                <div class="infoDesc"><p class="infoText">2024.02.15~2024.02.17</p></div>
+              </li>
+              <li class="infoItem">
+                <strong class="infoLabel">공연시간</strong>
+                <div class="infoDesc"><p class="infoText">120분</p></div>
+              </li>
+              <li class="infoItem">
+                <strong class="infoLabel">가격</strong>
+                <div class="infoDesc"><p class="infoText">전좌석 12,000원</p></div>
+              </li>
+            </ul>
           </div>
         </div>
 
         <form id="selectdateForm" data-sb-form-api-token="API_TOKEN">
           
-          <div class="dateBox py-5 px-4">
-            <div class="row selectTitle">
-              <h5 class="col-lg-4 px-5">날짜선택</h5><h5 class="col-lg-4 px-5">회차선택</h5><h5 class="col-lg-4 px-5">예매 매수 선택</h5>
-            </div>
-            <div class="row mb-3">
-              <div class="datelistBox col-lg-4">
+          <div class="dateBox py-3">
+
+            <div class="mb-3">
+              <div class="datelistBox">
+                <h5 class="selectTitle">날짜선택</h5>
                 <ul class="datelist">
                   <li class="mb-3">
                     <input type="radio" class="btn-check" name="date" id="option1" value="240215" autocomplete="off" checked>
-                    <label class="btn" for="option1"><span class="datetext">2024년 2월 15일 (목)</span></label>
+                    <label class="datebtn btn" for="option1"><span class="datetext">2024년 2월 15일 (목)</span></label>
                   </li>
                   <li class="mb-3">
                     <input type="radio" class="btn-check" name="date" id="option2" value="240216" autocomplete="off">
-                    <label class="btn" for="option2"><span class="datetext">2024년 2월 16일 (금)</span></label>
+                    <label class="datebtn btn" for="option2"><span class="datetext">2024년 2월 16일 (금)</span></label>
                   </li>
-                  <li class="mb-3">
+                  <li>
                     <input type="radio" class="btn-check" name="date" id="option3" value="240217" autocomplete="off">
-                    <label class="btn" for="option3"><span class="datetext">2024년 2월 17일 (토)</span></label>
+                    <label class="datebtn btn" for="option3"><span class="datetext">2024년 2월 17일 (토)</span></label>
                   </li>
                 </ul>
               </div>
-              <div class="datelistBox col-lg-4">
+              <div class="datelistBox">
+                <h5 class="selectTitle">회차선택</h5>
                 <ul class="datelist">
                   <li class="mb-3">
                     <input type="radio" class="btn-check" name="time" id="option" autocomplete="off" checked>
-                    <label class="btn" for="option" value="1회차"><span class="datetext" id="timeArea"></span></label>
+                    <label class="datebtn btn" for="option" value="1회차"><span class="datetext" id="timeArea"></span></label>
                   </li>
                 </ul>
               </div>
@@ -186,11 +184,12 @@
             
                 }
               </script>
-              <div class="numticketBox col-lg-4">
+              <div class="numticketBox">
+                <h5 class="selectTitle">예매 매수 선택</h5>
                 <div class="datelist mb-3">
                   <select class="form-select" name="ticketnum" id="floatingSelect">
                     <option value="1" selected>1매</option>
-                    <option value="2">2매</option>
+                    <option value="2" >2매</option>
                     <option value="3">3매</option>
                     <option value="4">4매</option>
                     <option value="5">5매</option>

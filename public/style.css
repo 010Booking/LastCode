@@ -38,10 +38,11 @@ li {
 .infoBox {
   width: 100%;
   position: relative;
-  padding-bottom: 6.5rem;
+  font-size: 16px;
 }
 
 .posterbox {
+  position: relative;
   display: inline-block;
   width: 20rem;
 }
@@ -55,34 +56,41 @@ li {
 }
 
 .info_summary {
+  position: relative;
   display: inline-block;
+  padding: 1.5em;
 }
 
 .info_summary .title {
   overflow: hidden;
-  font-size: 1.3rem;
+  font-size: 1.1em;
   font-weight: bold;
-  line-height: 130%;
-  padding-left: 1rem;
-  margin-bottom: 1rem;
+  line-height: 1.1em;
+  padding-left: 0.5rem;
+  margin-bottom: 1.5rem;
 }
 
-.info_summary .info {
+.info_summary ul{
+  padding-left: 0.5em;
+  font-size: 0.9em;
+}
+
+.info_summary ul .info {
   display: inline-block;
   margin-top: 0.4rem;
-  vertical-align: top;
+  margin-left: 0px;
 }
 
 .info_summary .info .infoItem {
-  margin-top: 1.3rem;
+  margin-top: 1rem;
 }
 
 .info_summary .info .infoItem .infoLabel {
   display: inline-block;
-  width: 9rem;
+  width: 7rem;
   padding-right: 0.5rem;
   color: #000;
-  font-size: 1rem;
+  font-size: 1.1em;
   font-weight: normal;
   line-height: 160%;
   vertical-align: top;
@@ -98,53 +106,39 @@ li {
 .infoDesc .infoText {
   position: relative;
   color: #000;
-  font-size: 1rem;
+  font-size: 1.1em;
   line-height: 160%;
   margin-left: 5px;
 }
-/* 미디어 쿼리: 화면 너비가 768px 미만인 경우 */
-@media (max-width: 767px) {
-  .infoBo .row {
-    flex-direction: column; /* 수직 배치로 변경 */
-    justify-items: center;
-  }
-
-  .posterbox,
-  .info_summary {
-    max-width: none; /* 모바일에서 최대 너비 제거 */
-  }
-  .info_summary .info .infoItem .infoLabel {
-    width: auto;
-  }
-  .info ul{
-    padding-left: 1rem;
-  }
-
-}
-
 
 .dateBox {
   width: 100%;
   position: relative;
   padding-bottom: 6.5rem;
+  overflow: hidden;
+  display: block;
+  border-bottom: 1px solid #ebebeb;
 }
 
 .selectTitle {
-  margin: 0px 20px;
-  padding: 20px 0px;
+  margin: 0px 0.1em;
+  padding: 0.3em 0;
+  border-bottom: 1px solid #ebebeb;
+  font-size: 0.8em;
 }
 
-.datelistBox {
-  overflow: hidden;
-  overflow-y: auto;
+.datelistBox, .numticketBox{
+  position: relative;
+  float: left;
+  width: 33%;
+  text-align: center;
   border-top: 1px solid #ebebeb;
-  border-bottom: 1px solid #ebebeb;
   border-right: 1px solid #ebebeb;
+  padding: 0.3em;
 }
 
 .datelist {
-  padding: 12px 15px 15px 30px;
-  width: 80%;
+  padding: 0.2em 0.1em;
   margin-bottom: 0px;
 }
 
@@ -154,25 +148,17 @@ li {
   border-bottom: 1px;
 }
 
-.dateselectBtn {
-  display: flex;
-  text-align: center;
-  width: 100%;
-  height: 40px;
-  border: none;
-  background-color: transparent;
+.datelistBox .datelist li .datetext, #floatingSelect{
+  font-size: 0.8em;
+  line-height: 0.8em;
 }
-
-.dateselectBtn .datetext {
-  margin: auto;
-  color: #000;
+.datelistBox .datelist li .datebtn{
+  padding: 0.2em;
+  text-align: center;
 }
 
 .numticketBox {
-  overflow: hidden;
-  overflow-y: auto;
-  border-top: 1px solid #ebebeb;
-  border-bottom: 1px solid #ebebeb;
+  border-right: 0px;
 }
 
 .inputBox {
@@ -224,8 +210,9 @@ li {
 }
 
 .start {
+  padding-top: 0.3em;
   font-family: "Libre Barcode 39";
-  font-size: 2em;
+  font-size: 2.2em;
   text-decoration: none;
   color: inherit;
 }
