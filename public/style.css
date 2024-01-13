@@ -281,6 +281,7 @@ li {
   font-size: 2em;
   text-decoration: none;
   color: inherit;
+
 }
 
 .date {
@@ -289,6 +290,7 @@ li {
   top: -4.2em;
   left: 0.1em;
   font-family: "Noto Serif KR";
+  line-height: 1.5;
 }
 
 .box-container {
