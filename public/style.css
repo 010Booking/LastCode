@@ -352,3 +352,23 @@ li {
 
 /*chatbot.js 에 쓴 클래스들*/
 
+.chat-container{
+  position: relative;
+  top:10em;
+}
+
+.chat-container{
+  width: 50%;
+  margin: 0 auto;
+  
+}
+
+.user-input{
+  width: 30%;
+ 
+}
+
+.chat-messages{
+  width: 30%;
+  margin: 0 auto;
+}
