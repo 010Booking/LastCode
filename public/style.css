@@ -99,6 +99,12 @@ li {
   line-height: 160%;
   margin-left: 5px;
 }
+
+.card-text{
+  line-height: 1.5;
+}
+
+
 /* 미디어 쿼리: 화면 너비가 768px 미만인 경우 */
 @media (max-width: 767px) {
   .infoBo .row {
