@@ -1,7 +1,9 @@
 /*기본태그*/
 
-/*body {
-}*/
+/**/
+body {
+ 
+}
 
 ul,
 ol,
@@ -36,7 +38,6 @@ li {
 /*새로 만든 클래스 태그*/
 
 .infoBox {
-  width: 100%;
   position: relative;
   font-size: 16px;
 }
@@ -44,7 +45,7 @@ li {
 .posterbox {
   position: relative;
   display: inline-block;
-  width: 20rem;
+  width: 10rem;
 }
 
 .posterbox .posterImg {
@@ -58,16 +59,15 @@ li {
 .info_summary {
   position: relative;
   display: inline-block;
-  padding: 1.5em;
 }
 
 .info_summary .title {
   overflow: hidden;
-  font-size: 1.1em;
+  font-size: 1.2em;
   font-weight: bold;
-  line-height: 1.1em;
-  padding-left: 0.5rem;
-  margin-bottom: 1.5rem;
+  line-height: 1.2em;
+  padding-left: 0.3em;
+  margin-bottom: 1.5em;
 }
 
 .info_summary ul{
@@ -75,30 +75,21 @@ li {
   font-size: 0.9em;
 }
 
-.info_summary ul .info {
-  display: inline-block;
-  margin-top: 0.4rem;
-  margin-left: 0px;
-}
-
-.info_summary .info .infoItem {
-  margin-top: 1rem;
-}
-
-.info_summary .info .infoItem .infoLabel {
+.info_summary .info .infoLabel{
   display: inline-block;
   width: 7rem;
   padding-right: 0.5rem;
   color: #000;
-  font-size: 1.1em;
+  font-size: 0.95em;
   font-weight: normal;
   line-height: 160%;
   vertical-align: top;
   box-sizing: border-box;
 }
 
-.info_summary .info .infoItem .infoDesc {
+.info_summary .info .infoDesc {
   display: inline-block;
+  font-size: 0.9em;
   max-width: 39rem;
   vertical-align: top;
 }
@@ -111,30 +102,35 @@ li {
   margin-left: 5px;
 }
 
+#selectdateForm{
+  padding: 0;
+}
+
 .dateBox {
   width: 100%;
   position: relative;
-  padding-bottom: 6.5rem;
   overflow: hidden;
   display: block;
+  margin-top: 1rem;
   border-bottom: 1px solid #ebebeb;
+  font-size: 16px;
 }
 
 .selectTitle {
   margin: 0px 0.1em;
-  padding: 0.3em 0;
+  padding: 0.4em 0;
   border-bottom: 1px solid #ebebeb;
-  font-size: 0.8em;
+  font-size: 0.95em;
 }
 
 .datelistBox, .numticketBox{
   position: relative;
   float: left;
-  width: 33%;
   text-align: center;
   border-top: 1px solid #ebebeb;
   border-right: 1px solid #ebebeb;
-  padding: 0.3em;
+  border-bottom: 1px;
+  padding: 0 0.5em;
 }
 
 .datelist {
@@ -145,16 +141,37 @@ li {
 .datelistBox .datelist li {
   text-align: center;
   list-style: none;
-  border-bottom: 1px;
 }
 
 .datelistBox .datelist li .datetext, #floatingSelect{
   font-size: 0.8em;
-  line-height: 0.8em;
 }
+
+#floatingSelect{
+  width: 10em;
+  height: 2.5em;
+  margin: auto;
+  margin-top: 1em;
+  overflow: auto;
+}
+
+@media (max-width: 768px) {
+  
+  .selectTitle {
+    font-size: 0.65em;
+  }
+  .datelistBox .datelist li .datetext, #floatingSelect{
+    font-size: 0.6em;
+  }
+  #floatingSelect{
+    height: 3em;
+  }
+}
+
 .datelistBox .datelist li .datebtn{
   padding: 0.2em;
   text-align: center;
+  margin-top: 0.9em;
 }
 
 .numticketBox {
@@ -162,6 +179,7 @@ li {
 }
 
 .inputBox {
+  font-size: 15px;
   width: 100%;
   padding: 30px;
 }
@@ -171,12 +189,12 @@ li {
 }
 
 .inputBox label p {
-  font-size: 14px;
+  font-size: 1em;
   color: #000;
 }
 
 .inputTable {
-  font-size: 15px;
+  font-size: 1em;
 }
 .inputTable .row .discount {
   position: relative;
@@ -196,7 +214,7 @@ li {
 
 .accInfo {
   text-align: center;
-  font-size: 18px;
+  font-size: 1em;
 }
 
 /* index.html 에서 쓴 클래스들 */
