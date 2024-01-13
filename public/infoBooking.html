@@ -295,7 +295,8 @@
             if (snapshot.exists()) {
               let result = "";
               let userInfo = "";
-
+              let depositInfoAdded = false; // 입금 안내 정보가 추가되었는지 확인하는 플래그를 추가합니다.
+              let bank = "";
               snapshot.forEach(function (childSnapshot) {
                 var reservation = childSnapshot.val();
 
@@ -336,7 +337,21 @@
                     }
                   }
                   individualResult +=
-                    "예매 상태 :" + reservation.progress + "<br>";
+                    "예매 상태: " + reservation.progress + "<br>";
+                  if (
+                    reservation.progress === "입금대기" &&
+                    !depositInfoAdded
+                  ) {
+                    // 입금 안내 정보가 아직 추가되지 않았다면 추가합니다.
+                    bank += `
+              <div class="inputBox rounded-3 mb-3">
+                <div class="accInfo fw-bolder">무통장 입금 안내</div>
+                <div class="accInfo fw-bolder">계좌번호 7979-89-15908<br>입금주 박수현</div>
+              </div>
+            `;
+                    depositInfoAdded = true; // 입금 안내 정보가 추가되었음을 표시합니다.
+                  }
+
                   individualResult +=
                     result +=
                     individualResult +=
@@ -345,7 +360,7 @@
               });
 
               document.getElementById("reservationInfo").innerHTML =
-                userInfo + result;
+                userInfo + result + bank;
             }
           });
 

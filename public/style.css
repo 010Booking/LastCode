@@ -1,7 +1,9 @@
 /*기본태그*/
 
-/*body {
-}*/
+/**/
+body {
+ 
+}
 
 ul,
 ol,
@@ -36,14 +38,13 @@ li {
 /*새로 만든 클래스 태그*/
 
 .infoBox {
-  width: 100%;
   position: relative;
   padding-bottom: 6.5rem;
 }
 
 .posterbox {
   display: inline-block;
-  width: 20rem;
+  width: 10rem;
 }
 
 .posterbox .posterImg {
@@ -60,6 +61,7 @@ li {
 
 .info_summary .title {
   overflow: hidden;
+<<<<<<< HEAD
   font-size: 1.3rem;
   font-weight: bold;
   line-height: 130%;
@@ -78,19 +80,39 @@ li {
 }
 
 .info_summary .info .infoItem .infoLabel {
+=======
+  font-size: 1.2em;
+  font-weight: bold;
+  line-height: 1.2em;
+  padding-left: 0.3em;
+  margin-bottom: 1.5em;
+}
+
+.info_summary ul{
+  padding-left: 0.5em;
+  font-size: 0.9em;
+}
+
+.info_summary .info .infoLabel{
+>>>>>>> 67fdc788313baab0eac98f11a3a0cb9c8e1631f6
   display: inline-block;
   width: 9rem;
   padding-right: 0.5rem;
   color: #000;
+<<<<<<< HEAD
   font-size: 1rem;
+=======
+  font-size: 0.95em;
+>>>>>>> 67fdc788313baab0eac98f11a3a0cb9c8e1631f6
   font-weight: normal;
   line-height: 160%;
   vertical-align: top;
   box-sizing: border-box;
 }
 
-.info_summary .info .infoItem .infoDesc {
+.info_summary .info .infoDesc {
   display: inline-block;
+  font-size: 0.9em;
   max-width: 39rem;
   vertical-align: top;
 }
@@ -123,9 +145,14 @@ li {
 }
 
 
+#selectdateForm{
+  padding: 0;
+}
+
 .dateBox {
   width: 100%;
   position: relative;
+<<<<<<< HEAD
   padding-bottom: 6.5rem;
 }
 
@@ -137,9 +164,34 @@ li {
 .datelistBox {
   overflow: hidden;
   overflow-y: auto;
+=======
+  overflow: hidden;
+  display: block;
+  margin-top: 1rem;
+  border-bottom: 1px solid #ebebeb;
+  font-size: 16px;
+}
+
+.selectTitle {
+  margin: 0px 0.1em;
+  padding: 0.4em 0;
+  border-bottom: 1px solid #ebebeb;
+  font-size: 0.95em;
+}
+
+.datelistBox, .numticketBox{
+  position: relative;
+  float: left;
+  text-align: center;
+>>>>>>> 67fdc788313baab0eac98f11a3a0cb9c8e1631f6
   border-top: 1px solid #ebebeb;
   border-bottom: 1px solid #ebebeb;
   border-right: 1px solid #ebebeb;
+<<<<<<< HEAD
+=======
+  border-bottom: 1px;
+  padding: 0 0.5em;
+>>>>>>> 67fdc788313baab0eac98f11a3a0cb9c8e1631f6
 }
 
 .datelist {
@@ -151,9 +203,9 @@ li {
 .datelistBox .datelist li {
   text-align: center;
   list-style: none;
-  border-bottom: 1px;
 }
 
+<<<<<<< HEAD
 .dateselectBtn {
   display: flex;
   text-align: center;
@@ -166,6 +218,37 @@ li {
 .dateselectBtn .datetext {
   margin: auto;
   color: #000;
+=======
+.datelistBox .datelist li .datetext, #floatingSelect{
+  font-size: 0.8em;
+}
+
+#floatingSelect{
+  width: 10em;
+  height: 2.5em;
+  margin: auto;
+  margin-top: 1em;
+  overflow: auto;
+}
+
+@media (max-width: 768px) {
+  
+  .selectTitle {
+    font-size: 0.65em;
+  }
+  .datelistBox .datelist li .datetext, #floatingSelect{
+    font-size: 0.6em;
+  }
+  #floatingSelect{
+    height: 3em;
+  }
+}
+
+.datelistBox .datelist li .datebtn{
+  padding: 0.2em;
+  text-align: center;
+  margin-top: 0.9em;
+>>>>>>> 67fdc788313baab0eac98f11a3a0cb9c8e1631f6
 }
 
 .numticketBox {
@@ -176,6 +259,7 @@ li {
 }
 
 .inputBox {
+  font-size: 15px;
   width: 100%;
   padding: 30px;
 }
@@ -185,12 +269,12 @@ li {
 }
 
 .inputBox label p {
-  font-size: 14px;
+  font-size: 1em;
   color: #000;
 }
 
 .inputTable {
-  font-size: 15px;
+  font-size: 1em;
 }
 .inputTable .row .discount {
   position: relative;
@@ -210,7 +294,7 @@ li {
 
 .accInfo {
   text-align: center;
-  font-size: 18px;
+  font-size: 1em;
 }
 
 /* index.html 에서 쓴 클래스들 */
