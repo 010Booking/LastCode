@@ -56,8 +56,8 @@ async function fetchAIResponse(prompt) {
         const aiResponse = data.choices[0].message.content;
         return aiResponse;
     } catch (error) {
-		console.error('OpenAI API 호출 중 오류 발생:', error);
-        return 'OpenAI API 호출 중 오류 발생';
+		console.error('관리자에게 문의하십시오.:', error);
+        return '관리자에게 문의하십시오.';
     }
 }
 // 전송 버튼 클릭 이벤트 처리
