@@ -12,7 +12,7 @@ const sendButton = document.querySelector('#user-input button');
 
 // require('dotenv').config();
 
-const apiKey=" OPENAI_API_KEY ";
+const apiKey=" openai api key";
 
 // OpenAI API 엔드포인트 주소를 변수로 저장
 const apiEndpoint = 'https://api.openai.com/v1/chat/completions'
@@ -46,7 +46,7 @@ async function fetchAIResponse(prompt) {
             top_p: 1, // 토큰 샘플링 확률을 설정
             frequency_penalty: 0.5, // 일반적으로 나오지 않는 단어를 억제하는 정도
             presence_penalty: 0.5, // 동일한 단어나 구문이 반복되는 것을 억제하는 정도
-            stop: ["Human"], // 생성된 텍스트에서 종료 구문을 설정
+            //stop: ["끝"], // 생성된 텍스트에서 종료 구문을 설정
         }),
     };
     // API 요청후 응답 처리
@@ -56,8 +56,8 @@ async function fetchAIResponse(prompt) {
         const aiResponse = data.choices[0].message.content;
         return aiResponse;
     } catch (error) {
-		console.error('관리자에게 문의하십시오.:', error);
-        return '관리자에게 문의하십시오.';
+		console.error('관리자에게 문의하십시오:', error);
+        return '관리자에게 문의하십시오';
     }
 }
 // 전송 버튼 클릭 이벤트 처리
