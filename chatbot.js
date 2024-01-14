@@ -12,12 +12,8 @@ const sendButton = document.querySelector('#user-input button');
 
 // require('dotenv').config();
 
-<<<<<<< HEAD
-const apiKey="";
-=======
-const apiKey=" openai api key";
->>>>>>> b5b1515a018e2cd1b47bf485ba70d147badd5c48
 
+const apiKey="";
 // OpenAI API 엔드포인트 주소를 변수로 저장
 const apiEndpoint = 'https://api.openai.com/v1/chat/completions'
 function addMessage(sender, message) {
