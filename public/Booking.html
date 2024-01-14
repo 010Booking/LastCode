@@ -504,23 +504,23 @@
         alert("선택 매수와 할인 권종 선택 수가 일치하지 않습니다.");
       }
       var formData = {
-        email: document.getElementById("email").value,  
-        reservationName: document.getElementById("reservationName").value,
-        phoneNumber: document.getElementById("phoneNumber").value,
-        date: document.querySelector('input[name="date"]:checked').value,
-        progress: "입금대기",
-        DiscountGeneral: discountGeneral,
-        DiscountStudent: discountStudent,
-        DiscountFollow: discountFollow,
-        DiscountReview: discountReview
-      };
+          email: document.getElementById("email").value,  
+          reservationName: document.getElementById("reservationName").value,
+          phoneNumber: document.getElementById("phoneNumber").value,
+          date: document.querySelector('input[name="date"]:checked').value,
+          progress: "입금대기",
+          DiscountGeneral: discountGeneral,
+          DiscountStudent: discountStudent,
+          DiscountFollow: discountFollow,
+          DiscountReview: discountReview
+        };
 
       $("#reservationModal").modal("hide");
       $("#payModal").modal("show");
 
       //payModal에 예매자명과 금액 띄우기
-      var reservationName = document.getElementById("reservationName").value;
-      document.getElementById("bookingName").innerHTML = "예매자명: "+reservationName;
+        var reservationName = document.getElementById("reservationName").value;
+        document.getElementById("bookingName").innerHTML = "예매자명: "+reservationName;
 
       var totalPrice = Number(discountGeneral)*12000+Number(discountStudent)*10000+Number(discountFollow)*10000+Number(discountReview)*9000;
       document.getElementById("totalPrice").innerHTML = "입금 대기 금액: "+ totalPrice +"원";
