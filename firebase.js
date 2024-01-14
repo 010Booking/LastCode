@@ -1,6 +1,5 @@
 import firebase from "firebase/compat/app";
-import { Firestore, getFirestore } from 'firebase/firestore';
-// import "firebase/compat/firestore";
+import "firebase/compat/firestore";
 
 const firebaseConfig = {
   apiKey: "AIzaSyDI42raShQFxjFIBFp_nrSQf89R7-IVzys",
@@ -12,10 +11,10 @@ const firebaseConfig = {
   measurementId: "G-MD91BHZNYH",
 };
 
-const firebaseApp = firebase.initializeApp(firebaseConfig);
+firebase.initializeApp(firebaseConfig);
 
 // const firebaseApp = initializeApp({ firebaseConfig });
-const fiirestore = getFirestore(firebaseApp);
+// const fiirestore = getFirestore(firebaseApp);
 // const auth = getAuth();
 // onAuthStateChanged(auth, user => { console.log(user); });
 
