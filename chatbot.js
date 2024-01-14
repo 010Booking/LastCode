@@ -12,7 +12,7 @@ const sendButton = document.querySelector('#user-input button');
 
 // require('dotenv').config();
 
-const apiKey=" OPENAI_API_KEY ";
+const apiKey="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";
 
 // OpenAI API 엔드포인트 주소를 변수로 저장
 const apiEndpoint = 'https://api.openai.com/v1/chat/completions'
