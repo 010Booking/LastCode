@@ -32,18 +32,17 @@ li {
 }
 
 .small-title {
-  font-family: "DM Serif Display";
+  font-family: "Noto Serif KR";
 }
 
 /*새로 만든 클래스 태그*/
 
 .infoBox {
   position: relative;
-  font-size: 16px;
+  padding-bottom: 6.5rem;
 }
 
 .posterbox {
-  position: relative;
   display: inline-block;
   width: 10rem;
 }
@@ -57,7 +56,6 @@ li {
 }
 
 .info_summary {
-  position: relative;
   display: inline-block;
 }
 
@@ -77,7 +75,7 @@ li {
 
 .info_summary .info .infoLabel{
   display: inline-block;
-  width: 7rem;
+  width: 9rem;
   padding-right: 0.5rem;
   color: #000;
   font-size: 0.95em;
@@ -97,10 +95,36 @@ li {
 .infoDesc .infoText {
   position: relative;
   color: #000;
-  font-size: 1.1em;
+  font-size: 1rem;
   line-height: 160%;
   margin-left: 5px;
 }
+
+.card-text{
+  line-height: 1.5;
+}
+
+
+/* 미디어 쿼리: 화면 너비가 768px 미만인 경우 */
+@media (max-width: 767px) {
+  .infoBo .row {
+    flex-direction: column; /* 수직 배치로 변경 */
+    justify-items: center;
+  }
+
+  .posterbox,
+  .info_summary {
+    max-width: none; /* 모바일에서 최대 너비 제거 */
+  }
+  .info_summary .info .infoItem .infoLabel {
+    width: auto;
+  }
+  .info ul{
+    padding-left: 1rem;
+  }
+
+}
+
 
 #selectdateForm{
   padding: 0;
@@ -109,9 +133,20 @@ li {
 .dateBox {
   width: 100%;
   position: relative;
+
+  padding-bottom: 6.5rem;
+}
+
+.selectTitle {
+  margin: 0px 20px;
+  padding: 20px 0px;
+}
+
+.datelistBox {
+  
   overflow: hidden;
   display: block;
-  margin-top: 1rem;
+  /* margin-top: 1rem; */
   border-bottom: 1px solid #ebebeb;
   font-size: 16px;
 }
@@ -128,13 +163,15 @@ li {
   float: left;
   text-align: center;
   border-top: 1px solid #ebebeb;
+  border-bottom: 1px solid #ebebeb;
   border-right: 1px solid #ebebeb;
   border-bottom: 1px;
   padding: 0 0.5em;
 }
 
 .datelist {
-  padding: 0.2em 0.1em;
+  padding: 12px 15px 15px 30px;
+  width: 80%;
   margin-bottom: 0px;
 }
 
@@ -143,6 +180,20 @@ li {
   list-style: none;
 }
 
+
+.dateselectBtn {
+  display: flex;
+  text-align: center;
+  width: 100%;
+  height: 40px;
+  border: none;
+  background-color: transparent;
+}
+
+.dateselectBtn .datetext {
+  margin: auto;
+  color: #000;
+}
 .datelistBox .datelist li .datetext, #floatingSelect{
   font-size: 0.8em;
 }
@@ -171,11 +222,14 @@ li {
 .datelistBox .datelist li .datebtn{
   padding: 0.2em;
   text-align: center;
-  margin-top: 0.9em;
+  /* margin-top: 0.9em; */
 }
 
 .numticketBox {
-  border-right: 0px;
+  overflow: hidden;
+  overflow-y: auto;
+  border-top: 1px solid #ebebeb;
+  border-bottom: 1px solid #ebebeb;
 }
 
 .inputBox {
@@ -220,19 +274,20 @@ li {
 /* index.html 에서 쓴 클래스들 */
 
 .last-row {
-  font-family: "Song Myung", sans-serif;
+  font-family: "Noto Serif KR";
   color: black;
   font-size: 5em;
   position: relative;
   top: -1em;
+  font-weight: 500;
 }
 
 .start {
-  padding-top: 0.3em;
   font-family: "Libre Barcode 39";
-  font-size: 2.2em;
+  font-size: 2em;
   text-decoration: none;
   color: inherit;
+
 }
 
 .date {
@@ -241,6 +296,7 @@ li {
   top: -4.2em;
   left: 0.1em;
   font-family: "Noto Serif KR";
+  line-height: 1.5;
 }
 
 .box-container {
@@ -294,3 +350,25 @@ li {
   font-weight: bold;
 }
 
+/*chatbot.js 에 쓴 클래스들*/
+
+.chat-container{
+  position: relative;
+  top:10em;
+}
+
+.chat-container{
+  width: 50%;
+  margin: 0 auto;
+  
+}
+
+.user-input{
+  width: 30%;
+ 
+}
+
+.chat-messages{
+  width: 30%;
+  margin: 0 auto;
+}

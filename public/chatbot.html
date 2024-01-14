@@ -2,7 +2,7 @@
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
-    <title>OpenAI를 이용한 챗봇</title>
+    <title>OpenAI</title>
     <meta
       name="viewport"
       content="width=device-width, initial-scale=1, shrink-to-fit=no"
@@ -63,14 +63,15 @@
             </div>
           </div>
         </nav>
-        <header class="bg-white bg-bigger py-5">
+        <header class="bg-white bg-bigger py-4">
           <div id="container px-5 my-5">
             <div class="row gx-5 justify-content-center">
-              <div class="text-center">
-                <div id="chat-messages"></div>
-                <div id="user-input">
-                  <input type="text" placeholder="메시지를 입력하세요..." />
-                  <button>전송</button>
+              <div class="chat-container">
+                <div id="chat-messages">
+                  <div id="user-input" class="text-center py-4">
+                    <input type="text" placeholder="메시지를 입력하세요..." />
+                    <button>전송</button>
+                  </div>
                 </div>
                 <script src="../chatbot.js"></script>
               </div>
