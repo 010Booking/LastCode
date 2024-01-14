@@ -1,18 +1,1 @@
-<<<<<<< HEAD
-<<<<<<< HEAD
 {"type":"module","dependencies":{"firebase-admin":"^12.0.0","openai":"^4.24.1"}}
-=======
-{"type":"module","dependencies":{"dotenv":"^16.3.1","openai":"^4.24.1"}}
->>>>>>> 718110fd2275a6701424c863e604dbb733c79fd0
-=======
-{
-  "type":"module",
-<<<<<<< HEAD
-"dependencies":{"dotenv":"^16.3.1","openai":"^4.24.1"}}
-=======
-  "dependencies": {
-    "firebase": "^10.7.1"
-  }
-}
->>>>>>> 91d18bac24bf5bf5a9924c06a7c1cb7aa462ba0a
->>>>>>> 462a3c9dab1965270e3afbd6e8b4d1957f089598
