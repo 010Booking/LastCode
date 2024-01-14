@@ -97,7 +97,7 @@
         <div class="row infoBox px-5 mb-3">
           <!--공연정보 요약-->
           <div class="posterbox m-2 col">
-            <img class="posterImg" src="./main_poster.png" alt="연극 <맨끝줄소년>">
+            <img class="posterImg" src="../main_poster.png" alt="연극 <맨끝줄소년>">
           </div>
           <div class="info_summary m-2 col-lg-8">
             <div class="mb-4">
@@ -233,47 +233,47 @@
           <form id="userForm" data-sb-form-api-token="API_TOKEN">
             <div class="modal-body">
               <div id="bookinginput" style="white-space: pre-line"></div>
-                <div class="inputBox rounded-3">
+                <div class="inputBox mb-3">
                   <div class="infoDesc"><p class="infoText fw-bolder">예매정보</p></div>
                   <!--선택한 날짜 보여주는 영역-->
                   <div class="inputTable px-3 row">
-                    <div class="col-lg-4 mb-3">관람일</div><div class="col-xl-6 mb-3" id="selectedDate"></div>
+                    <div class="col-md-auto mb-3">관람일</div><div class="col-md-auto mb-3" id="selectedDate"></div>
                   </div>
                   <div class="inputTable px-3 row">
-                    <div class="col-lg-4">예매매수</div><div class="col-xl-6" id="selectedTicket"></div>
+                    <div class="col-md-auto mb-3">예매매수</div><div class="col-md-auto mb-3" id="selectedTicket"></div>
                   </div>
                 </div>
                 <!-- 예매자 정보 입력 영역 -->
-                <div class="inputBox rounded-3">
+                <div class="inputBox mb-3">
                   <div class="infoDesc"><p class="infoText fw-bolder">할인 선택</p></div>
                   <div class="inputTable px-3">
                     <div class="row">
-                      <div class="discount col-lg-4 mb-3"><p class="type">일반</p></div><div class="discount col-lg-4 mb-3"><p class="price">12,000원</p></div>
-                      <div class="col-lg-4 mb-3">
+                      <div class="col mb-3 type align-self-center">일반</div><div class="col mb-3 price align-self-center">12,000원</div>
+                      <div class="col mb-3 align-self-center">
                         <select class="form-select" id="generalDiscountSelect">
                           <option value="0" selected>0매</option>
                         </select>
                       </div>
                     </div>  
                     <div class="row">
-                      <div class="discount col-lg-4 mb-3"><p class="type">재학생 할인</p></div><div class="discount col-lg-4 mb-3"><p class="price">10,000원</p></div>
-                      <div class="col-lg-4 mb-3">
+                      <div class="col mb-3 type align-self-center">재학생 할인</div><div class="col mb-3 price align-self-center">10,000원</div>
+                      <div class="col mb-3 align-self-center">
                         <select class="form-select" id="studentDiscountSelect">
                           <option value="0" selected>0매</option>
                         </select>
                       </div>
                     </div>
                     <div class="row">
-                      <div class="discount col-lg-4 mb-3"><p class="type">SNS 팔로우 할인</p></div><div class="discount col-lg-4 mb-3"><p class="price">10,000원</p></div>
-                      <div class="col-lg-4 mb-3">
+                      <div class="col mb-3 type align-self-center">SNS 팔로우 할인</div><div class="col mb-3 price align-self-center">10,000원</div>
+                      <div class="col mb-3 align-self-center">
                         <select class="form-select" id="followDiscountSelect">
                           <option value="0" selected>0매</option>
                         </select>
                       </div>
                     </div>
                     <div class="row">
-                      <div class="discount col-lg-4 mb-3"><p class="type">재관람 할인</p></div><div class="discount col-lg-4 mb-3"><p class="price">9,000원</p></div>
-                      <div class="col-lg-4">
+                      <div class="col mb-3 type align-self-center">재관람 할인</p></div><div class="col mb-3 price align-self-center">9,000원</div>
+                      <div class="col mb-3 align-self-center">
                         <select class="form-select" id="reviewDiscountSelect">
                           <option value="0" selected>0매</option>
                         </select>
@@ -281,7 +281,7 @@
                     </div>
                   </div>
                 </div>
-                <div class="inputBox rounded-3">
+                <div class="inputBox mb-3">
                   <div class="infoDesc"><p class="infoText fw-bolder">예매자명</p></div>
                   <!-- 예매자명 입력란 -->
                   <div class="form-floating mb-3">
@@ -299,7 +299,7 @@
                   </div>  
                 </div>
         
-                <div class="inputBox rounded-3">
+                <div class="inputBox mb-3">
                   <div class="infoDesc"><p class="infoText fw-bolder">이메일</p></div>
                   <!-- Email address input-->
                   <div class="form-floating mb-3">
@@ -324,7 +324,7 @@
                   </div>
                 </div>
         
-                <div class="inputBox rounded-3">
+                <div class="inputBox mb-3">
                   <div class="infoDesc"><p class="infoText fw-bolder">연락처</p></div>
                   <div class="form-floating mb-3">
                     <input
@@ -345,7 +345,7 @@
                   </div>
                 </div>
 
-                <div class="inputBox rounded-33">
+                <div class="inputBox mb-3">
                   <div class="infoDesc"><p class="infoText fw-bolder">예매자 동의</p></div>
                   <!--취소 수수료 동의-->
                   <div class="form-check">
@@ -354,6 +354,24 @@
                       <p class="infoDesc">예매 및 취소 수수료/취소 기한을 확인하였으며 동의합니다.</p>
                     </label>
                     <!--취소 수수료 안내-->
+                    <table class="refundrule">
+                      <thead>
+                          <tr>
+                              <th>취소일</th>
+                              <th>취소수수료</th>
+                          </tr>
+                      </thead>
+                      <tbody>
+                          <tr>
+                              <td>예매일 ~ 공연일 1일 전</td>
+                              <td>없음</td>
+                          </tr>
+                          <tr>
+                              <td>공연 당일</td>
+                              <td>취소 불가</td>
+                          </tr>
+                      </tbody>
+                  </table>
                   </div>
                 </div>
             </div>
@@ -502,25 +520,25 @@
       if (totalDiscount !=  selectedQuantity) {
         // 조건이 일치하지 않을 경우 알림창 띄우기
         alert("선택 매수와 할인 권종 선택 수가 일치하지 않습니다.");
-      }
+      }else{
       var formData = {
-        email: document.getElementById("email").value,  
-        reservationName: document.getElementById("reservationName").value,
-        phoneNumber: document.getElementById("phoneNumber").value,
-        date: document.querySelector('input[name="date"]:checked').value,
-        progress: "입금대기",
-        DiscountGeneral: discountGeneral,
-        DiscountStudent: discountStudent,
-        DiscountFollow: discountFollow,
-        DiscountReview: discountReview
-      };
+          email: document.getElementById("email").value,  
+          reservationName: document.getElementById("reservationName").value,
+          phoneNumber: document.getElementById("phoneNumber").value,
+          date: document.querySelector('input[name="date"]:checked').value,
+          progress: "입금대기",
+          DiscountGeneral: discountGeneral,
+          DiscountStudent: discountStudent,
+          DiscountFollow: discountFollow,
+          DiscountReview: discountReview
+        };
 
       $("#reservationModal").modal("hide");
       $("#payModal").modal("show");
 
       //payModal에 예매자명과 금액 띄우기
-      var reservationName = document.getElementById("reservationName").value;
-      document.getElementById("bookingName").innerHTML = "예매자명: "+reservationName;
+        var reservationName = document.getElementById("reservationName").value;
+        document.getElementById("bookingName").innerHTML = "예매자명: "+reservationName;
 
       var totalPrice = Number(discountGeneral)*12000+Number(discountStudent)*10000+Number(discountFollow)*10000+Number(discountReview)*9000;
       document.getElementById("totalPrice").innerHTML = "입금 대기 금액: "+ totalPrice +"원";
@@ -534,8 +552,9 @@
         .catch(function (error) {
           console.error("Error storing data in Firebase: ", error);
         });
-      
+      }
     });
+
     
     document.getElementById("closeModal2").addEventListener("click", function () {
       payModal.style.display = "none";
