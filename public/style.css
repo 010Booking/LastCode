@@ -107,10 +107,6 @@ li {
 
 /* 미디어 쿼리: 화면 너비가 768px 미만인 경우 */
 @media (max-width: 767px) {
-  .infoBo .row {
-    flex-direction: column; /* 수직 배치로 변경 */
-    justify-items: center;
-  }
 
   .posterbox,
   .info_summary {
@@ -211,9 +207,7 @@ li {
   }
   .datelistBox .datelist li .datetext, #floatingSelect{
     font-size: 0.6em;
-  }
-  #floatingSelect{
-    height: 3em;
+    
   }
 }
 
@@ -248,26 +242,40 @@ li {
 .inputTable {
   font-size: 1em;
 }
-.inputTable .row .discount {
-  position: relative;
-}
-.inputTable .row .discount .type,
-.inputTable .row .discount .price {
-  position: absolute;
-  top: 50%;
-  transform: translate(0, -50%);
-}
-.inputTable .row .discount p .type {
+.inputTable .row .type {
+  display: inline-block;
+  font-size: 100%;
   font-weight: bold;
 }
-.inputTable .row .discount p .price {
-  text-align: center;
+.inputTable .row .price {
+  display: inline-block;
+  font-size: 0.9em;
+}
+#generalDiscountSelect, #studentDiscountSelect, #followDiscountSelect, #reviewDiscountSelect{
+  font-size: 0.8em;
 }
 
 .accInfo {
   text-align: center;
   font-size: 1em;
 }
+
+.refundrule {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.75em;
+}
+
+.refundrule th, .refundrule td {
+  border: 1px solid #ebebeb;
+  padding: 8px;
+  text-align: center;
+}
+
+.refundrule th {
+  background-color: #f2f2f2;
+}
+
 
 /* index.html 에서 쓴 클래스들 */
 
