@@ -1,9 +1,10 @@
 /*기본태그*/
 
-/**/
+/*
 body {
  
 }
+*/
 
 ul,
 ol,
@@ -40,6 +41,7 @@ li {
 .infoBox {
   position: relative;
   padding-bottom: 6.5rem;
+  font-size: 16px;
 }
 
 .posterbox {
@@ -107,7 +109,9 @@ li {
 
 /* 미디어 쿼리: 화면 너비가 768px 미만인 경우 */
 @media (max-width: 767px) {
-
+  .infoBox{
+    font-size: 14px;
+  }
   .posterbox,
   .info_summary {
     max-width: none; /* 모바일에서 최대 너비 제거 */
@@ -118,7 +122,6 @@ li {
   .info ul{
     padding-left: 1rem;
   }
-
 }
 
 
@@ -129,8 +132,8 @@ li {
 .dateBox {
   width: 100%;
   position: relative;
-
-  padding-bottom: 6.5rem;
+  padding-bottom: 5rem;
+  font-size: 16px;
 }
 
 .selectTitle {
@@ -141,11 +144,7 @@ li {
 .datelistBox {
   overflow: hidden;
   display: block;
-  /* margin-top: 1rem; */
   border-bottom: 1px solid #ebebeb;
-  font-size: 16px;
-  align-items: center;
-  
 }
 
 .selectTitle {
@@ -157,7 +156,6 @@ li {
 
 .datelistBox, .numticketBox{
   position: relative;
-  float: left;
   text-align: center;
   border-top: 1px solid #ebebeb;
   border-bottom: 1px solid #ebebeb;
@@ -165,8 +163,9 @@ li {
 }
 
 .datelist {
-  padding: 12px 15px 15px 30px;
-  width: 80%;
+  display: inline-block; 
+  padding: 1em;
+  width: 100%;
   margin-bottom: 0px;
 }
 
@@ -175,12 +174,9 @@ li {
   list-style: none;
 }
 
-
 .dateselectBtn {
   display: flex;
   text-align: center;
-  width: 100%;
-  height: 40px;
   border: none;
   background-color: transparent;
 }
@@ -189,33 +185,56 @@ li {
   margin: auto;
   color: #000;
 }
+
 .datelistBox .datelist li .datetext, #floatingSelect{
-  font-size: 0.8em;
+  font-size: 80%;
 }
 
 #floatingSelect{
-  width: 10em;
-  height: 2.5em;
+  max-width: 100%; /* 최대 너비를 100%로 설정 */
+  width: auto;
   margin: auto;
-  margin-top: 1em;
-  overflow: auto;
-}
-
-@media (max-width: 768px) {
-  
-  .selectTitle {
-    font-size: 0.65em;
-  }
-  .datelistBox .datelist li .datetext, #floatingSelect{
-    font-size: 0.6em;
-    
-  }
+  overflow: hidden;
 }
 
 .datelistBox .datelist li .datebtn{
-  padding: 0.2em;
+  padding: 0.5em;
   text-align: center;
-  /* margin-top: 0.9em; */
+  align-items: center;
+  line-height: 0.7;
+}
+
+.datelistBox .datelist li .datebtn img{
+  display: block;
+  width: 50%;
+  margin: auto;
+}
+
+@media (max-width: 768px) {
+  .dateBox {
+    padding-bottom: 2em;
+  }
+  .selectTitle {
+    font-size: 0.7em;
+  }
+  .datelistBox .datelist li .datetext, #floatingSelect{
+    font-size: 65%;
+  }
+  #floatingSelect{
+    height: 4em;
+  }
+  .datelist {
+    width: 100%;
+    padding: 0.1em;
+  }
+  .datelistBox .datelist li .datebtn{
+    height: 100%;
+    padding: 0.3em 0.2em;
+    margin-bottom: 0.2em;
+  }
+  .datelistBox .datelist li .datebtn img{
+    width: 100%;
+  }
 }
 
 .numticketBox {
