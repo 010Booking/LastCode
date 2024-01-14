@@ -20,7 +20,7 @@ li {
 }
 
 .bg-bigger {
-  height: 25em;
+  height: 30em;
 }
 
 .bg-gray {
@@ -272,12 +272,9 @@ li {
 /* index.html 에서 쓴 클래스들 */
 
 .last-row {
-  font-family: "Noto Serif KR";
   color: black;
-  font-size: 5em;
   position: relative;
-  top: -1em;
-  font-weight: 500;
+  top: -10em;
 }
 
 .start {
