@@ -520,7 +520,7 @@
       if (totalDiscount !=  selectedQuantity) {
         // 조건이 일치하지 않을 경우 알림창 띄우기
         alert("선택 매수와 할인 권종 선택 수가 일치하지 않습니다.");
-      }
+      }else{
       var formData = {
           email: document.getElementById("email").value,  
           reservationName: document.getElementById("reservationName").value,
@@ -552,7 +552,7 @@
         .catch(function (error) {
           console.error("Error storing data in Firebase: ", error);
         });
-      
+      }
     });
 
     
