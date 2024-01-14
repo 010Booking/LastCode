@@ -237,10 +237,10 @@
                   <div class="infoDesc"><p class="infoText fw-bolder">예매정보</p></div>
                   <!--선택한 날짜 보여주는 영역-->
                   <div class="inputTable px-3 row">
-                    <div class="col-md-auto mb-3">관람일</div><div class="col-md-auto mb-3" id="selectedDate"></div>
+                    <div class="col mb-3">관람일</div><div class="col mb-3" id="selectedDate"></div>
                   </div>
                   <div class="inputTable px-3 row">
-                    <div class="col-md-auto mb-3">예매매수</div><div class="col-md-auto mb-3" id="selectedTicket"></div>
+                    <div class="col mb-3">예매매수</div><div class="col mb-3" id="selectedTicket"></div>
                   </div>
                 </div>
                 <!-- 예매자 정보 입력 영역 -->
@@ -450,11 +450,11 @@
       }
 
       if(selectedDate=="240215"){
-        document.getElementById("selectedDate").innerHTML = "2024.02.15(목) 20:00";
+        document.getElementById("selectedDate").innerHTML = "2024.02.15 (목) 20:00";
       }else if(selectedDate=="240216"){
-        document.getElementById("selectedDate").innerHTML = "2024.02.16(금) 20:00";
+        document.getElementById("selectedDate").innerHTML = "2024.02.16 (금) 20:00";
       }else if(selectedDate=="240217"){
-        document.getElementById("selectedDate").innerHTML = "2024.02.17(토) 15:00";
+        document.getElementById("selectedDate").innerHTML = "2024.02.17 (토) 15:00";
       };
 
       //예매매수 가져오기
