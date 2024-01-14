@@ -36,7 +36,7 @@ li {
   font-family: "Noto Serif KR";
 }
 
-/*새로 만든 클래스 태그*/
+/*booking.html*/
 
 .infoBox {
   position: relative;
@@ -298,6 +298,17 @@ li {
   background-color: #f2f2f2;
 }
 
+/*faq.html*/
+.faqbox{
+  padding: 2rem;
+  
+}
+.question{
+  font-size: 1.2rem;
+}
+.answer{
+  font-size: 1rem;
+}
 
 /* index.html 에서 쓴 클래스들 */
 
