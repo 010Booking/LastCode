@@ -486,7 +486,7 @@
 
     document .getElementById("userForm") .addEventListener("submit", function (event) {
       // 이벤트 기본 동작 막기
-      //event.preventDefault();
+      event.preventDefault();
 
       // 할인 정보 가져오기
       var discountGeneral = parseFloat(document.getElementById("generalDiscountSelect").value);
@@ -502,7 +502,6 @@
       if (totalDiscount !=  selectedQuantity) {
         // 조건이 일치하지 않을 경우 알림창 띄우기
         alert("선택 매수와 할인 권종 선택 수가 일치하지 않습니다.");
-        return; // 추가된 코드
       }
       var formData = {
         email: document.getElementById("email").value,  
@@ -537,6 +536,7 @@
         });
       
     });
+
     
     document.getElementById("closeModal2").addEventListener("click", function () {
       payModal.style.display = "none";
