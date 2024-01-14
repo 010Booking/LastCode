@@ -274,7 +274,7 @@ li {
 .last-row {
   color: black;
   position: relative;
-  top: -10em;
+  height: 20rem;
 }
 
 .start {
