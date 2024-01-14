@@ -139,12 +139,13 @@ li {
 }
 
 .datelistBox {
-  
   overflow: hidden;
   display: block;
   /* margin-top: 1rem; */
   border-bottom: 1px solid #ebebeb;
   font-size: 16px;
+  align-items: center;
+  
 }
 
 .selectTitle {
