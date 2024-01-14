@@ -97,7 +97,7 @@
         <div class="row infoBox px-5 mb-3">
           <!--공연정보 요약-->
           <div class="posterbox m-2 col">
-            <img class="posterImg" src="./main_poster.png" alt="연극 <맨끝줄소년>">
+            <img class="posterImg" src="../main_poster.png" alt="연극 <맨끝줄소년>">
           </div>
           <div class="info_summary m-2 col-lg-8">
             <div class="mb-4">
@@ -233,7 +233,7 @@
           <form id="userForm" data-sb-form-api-token="API_TOKEN">
             <div class="modal-body">
               <div id="bookinginput" style="white-space: pre-line"></div>
-                <div class="inputBox rounded-3">
+                <div class="inputBox bg-light rounded-3 mb-3">
                   <div class="infoDesc"><p class="infoText fw-bolder">예매정보</p></div>
                   <!--선택한 날짜 보여주는 영역-->
                   <div class="inputTable px-3 row">
@@ -244,7 +244,7 @@
                   </div>
                 </div>
                 <!-- 예매자 정보 입력 영역 -->
-                <div class="inputBox rounded-3">
+                <div class="inputBox bg-light rounded-3 mb-3">
                   <div class="infoDesc"><p class="infoText fw-bolder">할인 선택</p></div>
                   <div class="inputTable px-3">
                     <div class="row">
@@ -281,7 +281,7 @@
                     </div>
                   </div>
                 </div>
-                <div class="inputBox rounded-3">
+                <div class="inputBox bg-light rounded-3 mb-3">
                   <div class="infoDesc"><p class="infoText fw-bolder">예매자명</p></div>
                   <!-- 예매자명 입력란 -->
                   <div class="form-floating mb-3">
@@ -299,7 +299,7 @@
                   </div>  
                 </div>
         
-                <div class="inputBox rounded-3">
+                <div class="inputBox bg-light rounded-3 mb-3">
                   <div class="infoDesc"><p class="infoText fw-bolder">이메일</p></div>
                   <!-- Email address input-->
                   <div class="form-floating mb-3">
@@ -324,7 +324,7 @@
                   </div>
                 </div>
         
-                <div class="inputBox rounded-3">
+                <div class="inputBox bg-light rounded-3 mb-3">
                   <div class="infoDesc"><p class="infoText fw-bolder">연락처</p></div>
                   <div class="form-floating mb-3">
                     <input
@@ -345,7 +345,7 @@
                   </div>
                 </div>
 
-                <div class="inputBox rounded-33">
+                <div class="inputBox bg-light rounded-3 mb-3">
                   <div class="infoDesc"><p class="infoText fw-bolder">예매자 동의</p></div>
                   <!--취소 수수료 동의-->
                   <div class="form-check">
@@ -522,23 +522,23 @@
         alert("선택 매수와 할인 권종 선택 수가 일치하지 않습니다.");
       }
       var formData = {
-        email: document.getElementById("email").value,  
-        reservationName: document.getElementById("reservationName").value,
-        phoneNumber: document.getElementById("phoneNumber").value,
-        date: document.querySelector('input[name="date"]:checked').value,
-        progress: "입금대기",
-        DiscountGeneral: discountGeneral,
-        DiscountStudent: discountStudent,
-        DiscountFollow: discountFollow,
-        DiscountReview: discountReview
-      };
+          email: document.getElementById("email").value,  
+          reservationName: document.getElementById("reservationName").value,
+          phoneNumber: document.getElementById("phoneNumber").value,
+          date: document.querySelector('input[name="date"]:checked').value,
+          progress: "입금대기",
+          DiscountGeneral: discountGeneral,
+          DiscountStudent: discountStudent,
+          DiscountFollow: discountFollow,
+          DiscountReview: discountReview
+        };
 
       $("#reservationModal").modal("hide");
       $("#payModal").modal("show");
 
       //payModal에 예매자명과 금액 띄우기
-      var reservationName = document.getElementById("reservationName").value;
-      document.getElementById("bookingName").innerHTML = "예매자명: "+reservationName;
+        var reservationName = document.getElementById("reservationName").value;
+        document.getElementById("bookingName").innerHTML = "예매자명: "+reservationName;
 
       var totalPrice = Number(discountGeneral)*12000+Number(discountStudent)*10000+Number(discountFollow)*10000+Number(discountReview)*9000;
       document.getElementById("totalPrice").innerHTML = "입금 대기 금액: "+ totalPrice +"원";
@@ -554,6 +554,7 @@
         });
       
     });
+
     
     document.getElementById("closeModal2").addEventListener("click", function () {
       payModal.style.display = "none";
