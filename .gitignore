@@ -66,6 +66,3 @@ node_modules/
 .env
 
 #api key
-.env.sample
-
-chatbot.js

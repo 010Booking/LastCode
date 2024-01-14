@@ -29,6 +29,10 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
     />
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
+    />
   </head>
 </html>
 <body class="d-flex flex-column h-100 bg-white">
@@ -51,9 +55,7 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
             <li class="nav-item">
-              <a class="nav-link myungjo" href="Booking.html"
-                >예매하기</a
-              >
+              <a class="nav-link myungjo" href="Booking.html">예매하기</a>
             </li>
             <li class="nav-item">
               <a class="nav-link myungjo" href="manageBooking.html"
@@ -80,16 +82,15 @@
                   <div class="text-center myungjo">
                     <h3 class="fw-bolder">자주 묻는 질문</h3>
                     <p class="text-muted">
-                      연극 <맨 끝줄 소년>을 관람 해 주셔서 감사합니다.
+                      연극 <맨 끝줄 소년>을 관람해 주셔서 감사합니다.
                     </p>
                     <div>
                       <button
                         type="button"
                         class="btn btn-dark small-title"
                         id="emailButton"
-                        style="margin-right: 60px"
                       >
-                        <i class="fas fa-envelope"></i> Email
+                        <i class="fab fa-twitter"></i> X
                       </button>
                       <button
                         type="button"
@@ -107,30 +108,55 @@
               <div class="tab-content pt-3 myungjo" id="pills-tabContent">
                 <div class="row g-4 mt-2">
                   <div class="col-lg-6">
-                    <h5>티켓 예매는 언제까지 할 수 있나요 ?</h5>
+                    <h5>티켓 예매는 언제까지 할 수 있나요?</h5>
                     <p class="text-muted">
-                      공연 시작 1 시간 전까지 예매 가능합니다.
+                      공연일 2일 전까지 예매처 페이지를 통해 예매하실 수 있습니다. 이후에는 현장에서 티켓을 구매하실 수 있습니다. 다만 객석 상황에 따라 당일 회차가 매진되었을 경우 현장예매가 불가능할 수 있습니다.
                     </p>
                   </div>
                   <div class="col-lg-6">
                     <h5>티켓 예매 이후 확인 이메일을 수신하지 못했습니다.</h5>
                     <p class="text-muted">
-                      화면에 위치한 이메일 버튼을 클릭 후 예매 내역 캡처와 함께
-                      문의해 주시면 48 시간 이내 확인 후 확인 이메일을 전송해
-                      드립니다.
+                      입금 완료 이후 24시간 내에 확인 이메일을 수신하지 못하신 경우, 예매 내역 캡처본과 함께 X 혹은 인스타그램으로 문의 주시면 48시간 이내 확인 후 이메일 전송해 드리겠습니다.
+
                     </p>
                   </div>
                   <div class="col-lg-6">
-                    <h5>공연예매 후 언제까지 입금해야 하나요?</h5>
+                    <h5>공연예매 후 입금 마감 시간은 어떻게 되나요?</h5>
                     <p class="text-muted">
-                      공연 시작 48시간 전 입금 창구 마감합니다.
+                      예매하신 해당 공연일의 1일 전에 입금 창구가 마감됩니다. (ex: 15일 공연일 경우 14일 0시에 입금 마감) 이후에는 미입금 상태인 온라인 예매가 취소되며, 공연 관람을 원하실 경우 현장에서 예매하셔야 합니다. 다만 객석 상황에 따라 당일 회차가 매진되었을 경우 현장예매가 불가능할 수 있습니다.
                     </p>
                   </div>
                   <div class="col-lg-6">
                     <h5>예매자와 입금자가 달라요.</h5>
                     <p class="text-muted">
-                      관람 당시 예매 내역 캡처본과 입금 내역을 제시해 주세요.
-                      예매 확인 도와 드립니다.
+                      입금 후 SNS 계정(X, 인스타그램 중 택1)의 다이렉트 메시지로 예매 내역과 입금 내역 캡처본을 전송해 주시면 처리해 드리도록 하겠습니다.
+                    </p>
+                  </div>
+                  <div class="col-lg-6">
+                    <h5>할인 증빙은 무엇이 필요한가요?</h5>
+                    <p class="text-muted">
+                      이화인 할인: 이화여자대학교 학생증 지참 (실물, 모바일 모두 가능합니다.) <br/>
+                      팔로워 할인: X 혹은 인스타그램 계정 팔로잉 목록 확인<br/>
+                      재관람 할인: 2019 이화여대 <맨 끝줄 소년> 텀블벅 후원 내역 혹은 실물 티켓,
+                      2024 이화여대 <맨 끝줄 소년> 실물 티켓 (실물 티켓 뒷면에 날인합니다.)                      
+                    </p>
+                  </div>
+                  <div class="col-lg-6">
+                    <h5>할인 증빙은 몇 장 적용되나요?</h5>
+                    <p class="text-muted">
+                      모든 할인 증빙은 1인 1매입니다. 이화인 할인으로 n장 예매 시 n장의 학생증이 필요하며, 마찬가지로 재관람 할인으로 n장 예매 시 n장의 후원 내역(2019) 혹은 실물 티켓(2019, 2024)이 필요합니다.                     
+                    </p>
+                  </div>
+                  <div class="col-lg-6">
+                    <h5>증빙 서류를 놓고 왔어요.</h5>
+                    <p class="text-muted">
+                      할인 증빙이 불가한 경우 정가 대비 차액을 현장에서 지불하셔야 합니다. 차액 지불은 오직 계좌이체로만 가능합니다.                      
+                    </p>
+                  </div>
+                  <div class="col-lg-6">
+                    <h5>부분예매 취소를 선택했는데 부분 취소가 안 돼요.</h5>
+                    <p class="text-muted">
+                      저희 페이지의 부분예매 취소는 여러 장의 티켓이 아닌 여러 건을 예매하신 분들을 위한 취소 버튼입니다. 장당 취소가 아닌 ‘건당’ 취소 버튼이므로 한 번에 예매하신 건에서 일부 티켓을 취소하시길 원하시는 경우 해당 건 전체를 취소하신 후 다시 예매해 주시길 바랍니다.                    
                     </p>
                   </div>
                 </div>
@@ -146,18 +172,21 @@
     document
       .getElementById("emailButton")
       .addEventListener("click", function () {
-        window.location.href = "mailto:eunseong06070@gmail.com";
+        window.location.href =
+          "https://twitter.com/thelastrow2024/status/1741821679314370849?s=46&t=bajlDXrfJZrNhb00b37QZw";
       });
 
     document
       .getElementById("instagramButton")
       .addEventListener("click", function () {
-        window.open("https://www.instagram.com/", "_blank");
+        window.open(
+          "https://www.instagram.com/p/C13h9fzPlUM/?igsh=MzRlODBiNWFlZA==",
+          "_blank"
+        );
       });
   </script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
   <!-- Core theme JS-->
   <script src="js/scripts.js"></script>
-  <script type="module">
-  </script>
+  <script type="module"></script>
 </body>
