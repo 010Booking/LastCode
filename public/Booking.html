@@ -97,7 +97,7 @@
         <div class="row infoBox px-5 mb-3">
           <!--공연정보 요약-->
           <div class="posterbox m-2 col">
-            <img class="posterImg" src="../main_poster.png" alt="연극 <맨끝줄소년>">
+            <img class="posterImg" src="./main_poster.png" alt="연극 <맨끝줄소년>">
           </div>
           <div class="info_summary m-2 col-lg-8">
             <div class="mb-4">
@@ -110,15 +110,15 @@
               </div>
               <div class="info row mb-4">  
                 <div class="infoLabel col-2">공연기간</div>
-                <div class="infoDesc col-8">2024.02.15~2024.02.17</div>
+                <div class="infoDesc col-md-auto">2024.02.15~2024.02.17</div>
               </div>
               <div class="info row mb-4">  
                 <div class="infoLabel col-2">공연시간</div>
-                <div class="infoDesc col-8">150분 / 인터미션 15분 포함 (예정)</div>
+                <div class="infoDesc col-md-auto">150분 / 인터미션 15분 포함 (예정)</div>
               </div>
               <div class="info row mb-4">  
                 <div class="infoLabel col-2">가격</div>
-                <div class="infoDesc col-8">정가 12,000원</div>
+                <div class="infoDesc col-md-auto">정가 12,000원</div>
               </div>
             </div>
             
@@ -132,17 +132,17 @@
               <div class="datelistBox col">
                 <h5 class="selectTitle">날짜선택</h5>
                 <ul class="datelist">
-                  <li>
+                  <li >
                     <input type="radio" class="btn-check" name="date" id="option1" value="240215" autocomplete="off" checked>
-                    <label class="datebtn btn" for="option1"><span class="datetext">2024년 2월 15일 (목)</span></label>
+                    <label class="datebtn btn" for="option1"><img src="./btn_date1.svg"/></label>
                   </li>
                   <li>
                     <input type="radio" class="btn-check" name="date" id="option2" value="240216" autocomplete="off">
-                    <label class="datebtn btn" for="option2"><span class="datetext">2024년 2월 16일 (금)</span></label>
+                    <label class="datebtn btn" for="option2"><img src="./btn_date2.svg"/></label>
                   </li>
                   <li>
                     <input type="radio" class="btn-check" name="date" id="option3" value="240217" autocomplete="off">
-                    <label class="datebtn btn" for="option3"><span class="datetext">2024년 2월 17일 (토)</span></label>
+                    <label class="datebtn btn" for="option3"><img src="./btn_date3.svg"/></label>
                   </li>
                 </ul>
               </div>
@@ -185,7 +185,7 @@
                 }
               </script>
               <div class="numticketBox col">
-                <h5 class="selectTitle">예매 매수 선택</h5>
+                <h5 class="selectTitle">매수 선택</h5>
                 <div class="datelist mb-3">
                   <select class="form-select" name="ticketnum" id="floatingSelect">
                     <option value="1" selected>1매</option>
