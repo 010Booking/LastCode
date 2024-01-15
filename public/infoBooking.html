@@ -44,6 +44,7 @@
       integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
       crossorigin="anonymous"
     ></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
     <!-- Bootstrap JavaScript -->
     <script
@@ -419,13 +420,30 @@
             // 모달이 보여질 때 '동의하고 예매 취소' 버튼 비활성화
             document.getElementById("agreeCancel").disabled = true;
           });
+
         $(document).ready(function () {
+          // 초기에 버튼을 비활성화
+          $("#cancelConfirm").prop("disabled", true);
+
           $("#cancelPartReservation").click(function () {
             $(this).hide();
             $("#cancelConfirm").show();
             $("#lead-text").text(
               "예매를 취소할 예매 건을 선택하고 확인 버튼을 누릅니다."
             );
+          });
+
+          // 문서 전체에 이벤트 위임 설정
+          $(document).on("change", "[id^='checkBox-']", function () {
+            // 체크된 체크박스의 개수를 계산
+            let checkedCount = $("[id^='checkBox-']:checked").length;
+
+            // 체크된 체크박스가 한 개 이상이면 버튼을 활성화, 그렇지 않으면 비활성화
+            if (checkedCount > 0) {
+              $("#cancelConfirm").prop("disabled", false);
+            } else {
+              $("#cancelConfirm").prop("disabled", true);
+            }
           });
         });
       };
