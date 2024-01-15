@@ -36,7 +36,11 @@ li {
   font-family: "Noto Serif KR";
 }
 
-/*새로 만든 클래스 태그*/
+.navbar-toggler {
+  font-size: 12px;
+}
+
+/*booking.html*/
 
 .infoBox {
   position: relative;
@@ -133,7 +137,7 @@ li {
 .dateBox {
   width: 100%;
   position: relative;
-  padding-bottom: 5rem;
+  padding-bottom: 3rem;
   font-size: 16px;
 }
 
@@ -298,6 +302,30 @@ li {
   background-color: #f2f2f2;
 }
 
+.infoImg{
+  padding-left: 7%;
+  padding-right: 7%;
+}
+@media (max-width: 768px) {
+  .infoImg{
+    padding-left: 0;
+    padding-right: 0;
+  }
+}
+
+
+
+/*faq.html*/
+.faqbox{
+  padding: 2rem;
+  
+}
+.question{
+  font-size: 1.2rem;
+}
+.answer{
+  font-size: 1rem;
+}
 
 /* index.html 에서 쓴 클래스들 */
 
@@ -309,10 +337,11 @@ li {
 
 .start {
   font-family: "Libre Barcode 39";
-  font-size: 2em;
+  font-size: 2.4rem;
   text-decoration: none;
   color: inherit;
-
+  position: relative;
+  top: 0.45rem;
 }
 
 .date {
