@@ -69,3 +69,4 @@ node_modules/
 chatbotapikey.js
 ./public/chatbot.js
 chatbot.js
+chatbot.jsonl
