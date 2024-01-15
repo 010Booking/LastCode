@@ -306,6 +306,12 @@ li {
   padding-left: 7%;
   padding-right: 7%;
 }
+@media (max-width: 768px) {
+  .infoImg{
+    padding-left: 0;
+    padding-right: 0;
+  }
+}
 
 
 
