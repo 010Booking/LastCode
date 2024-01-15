@@ -273,21 +273,32 @@
     </section>
   </main>
   <script>
-    document
-      .getElementById("confirmButton")
-      .addEventListener("click", function (event) {
-        event.preventDefault();
+document
+  .getElementById("confirmButton")
+  .addEventListener("click", function (event) {
+    event.preventDefault();
 
-        // 입력 필드에서 데이터를 가져옵니다.
-        var name = document.getElementById("name").value;
-        var email = document.getElementById("email").value;
-        var phoneNumber = document.getElementById("phone").value;
-        var date = document.getElementById("date").value;
-        var bank = document.getElementById("inputGroupSelect01").value;
-        var account = document.getElementById("account").value;
-        var price = document.getElementById("price").value;
+    // 입력 필드에서 데이터를 가져옵니다.
+    var name = document.getElementById("name").value;
+    var email = document.getElementById("email").value;
+    var phoneNumber = document.getElementById("phone").value;
+    var date = document.getElementById("date").value;
+    var bank = document.getElementById("inputGroupSelect01").value;
+    var account = document.getElementById("account").value;
+    var price = document.getElementById("price").value;
+    // BookingList에서 해당 예매 내역을 찾습니다.
+    var bookingRef = database.ref("BookingList");
+    var query = bookingRef.orderByChild("email").equalTo(email);
 
-        // 데이터를 Firebase에 저장합니다.
+    query.once("value", function(snapshot) {
+      snapshot.forEach(function(childSnapshot) {
+        // 조건에 맞는 데이터가 있다면, 그 데이터의 progress 값을 '환불대기'로 변경합니다.
+        if (childSnapshot.val().progress === '예매확정') {
+          bookingRef.child(childSnapshot.key).update({progress: '환불대기'});
+        }});
+    
+    }).then(() => {
+        // 이제 BookingList에서 progress 변경 작업이 완료되었으므로, CancelList에 데이터를 저장합니다.
         database
           .ref("CancelList")
           .push()
@@ -297,12 +308,12 @@
             phoneNumber: phoneNumber,
             date: date,
             bank: bank,
-            price: price,
+            account: account,
+            price: price
           })
           .then(() => {
             // 데이터가 성공적으로 저장된 후에 실행됩니다.
             alert("환불 신청이 완료되었습니다. 감사합니다.");
-            database.child(childSnapshot.key).update({ progress: "환불대기" });
             window.location.href = "index.html";
           })
           .catch((error) => {
@@ -310,6 +321,9 @@
             console.error("Error writing new message to database", error);
           });
       });
+});
+
+
   </script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
   <!-- Core theme JS-->
