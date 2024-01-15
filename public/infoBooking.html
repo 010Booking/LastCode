@@ -108,12 +108,13 @@
       </div>
     </nav>
 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <section class="py-9">
       <div class="container px-5">
         <div class="bg-light rounded-3 py-5 px-4 px-md-5 mb-5">
           <div class="text-center mb-5">
             <h1 class="fw-bolder myungjo">예매 정보</h1>
-            <p class="lead fw-normal text-muted mb-0 myungjo">
+            <p id="lead-text" class="lead fw-normal text-muted mb-0 myungjo">
               티켓 예매 정보를 불러 옵니다.
             </p>
           </div>
@@ -125,13 +126,21 @@
               <div id="reservationInfo"></div>
             </div>
             <!--예매 취소 버튼-->
-            <div class="col-12 text-center mt-3 myungjo">
+            <div id="btn-container" class="col-12 text-center mt-3 myungjo">
               <button
                 id="cancelPartReservation"
                 type="button"
                 class="btn btn-dark"
               >
                 예매 취소
+              </button>
+              <button
+                id="cancelConfirm"
+                type="button"
+                class="btn btn-dark"
+                style="display: none"
+              >
+                확인
               </button>
             </div>
           </div>
@@ -239,49 +248,11 @@
         var urlParams = new URLSearchParams(window.location.search);
         var phone = urlParams.get("phone");
         var email = urlParams.get("email");
-        var ref = firebase.database().ref("BookingList");
-        // 예매 취소 이벤트 핸들러
-        // 예매 취소 이벤트 핸들러
-        document
-          .getElementById("agreeCancel")
-          .addEventListener("click", function () {
-            var hasConfirmedBooking = false; // '예매확정' 상태의 예매 존재 여부를 확인하는 플래그
 
-            ref
-              .orderByChild("email")
-              .equalTo(email)
-              .once("value")
-              .then(function (snapshot) {
-                if (snapshot.exists()) {
-                  snapshot.forEach(function (childSnapshot) {
-                    var data = childSnapshot.val();
+        var database = firebase.database();
+        var bookingListRef = database.ref("BookingList/");
 
-                    // 예매확정인 경우와 입금대기인 경우에 대한 처리 로직 추가
-                    if (data.progress === "예매확정") {
-                      // // 예매확정인 경우, progress를 환불대기로 변경
-                      // data.progress = "환불대기";
-                      hasConfirmedBooking = true; // '예매확정' 예매가 존재함을 표시
-                    } else if (data.progress === "입금대기") {
-                      // 입금대기인 경우, progress를 예매취소로 변경
-                      data.progress = "예매취소";
-                    }
-
-                    alert("예매가 취소되었습니다.");
-                    $("#cancelModal").modal("hide");
-                  });
-
-                  // '예매확정' 예매가 존재하는 경우 'refundBooking.html'로 이동, 그렇지 않은 경우 'index.html'로 이동
-                  window.location.href = hasConfirmedBooking
-                    ? "refundBooking.html"
-                    : "index.html";
-                }
-              })
-              .catch(function (error) {
-                console.error("Error removing booking: ", error);
-              });
-          });
-
-        ref
+        bookingListRef
           .orderByChild("email")
           .equalTo(email)
           .once("value")
@@ -291,14 +262,25 @@
               let userInfo = "";
               let depositInfoAdded = false;
               let bank = "";
-              let allReservationsCancelled = true; // 처음에는 모든 예매가 취소된 상태로 설정합니다.
-              let cancellableReservationsCount = 0; // 예매취소 상태가 아닌 예매의 개수를 세는 변수를 추가합니다.
+              let allReservationsCancelled = true;
+              let cancellableReservationsCount = 0;
 
               snapshot.forEach(function (childSnapshot) {
                 var reservation = childSnapshot.val();
                 if (reservation.phoneNumber.slice(-4) === phone.slice(-4)) {
                   let individualResult = "";
                   let date = "";
+                  let checkBoxId = "checkBox-" + childSnapshot.key;
+
+                  if (
+                    reservation.progress !== "예매취소" &&
+                    reservation.progress !== "환불대기"
+                  ) {
+                    individualResult +=
+                      '<input type="checkbox" id="' +
+                      checkBoxId +
+                      '" style="display:none; margin-right: 10px;">'; // 오른쪽 마진 추가
+                  }
 
                   if (reservation.date === "240215") {
                     date = "24년 02월 15일";
@@ -336,34 +318,31 @@
                     "예매 상태: " + reservation.progress + "<br>";
 
                   if (
-                    reservation.progress !== "예매취소" ||
+                    reservation.progress !== "예매취소" &&
                     reservation.progress !== "환불대기"
                   ) {
-                    // 예매 상태가 '예매취소'가 아니라면, allReservationsCancelled를 false로 설정합니다.
                     allReservationsCancelled = false;
-                    cancellableReservationsCount++; // 예매취소 상태가 아니라면 개수를 증가시킵니다.
+                    cancellableReservationsCount++;
                   }
 
                   if (
                     reservation.progress === "입금대기" &&
                     !depositInfoAdded
                   ) {
-                    // 입금 안내 정보가 아직 추가되지 않았다면 추가합니다.
                     bank += `
-<div class="inputBox rounded-3 mb-3">
-  <div class="accInfo fw-bolder">무통장 입금 안내</div>
-  <div class="accInfo fw-bolder">계좌번호 7979-89-15908<br>카카오뱅크 예금주 박수현</div>
-</div>
-`;
-                    depositInfoAdded = true; // 입금 안내 정보가 추가되었음을 표시합니다.
+        <div class="inputBox rounded-3 mb-3">
+          <div class="accInfo fw-bolder">무통장 입금 안내</div>
+          <div class="accInfo fw-bolder">계좌번호 7979-89-15908<br>카카오뱅크 예금주 박수현</div>
+        </div>
+        `;
+                    depositInfoAdded = true;
                   }
 
-                  individualResult += '<hr class="my-4">'; // 세부 예매 정보와 다음 정보를 구분하는 선을 그립니다.
-                  result += individualResult; // 각 세부 예매 정보를 전체 결과에 덧붙입니다.
+                  individualResult += '<hr class="my-4">';
+                  result += individualResult;
                 }
               });
 
-              // 모든 예매가 취소되었는지 확인하여 버튼의 활성화 상태를 변경합니다.
               document.getElementById("cancelPartReservation").disabled =
                 allReservationsCancelled;
 
@@ -371,9 +350,56 @@
                 userInfo + result + bank;
             }
           });
+        let refundRequired = false;
 
         document
-          .getElementById("submitCancelButton")
+          .getElementById("cancelConfirm")
+          .addEventListener("click", async function () {
+            let checkBoxes = document.querySelectorAll("input[type=checkbox]");
+            for (let i = 0; i < checkBoxes.length; i++) {
+              if (checkBoxes[i].checked) {
+                let key = checkBoxes[i].id.replace("checkBox-", "");
+                if (!key) {
+                  console.error(
+                    `Invalid key extracted from checkbox ID: ${checkBoxes[i].id}`
+                  );
+                  continue;
+                }
+
+                // 해당 키에 대한 데이터를 참조합니다.
+                let bookingRef = bookingListRef.child(key);
+                let booking = await bookingRef.once("value");
+                let progress = booking.val().progress;
+
+                if (progress === "입금대기") {
+                  // progress가 입금대기인 경우 예매취소로 변경합니다.
+                  await bookingRef.update({ progress: "예매취소" });
+                } else if (progress === "예매확정") {
+                  // progress가 예매확정인 경우 환불대기로 변경하고, refundRequired를 true로 설정합니다.
+                  await bookingRef.update({ progress: "환불대기" });
+                  refundRequired = true;
+                }
+              }
+            }
+          });
+
+        document
+          .getElementById("agreeCancel")
+          .addEventListener("click", function () {
+            // 환불 규정 모달 화면에서 지우기
+            $("#cancelModal").modal("hide"); // 'show' 대신 'hide'를 사용하여 모달을 숨깁니다.
+
+            if (refundRequired) {
+              alert("환불이 필요합니다. 환불 페이지로 이동합니다.");
+              location.href = "refundBooking.html";
+            } else {
+              alert("예약이 취소되었습니다. 메인 페이지로 이동합니다.");
+              location.href = "index.html";
+            }
+          });
+
+        document
+          .getElementById("cancelConfirm")
           .addEventListener("click", function () {
             // 환불 규정 모달 띄우기
             $("#cancelModal").modal("show");
@@ -393,121 +419,25 @@
             // 모달이 보여질 때 '동의하고 예매 취소' 버튼 비활성화
             document.getElementById("agreeCancel").disabled = true;
           });
-
-        document
-          .getElementById("cancelPartReservation")
-          .addEventListener("click", function () {
-            // Firebase에서 예매 정보 읽어오기
-            var ref = firebase.database().ref("BookingList");
-            ref
-              .orderByChild("email")
-              .equalTo(email)
-              .once("value")
-              .then(function (snapshot) {
-                if (snapshot.exists()) {
-                  var ticketSelection =
-                    document.getElementById("ticketSelection");
-                  ticketSelection.innerHTML = ""; // 이전에 표시된 티켓 정보를 지웁니다.
-                  ticketSelection.innerHTML =
-                    "취소할 예매 건을 선택해 주세요." + "<br>" + "<br>";
-                  snapshot.forEach(function (childSnapshot) {
-                    var reservation = childSnapshot.val();
-
-                    // reservation.progress가 '예매취소' 또는 '환불대기'인 경우는 건너뛴다.
-                    if (
-                      reservation.progress === "예매취소" ||
-                      reservation.progress === "환불대기"
-                    ) {
-                      return;
-                    }
-                    var reservation = childSnapshot.val();
-                    if (reservation.phoneNumber.slice(-4) === phone.slice(-4)) {
-                      let date = "";
-                      if (reservation.date === "240215") {
-                        date = " 24년 02월 15일";
-                      } else if (reservation.date === "240216") {
-                        date = "  24년 02월 16일";
-                      } else if (reservation.date === "240217") {
-                        date = "  24년 02월 17일";
-                      }
-
-                      if (date !== "") {
-                        var ticket = date;
-
-                        var ticketInfo = "";
-                        if (reservation.DiscountFollow > 0) {
-                          ticketInfo +=
-                            "⸰ SNS 팔로우 할인 " +
-                            reservation.DiscountFollow +
-                            "장, ";
-                        }
-                        if (reservation.DiscountGeneral > 0) {
-                          ticketInfo +=
-                            "⸰ 일반 " + reservation.DiscountGeneral + "장, ";
-                        }
-                        if (reservation.DiscountReview > 0) {
-                          ticketInfo +=
-                            "⸰ 재관람 할인 " +
-                            reservation.DiscountReview +
-                            "장, ";
-                        }
-                        if (reservation.DiscountStudent > 0) {
-                          ticketInfo +=
-                            "⸰ 재학생 할인 " +
-                            reservation.DiscountStudent +
-                            "장, ";
-                        }
-                        ticketInfo = ticketInfo.slice(0, -2); // 마지막 쉼표(,) 제거
-
-                        ticket += " (" + ticketInfo + ")";
-
-                        var checkbox = document.createElement("input");
-                        checkbox.type = "checkbox";
-
-                        checkbox.name = "tickets";
-                        checkbox.value = ticket;
-                        checkbox.id = "id_" + ticket;
-                        checkbox.style.transform = "scale(1.5)"; // 체크박스 크기 조절
-                        checkbox.addEventListener("change", function () {
-                          if (
-                            Array.from(
-                              document.querySelectorAll(
-                                'input[name="tickets"]:checked'
-                              )
-                            ).length > 0
-                          ) {
-                            submitCancelButton.disabled = false;
-                          } else {
-                            submitCancelButton.disabled = true;
-                          }
-                        });
-
-                        var label = document.createElement("label");
-
-                        label.htmlFor = "id_" + ticket;
-                        label.style.marginLeft = "1em"; // 체크박스와 라벨 사이에 10px 간격을 추가
-                        label.appendChild(document.createTextNode(ticket));
-
-                        ticketSelection.appendChild(checkbox);
-                        ticketSelection.appendChild(label);
-
-                        var breakLine = document.createElement("br"); // 줄바꿈
-                        breakLine.style.marginTop = "7px"; // 리스트 항목 간격 조정
-                        ticketSelection.appendChild(breakLine);
-                      }
-                    }
-                  });
-
-                  // 부분 예매 취소 모달 띄우기
-                  var myModal = new bootstrap.Modal(
-                    document.getElementById("cancelPartModal"),
-                    {}
-                  );
-                  myModal.show();
-                }
-              });
+        $(document).ready(function () {
+          $("#cancelPartReservation").click(function () {
+            $(this).hide();
+            $("#cancelConfirm").show();
+            $("#lead-text").text(
+              "예매를 취소할 예매 건을 선택하고 확인 버튼을 누릅니다."
+            );
           });
+        });
       };
+
+      document
+        .getElementById("cancelPartReservation")
+        .addEventListener("click", function () {
+          var checkboxes = document.querySelectorAll('input[type="checkbox"]');
+          for (var i = 0; i < checkboxes.length; i++) {
+            checkboxes[i].style.display = "inline";
+          }
+        });
 
       document
         .getElementById("closeCancelModalButton")
