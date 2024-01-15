@@ -67,3 +67,5 @@ node_modules/
 
 #api key
 chatbotapikey.js
+./public/chatbot.js
+chatbot.js
