@@ -137,7 +137,7 @@ li {
 .dateBox {
   width: 100%;
   position: relative;
-  padding-bottom: 5rem;
+  padding-bottom: 3rem;
   font-size: 16px;
 }
 
@@ -301,6 +301,13 @@ li {
 .refundrule th {
   background-color: #f2f2f2;
 }
+
+.infoImg{
+  padding-left: 7%;
+  padding-right: 7%;
+}
+
+
 
 /*faq.html*/
 .faqbox{
