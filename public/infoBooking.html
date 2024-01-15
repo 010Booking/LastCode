@@ -241,9 +241,12 @@
         var email = urlParams.get("email");
         var ref = firebase.database().ref("BookingList");
         // 예매 취소 이벤트 핸들러
+        // 예매 취소 이벤트 핸들러
         document
           .getElementById("agreeCancel")
           .addEventListener("click", function () {
+            var hasConfirmedBooking = false; // '예매확정' 상태의 예매 존재 여부를 확인하는 플래그
+
             ref
               .orderByChild("email")
               .equalTo(email)
@@ -255,9 +258,9 @@
 
                     // 예매확정인 경우와 입금대기인 경우에 대한 처리 로직 추가
                     if (data.progress === "예매확정") {
-                      // 예매확정인 경우, progress를 환불대기로 변경하고 refundBooking.html로 이동
-                      data.progress = "환불대기";
-                      window.location.href = "refundBooking.html";
+                      // // 예매확정인 경우, progress를 환불대기로 변경
+                      // data.progress = "환불대기";
+                      hasConfirmedBooking = true; // '예매확정' 예매가 존재함을 표시
                     } else if (data.progress === "입금대기") {
                       // 입금대기인 경우, progress를 예매취소로 변경
                       data.progress = "예매취소";
@@ -266,6 +269,11 @@
                     alert("예매가 취소되었습니다.");
                     $("#cancelModal").modal("hide");
                   });
+
+                  // '예매확정' 예매가 존재하는 경우 'refundBooking.html'로 이동, 그렇지 않은 경우 'index.html'로 이동
+                  window.location.href = hasConfirmedBooking
+                    ? "refundBooking.html"
+                    : "index.html";
                 }
               })
               .catch(function (error) {
