@@ -324,14 +324,18 @@
         query
           .once("value", function (snapshot) {
             snapshot.forEach(function (childSnapshot) {
-              // 조건에 맞는 데이터가 있다면, 그 데이터의 progress 값을 '환불대기'로 변경합니다.
-              if (childSnapshot.val().progress === "예매확정") {
-                bookingRef
-                  .child(childSnapshot.key)
-                  .update({ progress: "환불대기" });
+              // 이메일이 일치하는 데이터 중에서 전화번호를 확인합니다.
+              if (childSnapshot.val().phoneNumber === phoneNumber) {
+                // 조건에 맞는 데이터가 있다면, 그 데이터의 progress 값을 '환불대기'로 변경합니다.
+                if (childSnapshot.val().progress === "예매확정") {
+                  bookingRef
+                    .child(childSnapshot.key)
+                    .update({ progress: "환불대기" });
+                }
               }
             });
           })
+
           .then(() => {
             // 이제 BookingList에서 progress 변경 작업이 완료되었으므로, CancelList에 데이터를 저장합니다.
             database
