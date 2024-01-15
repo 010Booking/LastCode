@@ -124,19 +124,16 @@
             >
               <div id="reservationInfo"></div>
             </div>
-            <!-- 예매 취소 버튼
+            <!--예매 취소 버튼-->
             <div class="col-12 text-center mt-3 myungjo">
-              <button id="cancelReservation" type="button" class="btn btn-dark">
-                전체 예매 취소
-              </button>
               <button
                 id="cancelPartReservation"
                 type="button"
                 class="btn btn-dark"
               >
-                부분 예매 취소
+                예매 취소
               </button>
-            </div> -->
+            </div>
           </div>
         </div>
       </div>
@@ -154,9 +151,7 @@
       <div class="modal-dialog">
         <div class="modal-content myungjo">
           <div class="modal-header">
-            <h5 class="modal-title" id="cancelPartModalLabel">
-              부분 예매 취소
-            </h5>
+            <h5 class="modal-title" id="cancelPartModalLabel">예매 취소</h5>
           </div>
           <div class="modal-body">
             <!-- 티켓 선택 영역 -->
@@ -164,7 +159,7 @@
           </div>
           <div class="modal-footer">
             <button type="button" id="submitCancelButton" class="btn btn-dark">
-              부분 예매 취소
+              예매 취소
             </button>
           </div>
         </div>
@@ -241,11 +236,6 @@
     </div>
     <script>
       window.onload = function () {
-        document
-          .getElementById("agreeCancel")
-          .addEventListener("mouseup", function () {
-            console.log("Mouse up event triggered");
-          });
         var urlParams = new URLSearchParams(window.location.search);
         var phone = urlParams.get("phone");
         var email = urlParams.get("email");
@@ -262,21 +252,19 @@
                 if (snapshot.exists()) {
                   snapshot.forEach(function (childSnapshot) {
                     var data = childSnapshot.val();
-                    alert("예매가 취소되었습니다.");
-                    document.getElementById(
-                      "cancelReservation"
-                    ).disabled = true;
-                    $("#cancelModal").modal("hide");
 
-                    // progress 값에 따라 다른 페이지로 이동하거나 예매 상태 업데이트하기
+                    // 예매확정인 경우와 입금대기인 경우에 대한 처리 로직 추가
                     if (data.progress === "예매확정") {
+                      // 예매확정인 경우, progress를 환불대기로 변경하고 refundBooking.html로 이동
+                      data.progress = "환불대기";
                       window.location.href = "refundBooking.html";
                     } else if (data.progress === "입금대기") {
-                      ref
-                        .child(childSnapshot.key)
-                        .update({ progress: "예매취소" });
-                      window.location.href = "index.html";
+                      // 입금대기인 경우, progress를 예매취소로 변경
+                      data.progress = "예매취소";
                     }
+
+                    alert("예매가 취소되었습니다.");
+                    $("#cancelModal").modal("hide");
                   });
                 }
               })
@@ -354,11 +342,11 @@
                   ) {
                     // 입금 안내 정보가 아직 추가되지 않았다면 추가합니다.
                     bank += `
-    <div class="inputBox rounded-3 mb-3">
-      <div class="accInfo fw-bolder">무통장 입금 안내</div>
-      <div class="accInfo fw-bolder">계좌번호 7979-89-15908<br>카카오뱅크 예금주 박수현</div>
-    </div>
-  `;
+<div class="inputBox rounded-3 mb-3">
+  <div class="accInfo fw-bolder">무통장 입금 안내</div>
+  <div class="accInfo fw-bolder">계좌번호 7979-89-15908<br>카카오뱅크 예금주 박수현</div>
+</div>
+`;
                     depositInfoAdded = true; // 입금 안내 정보가 추가되었음을 표시합니다.
                   }
 
@@ -368,32 +356,12 @@
               });
 
               // 모든 예매가 취소되었는지 확인하여 버튼의 활성화 상태를 변경합니다.
-              document.getElementById("cancelReservation").disabled =
-                allReservationsCancelled || cancellableReservationsCount <= 1;
               document.getElementById("cancelPartReservation").disabled =
                 allReservationsCancelled;
 
               document.getElementById("reservationInfo").innerHTML =
                 userInfo + result + bank;
             }
-          });
-
-        //환불
-        document
-          .getElementById("cancelReservation")
-          .addEventListener("click", function () {
-            var reservationInfo =
-              document.getElementById("reservationInfo").textContent;
-
-            if (!reservationInfo) {
-              document.getElementById("result").textContent =
-                "예매 정보를 먼저 찾으세요.";
-              return;
-            }
-
-            // 환불 규정 모달 띄우기
-            $("#cancelModal").modal("show");
-            document.getElementById("agreeCancel").disabled = true;
           });
 
         document
