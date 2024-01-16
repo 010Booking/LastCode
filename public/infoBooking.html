@@ -353,39 +353,8 @@
           });
         let refundRequired = false;
 
-        // document
-        //   .getElementById("cancelConfirm")
-        //   .addEventListener("click", async function () {
-        //     let checkBoxes = document.querySelectorAll("input[type=checkbox]");
-        //     for (let i = 0; i < checkBoxes.length; i++) {
-        //       if (checkBoxes[i].checked) {
-        //         let key = checkBoxes[i].id.replace("checkBox-", "");
-        //         if (!key) {
-        //           console.error(
-        //             `Invalid key extracted from checkbox ID: ${checkBoxes[i].id}`
-        //           );
-        //           continue;
-        //         }
-
-        //         // 해당 키에 대한 데이터를 참조합니다.
-        //         let bookingRef = bookingListRef.child(key);
-        //         let booking = await bookingRef.once("value");
-        //         let progress = booking.val().progress;
-
-        //         if (progress === "입금대기") {
-        //           // progress가 입금대기인 경우 예매취소로 변경합니다.
-        //           await bookingRef.update({ progress: "예매취소" });
-        //         } else if (progress === "예매확정") {
-        //           // progress가 예매확정인 경우 환불대기로 변경하고, refundRequired를 true로 설정합니다.
-        //           //await bookingRef.update({ progress: "환불대기" });
-        //           refundRequired = true;
-        //         }
-        //       }
-        //     }
-        //   });
-        // '동의하고 예매 취소' 버튼에 이벤트리스너를 추가합니다.
         document
-          .getElementById("agreeCancel")
+          .getElementById("cancelConfirm")
           .addEventListener("click", async function () {
             let checkBoxes = document.querySelectorAll("input[type=checkbox]");
             for (let i = 0; i < checkBoxes.length; i++) {
@@ -414,6 +383,37 @@
               }
             }
           });
+        // '동의하고 예매 취소' 버튼에 이벤트리스너를 추가합니다.
+        // document
+        //   .getElementById("agreeCancel")
+        //   .addEventListener("click", async function () {
+        //     let checkBoxes = document.querySelectorAll("input[type=checkbox]");
+        //     for (let i = 0; i < checkBoxes.length; i++) {
+        //       if (checkBoxes[i].checked) {
+        //         let key = checkBoxes[i].id.replace("checkBox-", "");
+        //         if (!key) {
+        //           console.error(
+        //             `Invalid key extracted from checkbox ID: ${checkBoxes[i].id}`
+        //           );
+        //           continue;
+        //         }
+
+        //         // 해당 키에 대한 데이터를 참조합니다.
+        //         let bookingRef = bookingListRef.child(key);
+        //         let booking = await bookingRef.once("value");
+        //         let progress = booking.val().progress;
+
+        //         if (progress === "입금대기") {
+        //           // progress가 입금대기인 경우 예매취소로 변경합니다.
+        //           await bookingRef.update({ progress: "예매취소" });
+        //         } else if (progress === "예매확정") {
+        //           // progress가 예매확정인 경우 환불대기로 변경하고, refundRequired를 true로 설정합니다.
+        //           await bookingRef.update({ progress: "환불대기" });
+        //           refundRequired = true;
+        //         }
+        //       }
+        //     }
+        //   });
 
         document
           .getElementById("agreeCancel")
