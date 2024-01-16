@@ -321,9 +321,17 @@
             }
           });
         let refundRequired = false;
-
+        
         document
           .getElementById("cancelConfirm")
+          .addEventListener("click", function () {
+            // 환불 규정 모달 띄우기
+            $("#cancelModal").modal("show");
+            document.getElementById("agreeCancel").disabled = true;
+          });
+
+        document
+          .getElementById("agreeCancel")
           .addEventListener("click", async function () {
             // 환불 규정 모달 띄우기
             $("#cancelModal").modal("show");
@@ -376,6 +384,7 @@
                   let progress = reservation.progress;
                   let refundRequired = false;
 
+<<<<<<< HEAD
                   if (progress === "입금대기") {
                     // progress가 입금대기인 경우 예매취소로 변경합니다.
                     bookingRef.update({ progress: "예매취소" });
@@ -396,6 +405,19 @@
                     location.href = "index.html";
                   }
                 });
+=======
+                if (progress === "입금대기") {
+                  // progress가 입금대기인 경우 예매취소로 변경합니다.
+                  await bookingRef.update({ progress: "예매취소" });
+                  alert("예약이 취소되었습니다. 메인 페이지로 이동합니다.");
+                  $("#cancelModal").modal("hide");
+                  location.href = "index.html";
+
+                } else if (progress === "예매확정") {
+                  alert("환불이 필요합니다. 환불 페이지로 이동합니다.");
+                  location.href = "refundBooking.html?key=" + encodeURIComponent(key);
+                }
+>>>>>>> cfe68ceab7645808a389b3df05bd75ba58a19e37
               }
             }
           });
