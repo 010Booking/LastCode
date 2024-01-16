@@ -316,12 +316,16 @@
                   result += individualResult;
                 }
               });
+
+              document.getElementById("cancelPartReservation").disabled =
+                allReservationsCancelled;
+
               document.getElementById("reservationInfo").innerHTML =
                 userInfo + result + bank;
             }
           });
         let refundRequired = false;
-        
+
         document
           .getElementById("cancelConfirm")
           .addEventListener("click", function () {
@@ -333,40 +337,9 @@
         document
           .getElementById("agreeCancel")
           .addEventListener("click", async function () {
-            // 환불 규정 모달 띄우기
-            $("#cancelModal").modal("show");
-            document.getElementById("agreeCancel").disabled = true;
-            // let checkBoxes = document.querySelectorAll("input[type=checkbox]");
-            // for (let i = 0; i < checkBoxes.length; i++) {
-            //   if (checkBoxes[i].checked) {
-            //     let key = checkBoxes[i].id.replace("checkBox-", ""); //key-value
-            //     if (!key) {
-            //       console.error(
-            //         `Invalid key extracted from checkbox ID: ${checkBoxes[i].id}`
-            //       );
-            //       continue;
-            //     }
-            //     // 해당 키에 대한 데이터를 참조합니다.
-            //     let bookingRef = bookingListRef.child(key);
-            //     let booking = await bookingRef.once("value");
-            //     let progress = booking.val().progress;
-            //     if (progress === "입금대기") {
-            //       // progress가 입금대기인 경우 예매취소로 변경합니다.
-            //       await bookingRef.update({ progress: "예매취소" });
-            //     } else if (progress === "예매확정") {
-            //       // progress가 예매확정인 경우 환불대기로 변경하고, refundRequired를 true로 설정합니다.
-            //       await bookingRef.update({ progress: "환불대기" });
-            //       refundRequired = true;
-            //     }
-            //   }
-            //}
-          });
-
-        // '동의하고 예매 취소' 버튼에 이벤트리스너를 추가합니다.
-        document
-          .getElementById("agreeCancel")
-          .addEventListener("click", function () {
-            let checkBoxes = document.querySelectorAll("input[type=checkbox]");
+            let checkBoxes = document.querySelectorAll(
+              "input[type=checkbox]:not(#agreeCheckbox)"
+            );
             for (let i = 0; i < checkBoxes.length; i++) {
               if (checkBoxes[i].checked) {
                 let key = checkBoxes[i].id.replace("checkBox-", "");
@@ -377,47 +350,27 @@
                   continue;
                 }
 
-                // key에 해당하는 데이터를 불러옵니다.
+                // 해당 키에 대한 데이터를 참조합니다.
                 let bookingRef = bookingListRef.child(key);
-                bookingRef.once("value").then(function (snapshot) {
-                  let reservation = snapshot.val();
-                  let progress = reservation.progress;
-                  let refundRequired = false;
+                let booking = await bookingRef.once("value");
+                // 데이터가 존재하는지 확인합니다.
+                if (booking.exists()) {
+                  let progress = booking.val().progress;
 
-<<<<<<< HEAD
                   if (progress === "입금대기") {
                     // progress가 입금대기인 경우 예매취소로 변경합니다.
-                    bookingRef.update({ progress: "예매취소" });
-                  } else if (progress === "예매확정") {
-                    // progress가 예매확정인 경우 환불대기로 변경하고, refundRequired를 true로 설정합니다.
-                    //bookingRef.update({ progress: "환불대기" });
-                    refundRequired = true;
-                  }
-
-                  // 환불 규정 모달 화면에서 지우기
-                  $("#cancelModal").modal("hide"); // 'show' 대신 'hide'를 사용하여 모달을 숨깁니다.
-
-                  if (refundRequired) {
-                    alert("환불이 필요합니다. 환불 페이지로 이동합니다.");
-                    location.href = "refundBooking.html";
-                  } else {
+                    await bookingRef.update({ progress: "예매취소" });
                     alert("예약이 취소되었습니다. 메인 페이지로 이동합니다.");
+                    $("#cancelModal").modal("hide");
                     location.href = "index.html";
+                  } else if (progress === "예매확정") {
+                    alert("환불이 필요합니다. 환불 페이지로 이동합니다.");
+                    location.href =
+                      "refundBooking.html?key=" + encodeURIComponent(key);
                   }
-                });
-=======
-                if (progress === "입금대기") {
-                  // progress가 입금대기인 경우 예매취소로 변경합니다.
-                  await bookingRef.update({ progress: "예매취소" });
-                  alert("예약이 취소되었습니다. 메인 페이지로 이동합니다.");
-                  $("#cancelModal").modal("hide");
-                  location.href = "index.html";
-
-                } else if (progress === "예매확정") {
-                  alert("환불이 필요합니다. 환불 페이지로 이동합니다.");
-                  location.href = "refundBooking.html?key=" + encodeURIComponent(key);
+                } else {
+                  console.error(`No booking data found for key: ${key}`);
                 }
->>>>>>> cfe68ceab7645808a389b3df05bd75ba58a19e37
               }
             }
           });
@@ -458,6 +411,13 @@
               $("#cancelConfirm").prop("disabled", false);
             } else {
               $("#cancelConfirm").prop("disabled", true);
+            }
+            // 체크된 라디오 버튼이 하나라도 있으면 나머지를 비활성화
+            if (checkedCount > 0) {
+              $("[id^='checkBox-']").not(":checked").prop("disabled", true);
+            } else {
+              // 체크된 라디오 버튼이 없으면 모두 활성화
+              $("[id^='checkBox-']").prop("disabled", false);
             }
           });
         });
