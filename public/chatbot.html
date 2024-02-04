@@ -88,7 +88,7 @@
 
                 </div>
                 <div id="user-input" class="text-center py-5">
-                  <input type="text" placeholder="메시지를 입력하세요..." />`
+                  <input type="text" placeholder="메시지를 입력하세요..." />
                   <button class="send-button text-center" >전송</button>
                 </div>
                 
@@ -101,16 +101,20 @@
           <button class="myungjo"><b>!</b></button>
         </div>
         <!--모달-->
-        <div id=exc-Modal class="modal exc-modal">
+        <div id=exc-Modal class="modal exc-modal" style="display: none;">
           <div class="modal-dialog">
-            <div class="modal-content myungjo">
+            <div class="modal-content exc-modal-content myungjo">
               <div class="modal-header">
                 <h6 class="modal-title">사용자 경험을 수집하고 있습니다.</h6>
               </div>
               <div class="modal-body">
-
+                <!-- <input type="text" id="feedbackInput" class="modal-input" placeholder="피드백을 입력하세요..."> -->
+                <textarea rows="4" cols="50" id="feedbackInput" class="modal-input" placeholder="피드백을 입력하세요..."></textarea>
               </div>
               <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" onclick="sendFeedback()" id="exc-send">
+                  전송
+                </button>
                 <button
                   type="button"
                   class="btn btn-secondary"
