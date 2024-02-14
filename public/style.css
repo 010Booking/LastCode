@@ -462,8 +462,98 @@ li {
   position: absolute;
   top: 0;
   left: 0;
+  background: transparent; /* 배경을 투명으로 설정 */
+  border: none; /* 테두리 제거 */
 }
 
+#basket {
+  position: absolute;
+  top: 68%;
+  left: 45%;
+  transform: translate(-50%, -50%);
+  background: transparent; /* 배경을 투명으로 설정 */
+  border: none; /* 테두리 제거 */
+}
+
+
+#telephone {
+  position: absolute;
+  top: 55%;
+  left: 30%;
+  transform: translate(-50%, -50%);
+  background: transparent; /* 배경을 투명으로 설정 */
+  border: none; /* 테두리 제거 */
+}
+
+#martini {
+  position: absolute;
+  top: 53%;
+  left: 53%;
+  transform: translate(-50%, -50%);
+  background: transparent; /* 배경을 투명으로 설정 */
+  border: none; /* 테두리 제거 */
+}
+
+#note {
+  position: absolute;
+  top: 73%;
+  left: 15%;
+  transform: translate(-50%, -50%);
+  background: transparent; /* 배경을 투명으로 설정 */
+  border: none; /* 테두리 제거 */
+}
+
+#bag {
+  position: absolute;
+  top: 76%;
+  left: 63%;
+  transform: translate(-50%, -50%);
+  background: transparent; /* 배경을 투명으로 설정 */
+  border: none; /* 테두리 제거 */
+}
+
+#headphone {
+  position: absolute;    
+  top: 63%;
+  left: 78%;
+  transform: translate(-50%, -50%);
+  background: transparent; /* 배경을 투명으로 설정 */
+  border: none; /* 테두리 제거 */
+}
+
+@media (max-width: 768px) {
+  #basket {
+    position: absolute;    
+    top: 53%;
+    left: 45%;
+    width: 10%; /* 모바일 화면에서 버튼 크기를 작게 조절 */
+    height: 10%;
+  }
+
+  #martini {
+    position: absolute;    
+    top: 37%;
+    left: 55%;
+  }
+
+  #telephone {
+    position: absolute;
+    top: 45%;
+    left: 25%;
+  }
+
+  #note {
+    position: absolute;    
+    top: 73%;
+    left: 9%;
+  }
+
+  #bag {
+    position: absolute;
+    top: 68%;
+    left: 63%;
+  }
+}
 
 /*chatbot.js 에 쓴 클래스들*/
 
