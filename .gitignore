@@ -71,3 +71,4 @@ chatbotapikey.js
 chatbot.js
 chatbot.jsonl
 chatbot_valid.jsonl
+.env
