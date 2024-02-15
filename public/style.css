@@ -192,7 +192,9 @@ li {
 }
 
 .datelistBox .datelist li .datetext, #floatingSelect{
+  display: block;
   font-size: 80%;
+  margin: 0.3em 0.6em;
 }
 
 #floatingSelect{
@@ -206,7 +208,7 @@ li {
   padding: 0.5em;
   text-align: center;
   align-items: center;
-  line-height: 0.7;
+  line-height: 0.6;
   margin-bottom: 0.2em;
 }
 
@@ -224,10 +226,10 @@ li {
     font-size: 0.7em;
   }
   .datelistBox .datelist li .datetext, #floatingSelect{
-    font-size: 65%;
+    font-size: 60%;
   }
   #floatingSelect{
-    height: 4em;
+    height: 3em;
   }
   .datelist {
     width: 100%;
@@ -303,8 +305,8 @@ li {
 }
 
 .infoImg{
-  padding-left: 7%;
-  padding-right: 7%;
+  padding-left: 5%;
+  padding-right: 5%;
 }
 @media (max-width: 768px) {
   .infoImg{
@@ -312,6 +314,36 @@ li {
     padding-right: 0;
   }
 }
+
+
+/* 툴팁 스타일 */
+.tooltip {
+  position: relative;
+  display: inline-block;
+}
+
+.tooltip .tooltiptext {
+  visibility: hidden;
+  width: 120px;
+  background-color: black;
+  color: white;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px;
+  position: absolute;
+  z-index: 1;
+  bottom: 125%;
+  left: 50%;
+  margin-left: -60px;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+  opacity: 1;
+}
+
 
 
 
@@ -404,28 +436,263 @@ li {
   font-weight: bold;
 }
 
-/*chatbot.js 에 쓴 클래스들*/
-
-.chat-container{
-  position: relative;
-  top:5em;
-  outline: none;
+.PBcontainer{
+  padding: 0 3rem;
 }
 
-.chat-container{
+
+.programbookBox{
+  position: relative;
+  width: 100%; /* 부모 요소 너비에 맞춤 */
+  padding-bottom: 56.25%;
+}
+
+
+
+.pbBtns{
+  padding: 0 10%;
+}
+
+@media (max-width: 768px) {
+  .pbBtns{
+    font-size: 8px;
+    padding: 0;
+  }
+  .PBcontainer{
+    padding: 0 0.7rem;
+  }
+}
+
+
+.programbookbg{
+  position: absolute; /* 절대 위치 설정 */
+  top: 0; /* 상단에 정렬 */
+  left: 0; /* 좌측에 정렬 */
+  width: 100%; /* 부모 요소 너비에 맞춤 */
+  height: 100%;
+  background-image: url('./programbook/무대스케치_소품.png');
+  background-size: cover; /* 이미지를 요소에 맞게 확대/축소하여 채우기 */
+  z-index: -1;
+}
+.programbookBtn{
+  width: 4em;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: transparent; /* 배경을 투명으로 설정 */
+  border: none; /* 테두리 제거 */
+}
+.pbBtnBox{
+  display: inline-block;
+  text-align: center;
+  width: 6em;
+}
+
+.pbBtn{
+  height: 5em;
+  background: transparent; /* 배경을 투명으로 설정 */
+  border: none; /* 테두리 제거 */
+}
+
+.pbBtnImg{
+  display: inline-block;
+  background: transparent; /* 배경을 투명으로 설정 */
+  border: none; /* 테두리 제거 */
+  width: 3.6em;
+}
+.pbBtnDesc{
+  display: inline-block;
+  font-size: 1em;
+  display: none;
+}
+
+#note{
+  width: 4.5em;
+}
+
+#martini{
+  width: 3em;
+}
+
+#headphone{
+  width: 5em;
+}
+
+/* 
+#basket {
+  position: absolute;
+  top: 68%;
+  left: 45%;
+  transform: translate(-50%, -50%);
+  background: transparent;
+  border: none;
+}
+
+
+#telephone {
+  position: absolute;
+  top: 55%;
+  left: 30%;
+  transform: translate(-50%, -50%);
+  background: transparent;
+  border: none;
+}
+
+#martini {
+  position: absolute;
+  top: 53%;
+  left: 53%;
+  transform: translate(-50%, -50%);
+  background: transparent; 
+  border: none;
+}
+
+#note {
+  position: absolute;
+  top: 73%;
+  left: 15%;
+  transform: translate(-50%, -50%);
+  background: transparent;
+  border: none;
+}
+
+#bag {
+  position: absolute;
+  top: 76%;
+  left: 63%;
+  transform: translate(-50%, -50%);
+  background: transparent;
+  border: none;
+}
+
+#headphone {
+  position: absolute;    
+  top: 63%;
+  left: 78%;
+  transform: translate(-50%, -50%);
+  background: transparent; 
+  border: none;
+}
+
+@media (max-width: 768px) {
+  #basket {
+    position: absolute;    
+    top: 53%;
+    left: 45%;
+    width: 10%;
+    height: 10%;
+  }
+
+  #martini {
+    position: absolute;    
+    top: 37%;
+    left: 55%;
+  }
+
+  #telephone {
+    position: absolute;
+    top: 45%;
+    left: 25%;
+  }
+
+  #note {
+    position: absolute;    
+    top: 73%;
+    left: 9%;
+  }
+
+  #bag {
+    position: absolute;
+    top: 68%;
+    left: 63%;
+  }
+} */
+
+/*chatbot.js 에 쓴 클래스들*/
+
+.chat-container {
+  position: relative;
+  top: 5em;
   width: 50%;
   margin: 0 auto;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   outline: none;
 }
 
-.user-input{
-  width: 30%;
- 
+#user-input {
+  display: flex;
+  flex-direction: center;
+  align-items: center;
 }
 
 .chat-messages{
-  width: 30%;
+  width: 60%;
   margin: 0 auto;
+}
+
+#user-input {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.send-button {
+  margin-left: 5px; /* 필요에 따라 여유 공간을 조절하세요 */
+  white-space: nowrap;
+}
+
+.floating-button {
+  position: fixed;
+  bottom: 6rem;
+  right: 5rem;
+  z-index: 1000; /* Adjust the z-index as needed */
+}
+
+.floating-button button {
+  width: 50px; /* Adjust the width of the button */
+  height: 50px; /* Adjust the height of the button */
+  color: #000; /* Black color */
+  background-color: #fff; /* Text color */
+  border: 1px solid #000;
+  border-radius: 50%; /* Make it circular */
+  cursor: pointer;
+}
+
+.exc-modal {
+  display: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 6rem;
+}
+
+.exc-modal-content {
+  background-color: #fefefe;
+  margin: 15% auto;
+  padding: 10px;
+  border: 1px solid #888;
+  width: 70%;
+}
+
+.modal-input {
+  width: 100%; /* 입력 창의 너비 조정 */
+  height: 100px; /* 입력 창의 높이 조정 */
+  margin: 10px auto; /* 중앙 정렬을 위한 설정 */
+  display: block;
+}
+
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
 }

@@ -2,7 +2,7 @@
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
-    <title>OpenAI</title>
+    <title>(계속)</title>
     <style>
       #chat-container {
         display: flex;
@@ -73,9 +73,9 @@
                   <a class="nav-link myungjo" href="faq.html">FAQ</a>
                 </li>
                 </li>
-                <!-- <li class="nav-item">
-                  <a class="nav-link myungjo" href="chatbot.html">(계속)</a>
-                </li> -->
+                <li class="nav-item">
+                  <a class="nav-link myungjo" href="programbook.html">(계속)</a>
+                </li>
               </ul>
             </div>
           </div>
@@ -87,22 +87,73 @@
                 <div id="chat-messages">
 
                 </div>
-                <div id="user-input" class="text-center py-4">
+                <div id="user-input" class="text-center py-5">
                   <input type="text" placeholder="메시지를 입력하세요..." />
-                  <button>전송</button>
+                  <button class="send-button text-center" >전송</button>
                 </div>
                 
                 <script src="./chatbot.js"></script>
               </div>
             </div>
           </div>
-          
         </header>
+        <div class="floating-button" id="exc-button">
+          <button class="myungjo"><b>!</b></button>
+        </div>
+        <!--모달-->
+        <div id=exc-Modal class="modal exc-modal" style="display: none;">
+          <div class="modal-dialog">
+            <div class="modal-content exc-modal-content myungjo">
+              <div class="modal-header">
+                <h6 class="modal-title">사용자 경험을 수집하고 있습니다.</h6>
+              </div>
+              <div class="modal-body">
+                <!-- <input type="text" id="feedbackInput" class="modal-input" placeholder="피드백을 입력하세요..."> -->
+                <textarea rows="4" cols="50" id="feedbackInput" class="modal-input" placeholder="피드백을 입력하세요..."></textarea>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" onclick="sendFeedback()" id="exc-send">
+                  전송
+                </button>
+                <button
+                  type="button"
+                  class="btn btn-secondary"
+                  id="exc-close"
+                >
+                  닫기
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <script>
+          // Get the modal element
+          var modal = document.getElementById('exc-Modal');
+      
+          // Get the button that opens the modal
+          var btn = document.getElementById('exc-button');
+      
+          // Get the <span> element that closes the modal
+          var clbtn = document.getElementById('exc-close');
+      
+          // When the user clicks the button, open the modal
+          btn.onclick = function() {
+            modal.style.display = 'block';
+          };
+      
+          // When the user clicks on <span> (x), close the modal
+          clbtn.onclick = function() {
+            modal.style.display = 'none';
+          };
+      
+          // When the user clicks anywhere outside of the modal, close it
+          window.onclick = function(event) {
+            if (event.target === modal) {
+              modal.style.display = 'none';
+            }
+          };
+        </script>
     </main>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
-    <!-- Core theme JS-->
-    <script src="js/scripts.js"></script>
-    <script type="module">
-    </script>
 </body>
 </html>
