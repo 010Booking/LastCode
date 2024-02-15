@@ -436,16 +436,33 @@ li {
   font-weight: bold;
 }
 
+.PBcontainer{
+  padding: 0 3rem;
+}
+
+
 .programbookBox{
   position: relative;
   width: 100%; /* 부모 요소 너비에 맞춤 */
   padding-bottom: 56.25%;
-  
+}
+
+
+
+.pbBtns{
+  padding: 0 10%;
 }
 
 @media (max-width: 768px) {
-  
+  .pbBtns{
+    font-size: 8px;
+    padding: 0;
+  }
+  .PBcontainer{
+    padding: 0 0.7rem;
+  }
 }
+
 
 .programbookbg{
   position: absolute; /* 절대 위치 설정 */
@@ -465,14 +482,50 @@ li {
   background: transparent; /* 배경을 투명으로 설정 */
   border: none; /* 테두리 제거 */
 }
+.pbBtnBox{
+  display: inline-block;
+  text-align: center;
+  width: 6em;
+}
 
+.pbBtn{
+  height: 5em;
+  background: transparent; /* 배경을 투명으로 설정 */
+  border: none; /* 테두리 제거 */
+}
+
+.pbBtnImg{
+  display: inline-block;
+  background: transparent; /* 배경을 투명으로 설정 */
+  border: none; /* 테두리 제거 */
+  width: 3.6em;
+}
+.pbBtnDesc{
+  display: inline-block;
+  font-size: 1em;
+  display: none;
+}
+
+#note{
+  width: 4.2em;
+}
+
+#martini{
+  width: 3em;
+}
+
+#headphone{
+  width: 5em;
+}
+
+/* 
 #basket {
   position: absolute;
   top: 68%;
   left: 45%;
   transform: translate(-50%, -50%);
-  background: transparent; /* 배경을 투명으로 설정 */
-  border: none; /* 테두리 제거 */
+  background: transparent;
+  border: none;
 }
 
 
@@ -481,8 +534,8 @@ li {
   top: 55%;
   left: 30%;
   transform: translate(-50%, -50%);
-  background: transparent; /* 배경을 투명으로 설정 */
-  border: none; /* 테두리 제거 */
+  background: transparent;
+  border: none;
 }
 
 #martini {
@@ -490,8 +543,8 @@ li {
   top: 53%;
   left: 53%;
   transform: translate(-50%, -50%);
-  background: transparent; /* 배경을 투명으로 설정 */
-  border: none; /* 테두리 제거 */
+  background: transparent; 
+  border: none;
 }
 
 #note {
@@ -499,8 +552,8 @@ li {
   top: 73%;
   left: 15%;
   transform: translate(-50%, -50%);
-  background: transparent; /* 배경을 투명으로 설정 */
-  border: none; /* 테두리 제거 */
+  background: transparent;
+  border: none;
 }
 
 #bag {
@@ -508,8 +561,8 @@ li {
   top: 76%;
   left: 63%;
   transform: translate(-50%, -50%);
-  background: transparent; /* 배경을 투명으로 설정 */
-  border: none; /* 테두리 제거 */
+  background: transparent;
+  border: none;
 }
 
 #headphone {
@@ -517,8 +570,8 @@ li {
   top: 63%;
   left: 78%;
   transform: translate(-50%, -50%);
-  background: transparent; /* 배경을 투명으로 설정 */
-  border: none; /* 테두리 제거 */
+  background: transparent; 
+  border: none;
 }
 
 @media (max-width: 768px) {
@@ -526,7 +579,7 @@ li {
     position: absolute;    
     top: 53%;
     left: 45%;
-    width: 10%; /* 모바일 화면에서 버튼 크기를 작게 조절 */
+    width: 10%;
     height: 10%;
   }
 
@@ -553,7 +606,7 @@ li {
     top: 68%;
     left: 63%;
   }
-}
+} */
 
 /*chatbot.js 에 쓴 클래스들*/
 
