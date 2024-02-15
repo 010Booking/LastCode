@@ -103,10 +103,6 @@
             <p class="pbBtnDesc">클라우디아의 작문노트</p>
           </div>
           <div class="pbBtnBox">
-            <button class="pbBtn"><img class="pbBtnImg" id="telephone" src="./programbook/전화기.png" alt="아버지 라파의 전화기"></button>
-            <p class="pbBtnDesc">아버지 라파의 전화기</p>
-          </div>
-          <div class="pbBtnBox">
             <button class="pbBtn"><img class="pbBtnImg" id="basket" src="./programbook/농구공.png" alt="라파의 농구공"></button>
             <p class="pbBtnDesc">라파의 농구공</p>
           </div>
@@ -122,9 +118,45 @@
             <button class="pbBtn"><img class="pbBtnImg" id="headphone" src="./programbook/헤드폰.png" alt="후아나의 헤드폰"></button>
             <p class="pbBtnDesc">후아나의 헤드폰</p>
           </div>
+          <div class="pbBtnBox">
+            <button class="pbBtn"><img class="pbBtnImg" id="telephone" src="./programbook/전화기.png" alt="아버지 라파의 전화기"></button>
+            <p class="pbBtnDesc">아버지 라파의 전화기</p>
+          </div>
         </div>
       </div>
     </section>
+    <script>
+      // 클라우디아의 작문노트 버튼에 대한 이벤트 핸들러
+      document.getElementById("note").addEventListener("click", function() {
+        window.location.href = "programbook_note.html";
+      });
+
+      // 아버지 라파의 전화기 버튼에 대한 이벤트 핸들러
+      document.getElementById("telephone").addEventListener("click", function() {
+        window.location.href = "programbook_telephone.html";
+      });
+
+      // 라파의 농구공 버튼에 대한 이벤트 핸들러
+      document.getElementById("basket").addEventListener("click", function() {
+        window.location.href = "programbook_basket.html";
+      });
+
+      // 에스테르의 마티니잔 버튼에 대한 이벤트 핸들러
+      document.getElementById("martini").addEventListener("click", function() {
+        window.location.href = "programbook_martini.html";
+      });
+
+      // 헤르만의 가방 버튼에 대한 이벤트 핸들러
+      document.getElementById("bag").addEventListener("click", function() {
+        window.location.href = "programbook_bag.html";
+      });
+
+      // 후아나의 헤드폰 버튼에 대한 이벤트 핸들러
+      document.getElementById("headphone").addEventListener("click", function() {
+        window.location.href = "programbook_headphone.html";
+      });
+
+    </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
     <!-- Core theme JS-->
     <script src="js/scripts.js"></script>
