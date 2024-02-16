@@ -444,7 +444,7 @@ li {
 .programbookBox{
   position: relative;
   width: 100%; /* 부모 요소 너비에 맞춤 */
-  padding-bottom: 56.25%;
+  /*padding-bottom: 56.25%;*/
 }
 
 
@@ -463,17 +463,19 @@ li {
   }
 }
 
-
+/* 
 .programbookbg{
-  position: absolute; /* 절대 위치 설정 */
-  top: 0; /* 상단에 정렬 */
-  left: 0; /* 좌측에 정렬 */
-  width: 100%; /* 부모 요소 너비에 맞춤 */
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
   height: 100%;
   background-image: url('./programbook/무대스케치와 소품.png');
-  background-size: cover; /* 이미지를 요소에 맞게 확대/축소하여 채우기 */
+  background-size: cover;
   z-index: -1;
 }
+*/
+
 .programbookBtn{
   width: 4em;
   position: absolute;
