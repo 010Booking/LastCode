@@ -470,7 +470,7 @@ li {
   left: 0; /* 좌측에 정렬 */
   width: 100%; /* 부모 요소 너비에 맞춤 */
   height: 100%;
-  background-image: url('./programbook/무대스케치_소품.png');
+  background-image: url('./programbook/무대스케치와 소품.png');
   background-size: cover; /* 이미지를 요소에 맞게 확대/축소하여 채우기 */
   z-index: -1;
 }
