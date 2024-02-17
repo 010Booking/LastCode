@@ -20,7 +20,6 @@
   "database": {
     "rules": "database.rules.json"
   },
-
   "headers": [
     {
       "source": "**/*.@(jpg|jpeg|gif|png)",
@@ -31,8 +30,32 @@
         }
       ]
     }
+  ],
+  "emulators": {
+    "database": {
+      "port": 9000
+    },
+    "hosting": {
+      "port": 5002
+    },
+    "ui": {
+      "enabled": true
+    },
+    "singleProjectMode": true,
+    "functions": {
+      "port": 5001
+    }
+  },
+  "functions": [
+    {
+      "source": "functions",
+      "codebase": "default",
+      "ignore": [
+        "node_modules",
+        ".git",
+        "firebase-debug.log",
+        "firebase-debug.*.log"
+      ]
+    }
   ]
 }
-
-
-

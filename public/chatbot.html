@@ -91,7 +91,7 @@
                   <input type="text" placeholder="메시지를 입력하세요..." />
                   <button class="send-button text-center" >전송</button>
                 </div>
-                <script src="../chatbot.js"></script>
+                <script src="./chatbot.js"></script>
               </div>
             </div>
           </div>
@@ -151,6 +151,29 @@
               modal.style.display = 'none';
             }
           };
+
+          // function sendFeedback() {
+          //   var feedbackText = document.getElementById('feedbackInput').value;
+
+          //   // Reference to the feedback collection in Firebase Realtime Database
+          //   const feedbackRef = firebase.database().ref('feedback');
+
+          //   // Push the feedback to the database
+          //   feedbackRef.push({
+          //     feedback: feedbackText,
+          //     timestamp: firebase.database.ServerValue.TIMESTAMP, // optional: store timestamp
+          //   });
+
+          //   // Optional: Close the modal or provide user feedback
+          //   alert('Feedback submitted successfully!');
+            
+          //   // Optional: Close the modal if you have an element with id 'exc-Modal'
+          //   var modal = document.getElementById('exc-Modal');
+          //   modal.style.display = 'none';
+
+          //   // Optional: Clear the feedback input
+          //   document.getElementById('feedbackInput').value = '';
+          // }
         </script>
     </main>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
