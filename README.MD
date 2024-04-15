@@ -69,7 +69,7 @@ The web team created a web that, in addition to all of the preceding functions, 
 ### Prerequisites
 
 * npm
-* [Google chrome] (https://www.google.com/chrome/)
+* [Google chrome](https://www.google.com/chrome/)
 
 ```sh
 npm install npm@latest -g
@@ -95,11 +95,16 @@ npm install
 
 4. Enter your API on your local shell
 
-```JS
-API_KEY = 'ENTER YOUR API';
+```
+API_KEY=your_api_key_here node chatbot.js
+
 ```
 
 5. Enter below line on your local shell
 ```
 npm run chatbot
 ```
+
+6. 로컬 환경에서 챗봇을 실행시킬 수 있다.
+
+
