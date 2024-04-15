@@ -107,4 +107,6 @@ npm run chatbot
 
 6. 로컬 환경에서 챗봇을 실행시킬 수 있다.
 
+![Screen Recording 2024-04-16 at 3 39 39 AM](https://github.com/010Booking/LastCode/assets/144606981/9e6bb4a7-befa-49c5-ab45-448d16d2dfec)
+
 
