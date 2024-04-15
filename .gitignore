@@ -67,8 +67,6 @@ node_modules/
 
 #api key
 chatbotapikey.js
-./public/chatbot.js
-chatbot.js
 chatbot.jsonl
 chatbot_valid.jsonl
 .env
