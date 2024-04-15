@@ -96,17 +96,3 @@ npm install
 const API_KEY = 'ENTER YOUR API';
 ```
 
-### Creating A Pull Request
-
-
-
-## Authors
-
-* **Shaan Khan** - *Comp Sci Student* - [Shaan Khan](https://github.com/ShaanCoding/) - *Built ReadME Template*
-* **** - ** - []() - **
-
-## Acknowledgements
-
-* []()
-* []()
-* []()
