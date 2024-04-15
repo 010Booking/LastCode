@@ -20,8 +20,7 @@ Online Booking Website for 'Ewha Awaken Play'<br>Exclusive ticket reservation si
 * [Getting Started](#getting-started)
   * [Prerequisites](#prerequisites)
   * [Installation](#installation)
-* [Authors](#authors)
-* [Acknowledgements](#acknowledgements)
+
 
 ## About The Project
 
@@ -59,30 +58,33 @@ The web team created a web that, in addition to all of the preceding functions, 
 * [HTML](https://developer.mozilla.org/en-US/docs/Web/HTML)
 * [CSS](https://developer.mozilla.org/en-US/docs/Web/CSS)
 * [JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
-* []()
+
 
 ## Getting Started
 
-로컬 환경에서 '맨 끝줄 소년' 예매 웹사이트를 실행하는 법 
+웹사이트는 [이쪽](https://start-ba2c0.web.app) 을 통해 접속 가능하다.
+
+로컬 환경에서 '맨 끝줄 소년' 기반 챗봇을 실행하는 법 
 
 ### Prerequisites
 
-This is an example of how to list things you need to use the software and how to install them.
-
 * npm
+* [Google chrome] (https://www.google.com/chrome/)
 
 ```sh
 npm install npm@latest -g
 ```
 
+Goo
+
 ### Installation
 
-1. Get a free API Key at [https://example.com](https://example.com)
+1. Get a free API Key at [https://openai.com/blog/openai-api)
 
 2. Clone the repo
 
 ```sh
-git clone https://github.com/your_username_/Project-Name.git
+git clone https://github.com/010Booking/LastCode.git
 ```
 
 3. Install NPM packages
@@ -91,9 +93,13 @@ git clone https://github.com/your_username_/Project-Name.git
 npm install
 ```
 
-4. Enter your API in `config.js`
+4. Enter your API on your local shell
 
 ```JS
-const API_KEY = 'ENTER YOUR API';
+API_KEY = 'ENTER YOUR API';
 ```
 
+5. Enter below line on your local shell
+```
+npm run chatbot
+```
