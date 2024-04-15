@@ -96,7 +96,7 @@ npm install
 4. Enter your API on your local shell
 
 ```
-API_KEY=your_api_key_here node chatbot.js
+API_KEY=your_api_key_here node ./public/chatbot.js
 
 ```
 
